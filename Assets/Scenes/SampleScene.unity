@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 5.55, z: -10.7}
+  m_FollowOffset: {x: 0, y: 9.88, z: -15}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -394,8 +394,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.07597045, y: 0.000000017156655, z: -0.0000000013071765, w: 0.99711007}
-  m_LocalPosition: {x: 0, y: 5.55, z: -10.7}
+  m_LocalRotation: {x: 0.18826035, y: 0, z: 0, w: 0.9821192}
+  m_LocalPosition: {x: 0, y: 9.88, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -499,8 +499,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996534591}
-  m_LocalRotation: {x: 0.07597045, y: 0.000000017156655, z: -0.0000000013071765, w: 0.99711007}
-  m_LocalPosition: {x: 0, y: 5.55, z: -10.7}
+  m_LocalRotation: {x: 0.18826035, y: 0, z: 0, w: 0.9821192}
+  m_LocalPosition: {x: 0, y: 9.88, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -694,7 +694,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -761,7 +761,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a0493f3660e1942baa1c18a4092cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 4
+  gravityScale: 1
+  jumpForce: 15
+  maxX: 6
+  speedSwap: 20
 --- !u!1 &1382406583
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +780,7 @@ GameObject:
   - component: {fileID: 1382406585}
   m_Layer: 0
   m_Name: GroundPlane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

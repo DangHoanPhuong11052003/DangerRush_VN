@@ -2,29 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static UnityEngine.AudioSettings;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float speed = 2;
+    [SerializeField] private float gravityScale = 1f;
+    [SerializeField] private float jumpForce = 10;
+    [SerializeField]  int maxX = 6;
+    [SerializeField] int speedSwap = 2;
 
     Rigidbody rb;
 
-    bool isMobile=false;
+    bool isMobile = false;
 
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
     private float swipeThreshold = 50f;
 
-    private float plane=0;
+    private float plane = 0;
 
-    private float forceX = 0;
+    bool canJump = true;
+
+    Vector3 moveDirection;
 
     // Start is called before the first frame update
     void Start()
     {
 #if UNITY_ANDROID
-        isMobile=true;
+        isMobile = true;
 #elif UNITY_IOS
         isMobile=true;
 #elif UNITY_STANDALONE_WIN
@@ -36,36 +43,52 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        moveDirection = new Vector3(0, 0, 60) * speed*Time.deltaTime;
+        rb.AddForce(moveDirection);
+
+        if (transform.position.x != plane)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(plane, transform.position.y, transform.position.z), speedSwap * Time.deltaTime);
+        }
 
         //MoveToLaneMobile();
 
+
         MoveToPlaneWindow();
+
+        if (!canJump)
+        {
+            rb.AddForce(Physics.gravity * gravityScale, ForceMode.Acceleration);
+        }
+
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector3 force = new Vector3(forceX, 0, 1f) * speed;
-        rb.AddForce(force);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            canJump = true;
+        }
     }
 
     private void MoveToLaneMobile()
     {
         if (Input.touchCount > 0)
         {
-            Touch touch= Input.GetTouch(0);
+            Touch touch = Input.GetTouch(0);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    startTouchPosition=touch.position;
+                    startTouchPosition = touch.position;
                     break;
                 case TouchPhase.Ended:
-                    endTouchPosition=touch.position;
+                    endTouchPosition = touch.position;
 
-                    Vector2 swipeDelta=endTouchPosition - startTouchPosition;
-                    
-                    if(Mathf.Abs(swipeDelta.x) > swipeThreshold|| Mathf.Abs(swipeDelta.y) > swipeThreshold) 
+                    Vector2 swipeDelta = endTouchPosition - startTouchPosition;
+
+                    if (Mathf.Abs(swipeDelta.x) > swipeThreshold || Mathf.Abs(swipeDelta.y) > swipeThreshold)
                     {
-                        if(Mathf.Abs(swipeDelta.x)> Mathf.Abs(swipeDelta.y))
+                        if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
                         {
                             if (swipeDelta.x > 0)
                             {
@@ -78,7 +101,7 @@ public class PlayerMove : MonoBehaviour
                         }
                         else
                         {
-                            if(swipeDelta.y > 0)
+                            if (swipeDelta.y > 0)
                             {
                                 MoveUp();
                             }
@@ -95,33 +118,18 @@ public class PlayerMove : MonoBehaviour
 
     private void MoveToPlaneWindow()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        if (transform.position.x==plane)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (moveHorizontal > 0 || moveHorizontal < 0)
-            {
-                if (moveHorizontal > 0)
-                {
-                    MoveRight();
-                }
-                else
-                {
-                    MoveLeft();
-                }
-            }
-            if (moveVertical > 0 || moveVertical < 0)
-            {
-                if (moveVertical > 0)
-                {
-                    MoveUp();
-                }
-                else
-                {
-                    MoveDown();
-                }
-            }
+            MoveUp();
+        } else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        {
+            MoveDown();
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            MoveLeft();
+        } else if (Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MoveRight();
         }
     }
 
@@ -132,33 +140,26 @@ public class PlayerMove : MonoBehaviour
 
     private void MoveUp()
     {
-        return;
+        if(canJump)
+        { 
+            canJump = false;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     private void MoveLeft()
     {
-        if (plane > -6)
+        if (plane > -maxX)
         {
-            plane -=6;
-            forceX = -6;
-            StartCoroutine(StopForce(0.2f));
+            plane -= maxX;
         }
     }
 
     private void MoveRight()
     {
-        if (plane < 6)
+        if (plane < maxX)
         {
-            plane += 6;
-            forceX = 6;
-            StartCoroutine(StopForce(0.2f));
+            plane += maxX;
         }
-    }
-
-    private IEnumerator StopForce(float time)
-    {
-        yield return new WaitForSeconds(time);
-        forceX = 0;
-        rb.velocity = Vector3.zero;
     }
 }
