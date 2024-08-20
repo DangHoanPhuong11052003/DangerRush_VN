@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 99ba7c40600cf1444823a56450bfd6ed
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87901
+  packageName: Endless Runner - Sample Game
+  packageVersion: 
+  assetPath: Assets/Resources/BillingMode.json
+  uploadId: 0
