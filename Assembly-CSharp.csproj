@@ -78,7 +78,6 @@
     <Compile Include="Assets\Script\Items\DoubleScoreScript.cs" />
     <Compile Include="Assets\Script\MapManager.cs" />
     <Compile Include="Assets\Script\Items\BuffEffect.cs" />
-    <Compile Include="Assets\PlayerMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

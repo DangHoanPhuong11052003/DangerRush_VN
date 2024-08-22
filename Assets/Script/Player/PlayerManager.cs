@@ -21,6 +21,7 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] Vector3 SizeDash;
     [SerializeField] GameObject Character;
     [SerializeField] GameObject ColliderCharacter;
+    [SerializeField] GameObject LoseEffect; 
     [SerializeField] public int quantityLife = 3;
 
     private Animator animator;
@@ -37,10 +38,10 @@ public class PlayerManager: MonoBehaviour
 
     bool isJump = false;
     public bool canMove = false;
+    private bool isDash = false;
+    private bool isInvincible=false;
 
     private BoxCollider coll;
-
-    private bool isDash=false;
 
     private int coin=0;
     public bool isDoubleCoin=false;
@@ -115,7 +116,7 @@ public class PlayerManager: MonoBehaviour
                 StartCoroutine(StopDash(timeDash));
             }
         }
-        else if (collider.gameObject.CompareTag("Obstacle"))
+        else if (collider.gameObject.CompareTag("Obstacle")&& !isInvincible)
         {
             --quantityLife;
             if (quantityLife <= 0)
@@ -132,9 +133,11 @@ public class PlayerManager: MonoBehaviour
                     gameData.coin += coin;
                     LocalData.instance.SetData(gameData);
                 }
+                StartCoroutine(ActiveLoseEffect());
                 return;
             }
             StartCoroutine(Stun());
+            StartCoroutine(ActiveInvincible(1.5f));
             animator.SetTrigger("Hit");
             animator.SetBool("Sliding", false);
             animator.SetBool("Jumping", false);
@@ -163,6 +166,17 @@ public class PlayerManager: MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         canMove = true;
+    }
+    private IEnumerator ActiveLoseEffect()
+    {
+        yield return new WaitForSeconds(0.6f);
+        LoseEffect.SetActive(true);
+    }
+    private IEnumerator ActiveInvincible(float time)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(time);
+        isInvincible = false;
     }
 
     private void MoveToLaneMobile()
