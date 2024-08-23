@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    public float scroce=0;
-    public bool isDoubleScore=false;
+    [HideInInspector] public float score=0;
+    [HideInInspector] public bool isDoubleScore=false;
+    [HideInInspector] public float meter = 0;
+    [HideInInspector] public int coin = 0;
 
     private void Awake()
     {
@@ -28,12 +30,28 @@ public class GameManager : MonoBehaviour
     {
         if (playerManager.canMove)
         {
-            IncreaseScore();
+            IncreaseScoreAndMeter();
         }
     }
 
-    public void IncreaseScore()
+    private void IncreaseScoreAndMeter()
     {
-        scroce += (isDoubleScore ? 1f * playerManager.currentSpeed * 2 : 1f * playerManager.currentSpeed) * Time.deltaTime;
+        score += (isDoubleScore ? 2f * playerManager.transform.position.z - meter :  playerManager.transform.position.z - meter);
+        meter = playerManager.transform.position.z;
+    }
+
+    public void IncreaseCoin(int quanity)
+    {
+        coin += quanity;
+    }
+
+    public void LoseGame()
+    {
+        if (coin > 0)
+        {
+            GameData gameData = LocalData.instance.GetGameData();
+            gameData.coin += coin;
+            LocalData.instance.SetData(gameData);
+        }
     }
 }

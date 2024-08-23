@@ -127,12 +127,7 @@ public class PlayerManager: MonoBehaviour
                 animator.SetBool("Sliding", false);
                 animator.SetBool("Jumping", false);
 
-                if (coin > 0)
-                {
-                    GameData gameData = LocalData.instance.GetGameData();
-                    gameData.coin += coin;
-                    LocalData.instance.SetData(gameData);
-                }
+                GameManager.instance.LoseGame();
                 StartCoroutine(ActiveLoseEffect());
                 return;
             }
@@ -144,7 +139,7 @@ public class PlayerManager: MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Coin"))
         {
-            coin+=isDoubleCoin ?2:1;
+            GameManager.instance.IncreaseCoin(isDoubleCoin ? 2 : 1);
         }
     }
 
