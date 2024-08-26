@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] PlayerManager playerManager;
+    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private GameObject LoseUI;
 
     public static GameManager instance;
 
@@ -34,9 +35,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
+
     private void IncreaseScoreAndMeter()
     {
-        score += (isDoubleScore ? 2f * playerManager.transform.position.z - meter :  playerManager.transform.position.z - meter);
+        score += (isDoubleScore ? 2f * (playerManager.transform.position.z - meter) :  playerManager.transform.position.z - meter);
         meter = playerManager.transform.position.z;
     }
 
@@ -45,7 +56,7 @@ public class GameManager : MonoBehaviour
         coin += quanity;
     }
 
-    public void LoseGame()
+    public IEnumerator LoseGame()
     {
         if (coin > 0)
         {
@@ -53,5 +64,8 @@ public class GameManager : MonoBehaviour
             gameData.coin += coin;
             LocalData.instance.SetData(gameData);
         }
+        yield return new WaitForSeconds(2f);
+        LoseUI.SetActive(true);
+        PauseGame();
     }
 }

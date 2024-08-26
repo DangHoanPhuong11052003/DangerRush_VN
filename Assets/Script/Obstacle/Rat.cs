@@ -14,6 +14,8 @@ public class Rat : MonoBehaviour
 
     private bool isReset=false;
 
+    private bool isDead=false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +40,7 @@ public class Rat : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 270, 0);
             }
+            isDead = false;
             isReset = false;
         }
     }
@@ -50,10 +53,13 @@ public class Rat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(moveX, transform.position.y, transform.position.z), speed * Time.deltaTime);
-        if (transform.position.x >= maxMoveX || transform.position.x <= -maxMoveX)
+        if (!isDead)
         {
-            moveX = -moveX;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(moveX, transform.position.y, transform.position.z), speed * Time.deltaTime);
+            if (transform.position.x >= maxMoveX || transform.position.x <= -maxMoveX)
+            {
+                moveX = -moveX;
+            }
         }
     }
 

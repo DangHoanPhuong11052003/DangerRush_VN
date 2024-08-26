@@ -61,6 +61,7 @@
     <Compile Include="Assets\Script\ResetMap.cs" />
     <Compile Include="Assets\Script\Items\SardinesEffect.cs" />
     <Compile Include="Assets\Script\Obstacle\Obstacle.cs" />
+    <Compile Include="Assets\UILoseManager.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreEffect.cs" />
     <Compile Include="Assets\Script\Fishbone.cs" />
     <Compile Include="Assets\Script\GameManager\CanvasManager.cs" />

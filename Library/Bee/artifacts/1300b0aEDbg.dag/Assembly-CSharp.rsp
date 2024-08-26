@@ -430,6 +430,7 @@
 "Assets/Script/Player/CollisionCharacter.cs"
 "Assets/Script/Player/PlayerManager.cs"
 "Assets/Script/ResetMap.cs"
+"Assets/UILoseManager.cs"
 -langversion:9.0
 
 /deterministic

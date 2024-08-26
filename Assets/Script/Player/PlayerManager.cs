@@ -15,12 +15,13 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] int speedSwap = 2;
     [SerializeField] float speedJump = 2;
     [SerializeField] private float timeDash = 1f;
-    [SerializeField] Vector3 VectorNormal;
-    [SerializeField] Vector3 VectorDash;
-    [SerializeField] Vector3 SizeNormal;
-    [SerializeField] Vector3 SizeDash;
-    [SerializeField] GameObject Character;
-    [SerializeField] GameObject ColliderCharacter;
+    [SerializeField] private Vector3 VectorNormal;
+    [SerializeField] private Vector3 VectorDash;
+    [SerializeField] private Vector3 SizeNormal;
+    [SerializeField] private Vector3 SizeDash;
+    [SerializeField] private GameObject Character;
+    [SerializeField] private GameObject ColliderCharacter;
+    [SerializeField] private GameObject BuffEffect;
     [SerializeField] GameObject LoseEffect; 
     [SerializeField] public int quantityLife = 3;
 
@@ -127,7 +128,8 @@ public class PlayerManager: MonoBehaviour
                 animator.SetBool("Sliding", false);
                 animator.SetBool("Jumping", false);
 
-                GameManager.instance.LoseGame();
+                BuffEffect.SetActive(false);
+                StartCoroutine(GameManager.instance.LoseGame());
                 StartCoroutine(ActiveLoseEffect());
                 return;
             }
