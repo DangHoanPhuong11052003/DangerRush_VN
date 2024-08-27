@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private GameObject LoseUI;
+    [SerializeField] private GameObject PauseUI;
 
     public static GameManager instance;
 
@@ -35,14 +37,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0f;
     }
 
-    void ResumeGame()
+    private void ResumeGame()
     {
         Time.timeScale = 1f;
+    }
+
+    public void OpenOrClosePauseMenu(bool isOpen)
+    {
+        if(isOpen)
+        {
+            PauseGame();
+            PauseUI.SetActive(true);
+        }
+        else
+        {
+            PauseUI.SetActive(false);
+            ResumeGame();
+        }
     }
 
     private void IncreaseScoreAndMeter()
@@ -67,5 +83,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         LoseUI.SetActive(true);
         PauseGame();
+    }
+
+    public void LoadGame()
+    {
+        ResumeGame();
+        SceneManager.LoadScene("GamePlay");
+    }
+
+    public void LoadMenu()
+    {
+        ResumeGame();
+        Debug.Log("load menu");
+        return;
     }
 }

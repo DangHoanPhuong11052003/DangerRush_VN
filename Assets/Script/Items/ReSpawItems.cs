@@ -15,6 +15,5 @@ public class ReSpawItems : MonoBehaviour
 
         int i = Random.Range(0, lst_Items.Count);
         lst_Items[i].SetActive(true);
-        Debug.Log(lst_Items[i].active);
     }
 }
