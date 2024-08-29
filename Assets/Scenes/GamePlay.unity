@@ -788,9 +788,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1975969248}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenOrClosePauseMenu
+      - m_Target: {fileID: 1192195058}
+        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_MethodName: OpenOrClosePauseUI
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4409,7 +4409,6 @@ GameObject:
   - component: {fileID: 157463511}
   - component: {fileID: 157463510}
   - component: {fileID: 157463509}
-  - component: {fileID: 157463513}
   m_Layer: 5
   m_Name: UI Game Play
   m_TagString: Untagged
@@ -4497,36 +4496,14 @@ RectTransform:
   - {fileID: 1093112469}
   - {fileID: 798047381}
   - {fileID: 21579218}
-  - {fileID: 975409644}
-  - {fileID: 1239717923}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1192195057}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &157463513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157463508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf9190c5b7921f4787c1ef4c6af18ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: {fileID: 2044411034}
-  fishbone: {fileID: 169926448}
-  meter: {fileID: 684609197}
-  lst_Heart:
-  - {fileID: 1438101940}
-  - {fileID: 832651339}
-  - {fileID: 1629278609}
-  playerManager: {fileID: 722781491}
 --- !u!1001 &159022303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6654,9 +6631,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1975969248}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenOrClosePauseMenu
+      - m_Target: {fileID: 1192195058}
+        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_MethodName: OpenOrClosePauseUI
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11103,6 +11080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77ad679e0ff6734d9de6924d9a11af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerManager: {fileID: 722781491}
 --- !u!1001 &451053139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17950,7 +17928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 1.02, y: 2.49, z: -1.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18517,9 +18495,14 @@ MonoBehaviour:
   BuffEffect: {fileID: 866667236}
   LoseEffect: {fileID: 1309462823}
   quantityLife: 3
+  canvasManager: {fileID: 1192195058}
   currentSpeed: 0
   canMove: 0
   isDoubleCoin: 0
+  score: 0
+  isDoubleScore: 0
+  meter: 0
+  coin: 0
 --- !u!4 &722781493
 Transform:
   m_ObjectHideFlags: 0
@@ -29596,7 +29579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 6
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -29635,22 +29618,22 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975409640}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1718}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 396752084}
   - {fileID: 2044824946}
   - {fileID: 67166563}
-  m_Father: {fileID: 157463512}
+  m_Father: {fileID: 1192195057}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 539.99994, y: 960.00024}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &975409645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29666,6 +29649,7 @@ MonoBehaviour:
   score: {fileID: 574052204}
   fishBoneValue: {fileID: 1892054396}
   fishBoneBonusValue: {fileID: 251548120}
+  playerManager: {fileID: 722781491}
 --- !u!95 &975409647
 Animator:
   serializedVersion: 7
@@ -39783,6 +39767,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3881719670974286, guid: 2ae2bc5e91d90004597431a97557720a, type: 3}
   m_PrefabInstance: {fileID: 1182766641}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1192195056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192195057}
+  - component: {fileID: 1192195058}
+  m_Layer: 0
+  m_Name: ===UI===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192195057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192195056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.000000029647046, y: 0.00000023841858, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 975409644}
+  - {fileID: 1239717923}
+  - {fileID: 157463512}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1192195058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192195056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf9190c5b7921f4787c1ef4c6af18ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 2044411034}
+  fishbone: {fileID: 169926448}
+  meter: {fileID: 684609197}
+  lst_Heart:
+  - {fileID: 1438101940}
+  - {fileID: 832651339}
+  - {fileID: 1629278609}
+  playerManager: {fileID: 722781491}
+  LoseUI: {fileID: 975409640}
+  PauseUI: {fileID: 1239717922}
 --- !u!1001 &1194022840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41174,8 +41215,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239717922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1718}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 77421511}
@@ -41183,14 +41224,14 @@ RectTransform:
   - {fileID: 1984520539}
   - {fileID: 1918111612}
   - {fileID: 1346124529}
-  m_Father: {fileID: 157463512}
+  m_Father: {fileID: 1192195057}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1239717924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41222,7 +41263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 6
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -41240,9 +41281,9 @@ Canvas:
   m_GameObject: {fileID: 1239717922}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 963194227}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -43102,7 +43143,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 9999999
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -44480,8 +44521,8 @@ ParticleSystem:
     enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 2
-      scalar: 1
+      minMaxState: 0
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -44533,8 +44574,8 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 2
-      scalar: 0.1
+      minMaxState: 0
+      scalar: 0
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -44712,8 +44753,8 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 2
-      scalar: 1
+      minMaxState: 0
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -84640,13 +84681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c3e66365becd8408d90d46c69d5976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 722781491}
-  LoseUI: {fileID: 975409640}
-  PauseUI: {fileID: 1239717922}
-  score: 0
-  isDoubleScore: 0
-  meter: 0
-  coin: 0
 --- !u!1001 &1976725931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84925,7 +84959,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1984520541}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1192195058}
+        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_MethodName: ResetGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1984520541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91918,9 +91964,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1975969248}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadGame
+      - m_Target: {fileID: 1192195058}
+        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_MethodName: ResetGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

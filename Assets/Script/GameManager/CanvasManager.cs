@@ -11,6 +11,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private List<GameObject> lst_Heart;
     [SerializeField] private PlayerManager playerManager;
 
+    [SerializeField] private GameObject LoseUI;
+    [SerializeField] private GameObject PauseUI;
+
     private int currentHeart=0;
 
     private void Start()
@@ -20,9 +23,9 @@ public class CanvasManager : MonoBehaviour
 
     private void Update()
     {
-        score.text = "Score: "+Mathf.FloorToInt(GameManager.instance.score);
-        fishbone.text= Mathf.FloorToInt(GameManager.instance.coin).ToString();
-        meter.text= "Meter: "+Mathf.FloorToInt(GameManager.instance.meter);
+        score.text = "Score: "+Mathf.FloorToInt(playerManager.score);
+        fishbone.text= Mathf.FloorToInt(playerManager.coin).ToString();
+        meter.text= "Meter: "+Mathf.FloorToInt(playerManager.meter);
 
         if (currentHeart > playerManager.quantityLife)
         {
@@ -32,5 +35,28 @@ public class CanvasManager : MonoBehaviour
                 lst_Heart[i].SetActive(false);
             }
         }
+    }
+
+    public void OpenLoseUI()
+    {
+        LoseUI.SetActive(true);
+    }
+
+    public void OpenOrClosePauseUI(bool isOpen)
+    {
+        PauseUI.SetActive(isOpen);
+        if(isOpen)
+        {
+            GameManager.instance.PauseGame();
+        }
+        else
+        {
+            GameManager.instance.ResumeGame();
+        }
+    }
+
+    public void ResetGame()
+    {
+        GameManager.instance.LoadGame();
     }
 }

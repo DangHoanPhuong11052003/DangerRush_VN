@@ -6,12 +6,13 @@ public class DoubleScoreEffect : MonoBehaviour
 {
     private float timeDeActiveBuff = 8f;
     private float timerDeActiveBuff = 0;
+    [SerializeField] PlayerManager playerManager;
 
     private void OnEnable()
     {
         timerDeActiveBuff = timeDeActiveBuff;
 
-        GameManager.instance.isDoubleScore = true;
+        playerManager.isDoubleScore = true;
     }
 
 
@@ -20,7 +21,7 @@ public class DoubleScoreEffect : MonoBehaviour
         timerDeActiveBuff -= Time.deltaTime;
         if(timerDeActiveBuff <= 0)
         {
-            GameManager.instance.isDoubleScore = false;
+            playerManager.isDoubleScore = false;
             gameObject.SetActive(false);
         }
     }

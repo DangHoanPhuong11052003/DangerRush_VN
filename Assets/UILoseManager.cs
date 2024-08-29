@@ -9,10 +9,12 @@ public class UILoseManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fishBoneValue;
     [SerializeField] private TextMeshProUGUI fishBoneBonusValue;
 
+    [SerializeField] private PlayerManager playerManager;
+
     private void OnEnable()
     {
-        score.text =Mathf.CeilToInt(GameManager.instance.score) +"M";
-        fishBoneValue.text=GameManager.instance.coin.ToString();
+        score.text =Mathf.CeilToInt(playerManager.score) +"M";
+        fishBoneValue.text= playerManager.coin.ToString();
         fishBoneBonusValue.text = "+"+fishBoneValue.text;
     }
 }

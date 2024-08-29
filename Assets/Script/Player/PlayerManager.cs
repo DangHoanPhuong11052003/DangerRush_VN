@@ -25,6 +25,8 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] GameObject LoseEffect; 
     [SerializeField] public int quantityLife = 3;
 
+    [SerializeField] CanvasManager canvasManager;
+
     private Animator animator;
     public float currentSpeed = 0;
     private float currentDisJump = 0;
@@ -44,8 +46,12 @@ public class PlayerManager: MonoBehaviour
 
     private BoxCollider coll;
 
-    private int coin=0;
-    public bool isDoubleCoin=false;
+
+    [HideInInspector] public bool isDoubleCoin=false;
+    [HideInInspector] public float score = 0;
+    [HideInInspector] public bool isDoubleScore = false;
+    [HideInInspector] public float meter = 0;
+    [HideInInspector] public int coin = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +74,8 @@ public class PlayerManager: MonoBehaviour
 
     private void Update()
     {
+        IncreaseScoreAndMeter();
+
         if (canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), currentSpeed * Time.deltaTime);
@@ -129,7 +137,7 @@ public class PlayerManager: MonoBehaviour
                 animator.SetBool("Jumping", false);
 
                 BuffEffect.SetActive(false);
-                StartCoroutine(GameManager.instance.LoseGame());
+                StartCoroutine(LoseGame());
                 StartCoroutine(ActiveLoseEffect());
                 return;
             }
@@ -141,23 +149,33 @@ public class PlayerManager: MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Coin"))
         {
-            GameManager.instance.IncreaseCoin(isDoubleCoin ? 2 : 1);
+            IncreaseCoin(isDoubleCoin ? 2 : 1);
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground"))
-    //    {
-    //        canJump = true;
-    //        if (isDash)
-    //        {
-    //            coll.center = VectorDash;
-    //            coll.height = heightDash;
-    //            StartCoroutine(StopDash(0.8f));
-    //        }
-    //    }
-    //}
+    private void IncreaseScoreAndMeter()
+    {
+        score += (isDoubleScore ? 2f * (transform.position.z - meter) : transform.position.z - meter);
+        meter = transform.position.z;
+    }
+
+    public void IncreaseCoin(int quanity)
+    {
+        coin += quanity;
+    }
+
+    public IEnumerator LoseGame()
+    {
+
+        if (coin > 0)
+        {
+            GameData gameData = LocalData.instance.GetGameData();
+            gameData.coin += coin;
+            LocalData.instance.SetData(gameData);
+        }
+        yield return new WaitForSeconds(2f);
+        canvasManager.OpenLoseUI();
+    }
 
     private IEnumerator ReadyStart()
     {
