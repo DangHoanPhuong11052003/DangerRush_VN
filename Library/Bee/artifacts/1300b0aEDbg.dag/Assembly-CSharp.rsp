@@ -410,6 +410,7 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/CharacterManager.cs"
 "Assets/GameManager.cs"
 "Assets/Script/Fishbone.cs"
 "Assets/Script/GameManager/CanvasManager.cs"
@@ -431,6 +432,7 @@
 "Assets/Script/Player/PlayerManager.cs"
 "Assets/Script/ResetMap.cs"
 "Assets/UILoseManager.cs"
+"Assets/UIMainManager.cs"
 -langversion:9.0
 
 /deterministic

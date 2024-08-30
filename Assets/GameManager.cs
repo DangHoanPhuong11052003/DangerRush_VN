@@ -34,7 +34,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    
+    public void LoadMain()
+    {
+        ResumeGame();
+        SceneManager.LoadScene("Main");
+    }
 
     public void LoadGame()
     {

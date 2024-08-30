@@ -59,4 +59,9 @@ public class CanvasManager : MonoBehaviour
     {
         GameManager.instance.LoadGame();
     }
+
+    public void LoadMain()
+    {
+        GameManager.instance.LoadMain();
+    }
 }
