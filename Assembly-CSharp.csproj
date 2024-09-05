@@ -66,6 +66,7 @@
     <Compile Include="Assets\UIMainManager.cs" />
     <Compile Include="Assets\Script\Fishbone.cs" />
     <Compile Include="Assets\Script\GameManager\CanvasManager.cs" />
+    <Compile Include="Assets\TabController.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
     <Compile Include="Assets\CharacterManager.cs" />
     <Compile Include="Assets\Script\Items\HeartEffect.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Script\Items\MagnetScript.cs" />
     <Compile Include="Assets\Script\Items\MagnetEffect.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreScript.cs" />
+    <Compile Include="Assets\StoreManager.cs" />
     <Compile Include="Assets\Script\MapManager.cs" />
     <Compile Include="Assets\Script\Items\BuffEffect.cs" />
   </ItemGroup>

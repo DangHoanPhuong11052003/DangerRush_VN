@@ -431,6 +431,8 @@
 "Assets/Script/Player/CollisionCharacter.cs"
 "Assets/Script/Player/PlayerManager.cs"
 "Assets/Script/ResetMap.cs"
+"Assets/StoreManager.cs"
+"Assets/TabController.cs"
 "Assets/UILoseManager.cs"
 "Assets/UIMainManager.cs"
 -langversion:9.0
