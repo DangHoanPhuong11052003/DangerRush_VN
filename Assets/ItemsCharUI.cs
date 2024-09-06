@@ -12,4 +12,6 @@ public class ItemsCharUI : MonoBehaviour
         this.characterItem = characterItem;
         GetComponent<Image>().sprite = characterItem.icon;
     }
+
+
 }
