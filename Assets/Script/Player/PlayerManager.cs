@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.AudioSettings;
@@ -24,6 +25,7 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] private GameObject BuffEffect;
     [SerializeField] GameObject LoseEffect; 
     [SerializeField] public int quantityLife = 3;
+    [SerializeField] private AnimatorController animatiorPlayer;
 
     [SerializeField] CanvasManager canvasManager;
 
@@ -65,6 +67,7 @@ public class PlayerManager: MonoBehaviour
 #endif
         coll= ColliderCharacter.GetComponentInChildren<BoxCollider>();
         animator=Character.GetComponentInChildren<Animator>();
+        animator.runtimeAnimatorController = animatiorPlayer;
 
 
         currentSpeed = maxSpeed;
@@ -169,9 +172,9 @@ public class PlayerManager: MonoBehaviour
 
         if (coin > 0)
         {
-            GameData gameData = LocalData.instance.GetGameData();
-            gameData.coin += coin;
-            LocalData.instance.SetData(gameData);
+            int coinData = LocalData.instance.GetCoin();
+            coinData += coin;
+            LocalData.instance.SetCoin(coinData);
         }
         yield return new WaitForSeconds(2f);
         canvasManager.OpenLoseUI();

@@ -6,17 +6,32 @@ using UnityEngine;
 public class GameData
 {
     public int coin;
+    public int currentCharacter;
+    public List<CharacterData> lst_characterData=new List<CharacterData>();
 
-    public GameData(int coin)
+    public GameData()
     {
-        this.coin = coin;  
+        this.coin = 0;  
+        this.currentCharacter = 0;
+    }
+}
+
+public class CharacterData
+{
+    public int id;
+    public bool isUnlock;
+
+    public CharacterData()
+    {
+        id = -1;
+        isUnlock = false;
     }
 }
 
 public class LocalData : MonoBehaviour
 {
     public static LocalData instance;
-    GameData gameData=new GameData(0);
+    GameData gameData=new GameData();
 
     private string localPath = Application.dataPath + "/Saves";
     private string fileName = "GameData.json";
@@ -63,14 +78,53 @@ public class LocalData : MonoBehaviour
         }
     }
 
+
+    // Get set Game Data
     public GameData GetGameData()
     {
         return gameData;
     }
 
-    public void SetData(GameData data)
+    public void SetGameData(GameData data)
     {
         gameData = data;
+        SaveData();
+    }
+
+
+    //Get Set CharacterData
+    public List<CharacterData> GetCharacterData()
+    {
+        return gameData.lst_characterData;
+    } 
+
+    public void SetCharacterData(List<CharacterData> datas )
+    {
+        gameData.lst_characterData=datas;
+        SaveData();
+    }
+
+    //Get set coin data
+    public int GetCoin()
+    {
+        return gameData.coin;
+    }
+
+    public void SetCoin(int coin)
+    {
+        gameData.coin=coin;
+        SaveData();
+    }
+
+    //Get set curent selected character
+    public int GetCurrentChar()
+    {
+        return gameData.currentCharacter;
+    }
+
+    public void SetCurrentChar(int id)
+    {
+        gameData.currentCharacter=id;
         SaveData();
     }
 
