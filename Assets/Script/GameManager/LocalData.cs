@@ -26,6 +26,11 @@ public class CharacterData
         id = -1;
         isUnlock = false;
     }
+    public CharacterData(int id, bool isUnlock)
+    {
+        id = -1;
+        isUnlock = false;
+    }
 }
 
 public class LocalData : MonoBehaviour

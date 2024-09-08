@@ -75,6 +75,7 @@
     <Compile Include="Assets\Script\Items\ReSpawItems.cs" />
     <Compile Include="Assets\Script\Player\PlayerManager.cs" />
     <Compile Include="Assets\Script\Items\SardinesScript.cs" />
+    <Compile Include="Assets\CharStoreManager.cs" />
     <Compile Include="Assets\Script\GameManager\LocalData.cs" />
     <Compile Include="Assets\Script\Shop\TabController.cs" />
     <Compile Include="Assets\Script\GameManager\GameManager.cs" />
