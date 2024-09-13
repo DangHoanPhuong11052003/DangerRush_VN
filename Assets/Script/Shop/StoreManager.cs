@@ -10,13 +10,9 @@ public class StoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fishBoneValue;
 
-    private GameData gameData;
-
-    private void Start()
+    private void Update()
     {
-        gameData = LocalData.instance.GetGameData();
-
-        fishBoneValue.text = gameData.coin.ToString().Length<9? gameData.coin.ToString(): gameData.coin.ToString().Substring(10)+"...";
+        fishBoneValue.text = LocalData.instance.GetCoin().ToString().Length < 9 ? LocalData.instance.GetCoin().ToString() : LocalData.instance.GetCoin().ToString().Substring(10) + "...";
     }
 
 

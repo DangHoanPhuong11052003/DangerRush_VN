@@ -36,8 +36,10 @@ public class CharStoreManager : MonoBehaviour
 
     private Dictionary<int, GameObject> arrayItems = new Dictionary<int, GameObject>();
 
+    private bool isFistStart = true;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         characterItemsData = characterItems;
         characterDatas=LocalData.instance.GetCharacterData();
@@ -48,16 +50,26 @@ public class CharStoreManager : MonoBehaviour
 
         SelectedItem(LocalData.instance.GetCurrentChar());
 
+        isFistStart = false;
+
+    }
+    private void OnEnable()
+    {
+        if(!isFistStart)
+        {
+            SelectedItem(LocalData.instance.GetCurrentChar());
+        }
     }
 
     private void UpdateDataStore()
     {
-        if (characterDatas == null)
+        if (characterDatas.Count==0)
         {
             foreach (var item in characterItems)
             {
                 characterDatas.Add(new CharacterData(item.id, item.isUnlocked));
             }
+            LocalData.instance.SetCharacterData(characterDatas);
 
         }
         else
@@ -116,9 +128,49 @@ public class CharStoreManager : MonoBehaviour
                 else
                 {
                     ButtonBuy.SetActive(false);
+                    if (currentItemSeleted.id == LocalData.instance.GetCurrentChar())
+                    {
+                        ButtonSelect.SetActive(false);
+                    }
+                    else
+                    {
+                        ButtonSelect.SetActive(true);
+                    }
                 }
             }
             
         }
+    }
+
+    public void BuyCharacter()
+    {
+        int coin = LocalData.instance.GetCoin();
+
+        if (coin < currentItemSeleted.price)
+        {
+            return;
+        }
+        else
+        {
+            ButtonBuy.SetActive(false);
+
+            int index= characterItemsData.FindIndex(item => item.id == currentItemSeleted.id);
+
+            currentItemSeleted.isUnlocked = true;
+            characterItemsData[index] = currentItemSeleted;
+
+            characterDatas.Find(item=>item.id == currentItemSeleted.id).isUnlock=true;
+
+            LocalData.instance.SetCharacterData(characterDatas);
+
+            coin -= currentItemSeleted.price;
+            LocalData.instance.SetCoin(coin);
+        }
+    }
+
+    public void SeleteCharacter()
+    {
+        ButtonSelect.SetActive(false);
+        LocalData.instance.SetCurrentChar(currentItemSeleted.id);
     }
 }

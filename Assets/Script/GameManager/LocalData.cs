@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[System.Serializable]
 public class GameData
 {
     public int coin;
@@ -15,7 +16,7 @@ public class GameData
         this.currentCharacter = 0;
     }
 }
-
+[System.Serializable]
 public class CharacterData
 {
     public int id;
@@ -28,8 +29,8 @@ public class CharacterData
     }
     public CharacterData(int id, bool isUnlock)
     {
-        id = -1;
-        isUnlock = false;
+        this.id = id;
+        this.isUnlock = isUnlock;
     }
 }
 
