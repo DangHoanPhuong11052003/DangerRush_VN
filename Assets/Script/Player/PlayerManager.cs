@@ -1,14 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Burst.CompilerServices;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.AudioSettings;
 
+[System.Serializable]
+public class PrefabCharacter
+{
+    public int id;
+    public GameObject character;
+}
+
 public class PlayerManager: MonoBehaviour
 {
+
     [SerializeField] float minSpeed = 2;
     [SerializeField] float maxSpeed = 2;
     [SerializeField]  float maxX = 6;
@@ -16,10 +25,12 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] int speedSwap = 2;
     [SerializeField] float speedJump = 2;
     [SerializeField] private float timeDash = 1f;
+
     [SerializeField] private Vector3 VectorNormal;
     [SerializeField] private Vector3 VectorDash;
     [SerializeField] private Vector3 SizeNormal;
     [SerializeField] private Vector3 SizeDash;
+
     [SerializeField] private GameObject Character;
     [SerializeField] private GameObject ColliderCharacter;
     [SerializeField] private GameObject BuffEffect;
@@ -27,7 +38,9 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] public int quantityLife = 3;
     [SerializeField] private AnimatorController animatiorPlayer;
 
-    [SerializeField] CanvasManager canvasManager;
+    [SerializeField] private CanvasManager canvasManager;
+
+    [SerializeField] private List<PrefabCharacter> prefabCharacters = new List<PrefabCharacter>();
 
     private Animator animator;
     public float currentSpeed = 0;
@@ -65,6 +78,11 @@ public class PlayerManager: MonoBehaviour
 #elif UNITY_STANDALONE_WIN
        isMobile=false;
 #endif
+
+        GameObject model=prefabCharacters.First(item=>item.id==LocalData.instance.GetCurrentChar()).character;
+
+        Instantiate(model,Character.transform);
+
         coll= ColliderCharacter.GetComponentInChildren<BoxCollider>();
         animator=Character.GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = animatiorPlayer;

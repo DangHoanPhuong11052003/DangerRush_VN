@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UIMainManager : MonoBehaviour
 {
-    [SerializeField] private GameObject Store;
+    [SerializeField] private GameObject StoreMenu;
+    [SerializeField] private GameObject MainMenu;
     public void LoadGame()
     {
         GameManager.instance.LoadGame();
@@ -12,6 +13,19 @@ public class UIMainManager : MonoBehaviour
 
     public void OpenOrCloseStore(bool isOpen)
     {
-        Store.SetActive(isOpen);
+        CloseAllMenu();
+        StoreMenu.SetActive(isOpen);
+    }
+
+    public void OpenOrCloseMainMenu(bool isOpen)
+    {
+        CloseAllMenu();
+        MainMenu.SetActive(isOpen);
+    }
+
+    private void CloseAllMenu()
+    {
+        StoreMenu.SetActive(false);
+        MainMenu.SetActive(false);
     }
 }
