@@ -105,6 +105,7 @@ public class CharStoreManager : MonoBehaviour
     {
         if (currentItemSeleted.id== id)
         {
+            currentItemSeleted.modelReview.GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
             return;
         }
 
@@ -119,6 +120,7 @@ public class CharStoreManager : MonoBehaviour
 
                 currentItemSeleted = item;
                 currentItemSeleted.modelReview.SetActive(true);
+                currentItemSeleted.modelReview.GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
 
                 if (!currentItemSeleted.isUnlocked)
                 {

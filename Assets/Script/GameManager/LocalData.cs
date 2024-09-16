@@ -9,6 +9,7 @@ public class GameData
     public int coin;
     public int currentCharacter;
     public List<CharacterData> lst_characterData=new List<CharacterData>();
+    public List<PowerData> lst_powerData=new List<PowerData>();
 
     public GameData()
     {
@@ -31,6 +32,24 @@ public class CharacterData
     {
         this.id = id;
         this.isUnlock = isUnlock;
+    }
+}
+
+[System.Serializable]
+public class PowerData
+{
+    public int id;
+    public int level;
+
+    public PowerData()
+    {
+        id = -1;
+        level = 1;
+    }
+    public PowerData(int id, int level)
+    {
+        this.id = id;
+        this.level = level;
     }
 }
 
@@ -131,6 +150,18 @@ public class LocalData : MonoBehaviour
     public void SetCurrentChar(int id)
     {
         gameData.currentCharacter=id;
+        SaveData();
+    }
+
+    //Get set PowerData
+    public List<PowerData> GetPowersData()
+    {
+        return gameData.lst_powerData;
+    }
+
+    public void SetPowerData(List<PowerData> powerDatas)
+    {
+        gameData.lst_powerData=powerDatas;
         SaveData();
     }
 

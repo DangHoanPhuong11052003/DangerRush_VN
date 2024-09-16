@@ -412,6 +412,8 @@
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/CharStoreManager.cs"
 "Assets/ItemsCharUI.cs"
+"Assets/PowerStoreManager.cs"
+"Assets/Prefab/Store/PowerStore/PowerItem.cs"
 "Assets/Script/GameManager/CanvasManager.cs"
 "Assets/Script/GameManager/GameManager.cs"
 "Assets/Script/GameManager/LocalData.cs"
