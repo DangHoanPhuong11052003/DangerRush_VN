@@ -66,13 +66,16 @@
     <Compile Include="Assets\Script\GameManager\MapManager.cs" />
     <Compile Include="Assets\Script\Shop\StoreManager.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreEffect.cs" />
+    <Compile Include="Assets\DoubleScorePower.cs" />
     <Compile Include="Assets\Script\GameManager\CanvasManager.cs" />
+    <Compile Include="Assets\Script\Shop\PowerItem.cs" />
+    <Compile Include="Assets\SardinesPower.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
     <Compile Include="Assets\Script\Obstacle\Fishbone.cs" />
-    <Compile Include="Assets\Prefab\Store\PowerStore\PowerItem.cs" />
     <Compile Include="Assets\Script\Items\HeartEffect.cs" />
     <Compile Include="Assets\Script\Obstacle\Rat.cs" />
     <Compile Include="Assets\ItemsCharUI.cs" />
+    <Compile Include="Assets\MagnetPower.cs" />
     <Compile Include="Assets\Script\Player\CollisionCharacter.cs" />
     <Compile Include="Assets\Script\Items\ReSpawItems.cs" />
     <Compile Include="Assets\Script\Player\PlayerManager.cs" />
