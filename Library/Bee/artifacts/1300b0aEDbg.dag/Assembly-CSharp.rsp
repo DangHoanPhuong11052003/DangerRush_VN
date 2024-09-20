@@ -410,6 +410,8 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/AccessoriesItem.cs"
+"Assets/AccessoriesStoreManager.cs"
 "Assets/CharStoreManager.cs"
 "Assets/DoubleScorePower.cs"
 "Assets/ItemsCharUI.cs"
@@ -421,6 +423,7 @@
 "Assets/Script/GameManager/LocalData.cs"
 "Assets/Script/GameManager/MapManager.cs"
 "Assets/Script/GameManager/ResetMap.cs"
+"Assets/Script/GamePlay/PowerEffect/PowerEffect.cs"
 "Assets/Script/Items/BuffEffect.cs"
 "Assets/Script/Items/DoubleScoreEffect.cs"
 "Assets/Script/Items/DoubleScoreScript.cs"
@@ -442,6 +445,7 @@
 "Assets/Script/Shop/TabController.cs"
 "Assets/Script/UI/UILoseManager.cs"
 "Assets/Script/UI/UIMainManager.cs"
+"Assets/SetUpPowerData.cs"
 -langversion:9.0
 
 /deterministic

@@ -29,6 +29,7 @@ public class CharStoreManager : MonoBehaviour
     [SerializeField] private GameObject ButtonSelect;
     [SerializeField] private GameObject IteamUIPerfab;
     [SerializeField] private Transform transformItems;
+    [SerializeField] private Transform SelectUI;
 
     private List<CharacterData> characterDatas = new List<CharacterData>();
     private List<CharacterItem> characterItemsData=new List<CharacterItem>();
@@ -142,6 +143,11 @@ public class CharStoreManager : MonoBehaviour
             }
             
         }
+
+        Transform parent= arrayItems.First(item => item.Key == id).Value.transform;
+
+        SelectUI.transform.parent = parent;
+        SelectUI.transform.position = parent.position;
     }
 
     public void BuyCharacter()

@@ -11080,6 +11080,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77ad679e0ff6734d9de6924d9a11af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  level: 1
+  timeBuff: 5
+  isActive: 1
   playerManager: {fileID: 722781491}
 --- !u!1001 &451053139
 PrefabInstance:
@@ -22014,6 +22018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 866667237}
+  - component: {fileID: 866667238}
   m_Layer: 0
   m_Name: BuffEffect
   m_TagString: Untagged
@@ -22040,6 +22045,22 @@ Transform:
   m_Father: {fileID: 1402568370}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866667238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866667236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d359fc07b1447640a64bf97582dda84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerList:
+  - {fileID: 445658009}
+  - {fileID: 1705919042}
+  - {fileID: 1671225614}
 --- !u!1001 &870219191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66010,6 +66031,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d22d435d46b4643877d06c8a438aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 2
+  level: 1
+  timeBuff: 5
+  isActive: 1
   playerManager: {fileID: 722781491}
 --- !u!4 &1674581301 stripped
 Transform:
@@ -66865,6 +66890,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c313561955da02a49a337bf7cff84769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
+  level: 1
+  timeBuff: 5
+  isActive: 1
   player: {fileID: 722781493}
 --- !u!54 &1705919043
 Rigidbody:

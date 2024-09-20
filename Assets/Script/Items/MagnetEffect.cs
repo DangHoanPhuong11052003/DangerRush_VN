@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetEffect : MonoBehaviour
+public class MagnetEffect : PowerEffect
 {
     [SerializeField] private Transform player;
     private List<Transform> lst_Fishbone=new List<Transform>();
-    private float timeActiveBuff=5f;
     private float timer=0;
 
     private void OnEnable()
     {
         lst_Fishbone.Clear();
-        timer = timeActiveBuff;
+        timer = timeBuff;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +43,20 @@ public class MagnetEffect : MonoBehaviour
         if (timer <= 0 && lst_Fishbone.Count==0)
         {
             gameObject.SetActive(false);
+        }
+    }
+
+    public override void SetData(PowerData data)
+    {
+        level = data.level;
+
+        switch (level)
+        {
+            case 2: timeBuff += 1; break;
+            case 3: timeBuff += 1; break;
+            case 4: timeBuff += 1; break;
+            case 5: timeBuff += 1; break;
+            default: return;
         }
     }
 }

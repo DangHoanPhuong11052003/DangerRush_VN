@@ -13,7 +13,7 @@ public class TabController : MonoBehaviour
         {
             tabs[i].SetActive(false);
         }
-        currentTab = 1;
+        currentTab = 0;
         tabs[currentTab].SetActive(true);
     }
 

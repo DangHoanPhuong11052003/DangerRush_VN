@@ -2,16 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SardinesEffect : MonoBehaviour
+public class SardinesEffect : PowerEffect
 {
+
     [SerializeField] private PlayerManager playerManager;
-    private float timeActiveBuff = 5f;
     private float timer = 0f;
+
+    public override void SetData(PowerData data)
+    {
+        level = data.level;
+
+        switch (level)
+        {
+            case 2: timeBuff += 1; break;
+            case 3: timeBuff += 1; break;
+            case 4: timeBuff += 1; break;
+            case 5: timeBuff += 1; break;
+            default: return;
+        }
+    }
 
     private void OnEnable()
     {
         playerManager.isDoubleCoin = true;
-        timer = timeActiveBuff;
+        timer = timeBuff;
     }
 
     private void Update()

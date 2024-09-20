@@ -15,10 +15,12 @@ public class PowerStoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI des;
     [SerializeField] private TextMeshProUGUI inforLevel;
     [SerializeField] private TextMeshProUGUI inforNextLevel;
+    [SerializeField] private GameObject buttonUpgrade;
+    [SerializeField] private Transform ImgSeleted;
 
     private List<GameObject> lst_powers= new List<GameObject>();
     private List<PowerData> powersLocalData= new List<PowerData>();
-    private GameObject currentItem;
+    private PowerItem currentItem;
 
     private void Start()
     {
@@ -44,17 +46,58 @@ public class PowerStoreManager : MonoBehaviour
             lst_powers.Add(gameObject);
         }
 
-        currentItem = lst_powers[0];
-        ShowInfor(currentItem.GetComponent<PowerItem>());
-
+        currentItem = lst_powers[0].GetComponent<PowerItem>();
+        ShowInfor(currentItem);
     }
 
 
     public void ShowInfor(PowerItem data)
     {
+        currentItem = data;
+
         des.text = data.description;
         inforLevel.text = data.GetDesByCurrentLv(data.level);
-        inforNextLevel.text = data.GetDesByNextLv(data.level);
         namePower.text = data.name;
+
+        if (data.GetDesByNextLv(data.level) == null)
+        {
+            inforNextLevel.text = "MAXIMUM LEVEL REACHED";
+            buttonUpgrade.SetActive(false);
+        }
+        else
+        {
+            inforNextLevel.text = data.GetDesByNextLv(data.level);
+            buttonUpgrade.GetComponentInChildren<TextMeshProUGUI>().text = data.GetPrice().ToString();
+            buttonUpgrade.SetActive(true);
+        }
+
+        ImgSeleted.transform.parent = currentItem.transform;
+        ImgSeleted.transform.position = currentItem.transform.position;
     }
+
+    public void UpgradePower()
+    {
+        int coin = LocalData.instance.GetCoin();
+
+        if (currentItem != null&& coin>=currentItem.GetPrice())
+        {
+            bool isSuccec= currentItem.UpgradePower();
+
+            if (!isSuccec)
+            {
+                return;
+                throw new Exception();
+            }
+
+            powersLocalData.Find(item => item.id == currentItem.id).level = currentItem.level;
+            LocalData.instance.SetPowerData(powersLocalData);
+
+            coin -= currentItem.GetPrice();
+            LocalData.instance.SetCoin(coin);
+
+            ShowInfor(currentItem); 
+        }
+    }
+
+
 }
