@@ -8,13 +8,16 @@ public class GameData
 {
     public int coin;
     public int currentCharacter;
+    public int currentAccessories;
     public List<CharacterData> lst_characterData=new List<CharacterData>();
     public List<PowerData> lst_powerData=new List<PowerData>();
+    public List<AccessoriesData> lst_accessoriesData=new List<AccessoriesData>();
 
     public GameData()
     {
-        this.coin = 0;  
-        this.currentCharacter = 0;
+        coin = 0;  
+        currentCharacter = 0;
+        currentAccessories = -1;
     }
 }
 [System.Serializable]
@@ -50,6 +53,25 @@ public class PowerData
     {
         this.id = id;
         this.level = level;
+    }
+}
+
+[System.Serializable]
+public class AccessoriesData
+{
+    public int id;
+    public bool isUnlocked;
+
+    public AccessoriesData()
+    {
+        id = -1;
+        isUnlocked = false;
+    }
+
+    public AccessoriesData(int id, bool isActive)
+    {
+        this.id = id;
+        this.isUnlocked = isActive;
     }
 }
 
@@ -163,6 +185,27 @@ public class LocalData : MonoBehaviour
     {
         gameData.lst_powerData=powerDatas;
         SaveData();
+    }
+
+    public List<AccessoriesData> GetAccessoriesData()
+    {
+        return gameData.lst_accessoriesData;
+    }
+
+    public void SetAccessoriesData(List<AccessoriesData> accessoriesDatas)
+    {
+        gameData.lst_accessoriesData = accessoriesDatas;
+        SaveData();
+    }
+
+    public int GetCurrentIdAccessories()
+    {
+        return gameData.currentAccessories;
+    }
+
+    public void SetCurrentIdAccessories(int id)
+    {
+        gameData.currentAccessories=id;
     }
 
 }

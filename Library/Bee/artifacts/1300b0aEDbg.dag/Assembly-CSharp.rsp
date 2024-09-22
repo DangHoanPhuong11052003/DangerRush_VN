@@ -410,7 +410,7 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
-"Assets/AccessoriesItem.cs"
+"Assets/AccessoriesItemUI.cs"
 "Assets/AccessoriesStoreManager.cs"
 "Assets/CharStoreManager.cs"
 "Assets/DoubleScorePower.cs"

@@ -74,7 +74,6 @@
     <Compile Include="Assets\SardinesPower.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
     <Compile Include="Assets\Script\Obstacle\Fishbone.cs" />
-    <Compile Include="Assets\AccessoriesItem.cs" />
     <Compile Include="Assets\Script\Items\HeartEffect.cs" />
     <Compile Include="Assets\Script\Obstacle\Rat.cs" />
     <Compile Include="Assets\ItemsCharUI.cs" />
@@ -82,6 +81,7 @@
     <Compile Include="Assets\Script\Player\CollisionCharacter.cs" />
     <Compile Include="Assets\Script\Items\ReSpawItems.cs" />
     <Compile Include="Assets\Script\Player\PlayerManager.cs" />
+    <Compile Include="Assets\AccessoriesItemUI.cs" />
     <Compile Include="Assets\Script\Items\SardinesScript.cs" />
     <Compile Include="Assets\CharStoreManager.cs" />
     <Compile Include="Assets\Script\GameManager\LocalData.cs" />
