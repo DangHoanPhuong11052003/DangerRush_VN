@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [System.Serializable]
@@ -27,26 +28,27 @@ public class AccessoriesStoreManager : MonoBehaviour
     [SerializeField] private Transform parentItem;
     [SerializeField] private GameObject UiItem;
     [SerializeField] private TextMeshProUGUI nameItemText;
-    [SerializeField] private GameObject modelReview;
+    [SerializeField] private Transform tranformModelReview;
     [SerializeField] private GameObject ButtonBuy;
     [SerializeField] private GameObject ButtonSelect;
     [SerializeField] private Transform SelectedUI;
+    [SerializeField] private AnimatorController animatorController;
 
     private List<AccessoriesData> localDatas=new List<AccessoriesData>();
     private AccessoriesItem currentItemSelect=new AccessoriesItem();
     private Dictionary<int, GameObject> accessoriesItemDic=new Dictionary<int, GameObject>();
+    private int currentIdModel = 0;
 
     private bool isFistEnable=false;
-    private AccessoriesManager accessoriesManager;
+    private GameObject modelReview;
 
     private void Start()
     {
         localDatas=LocalData.instance.GetAccessoriesData();
-        accessoriesManager= modelReview.GetComponentInChildren<AccessoriesManager>();
 
         UpdateDataStore();
         UpdateUIStore();
-
+        CreateModelReview();
         int selectAccessId = LocalData.instance.GetCurrentIdAccessories();  
 
         if (selectAccessId != -1)
@@ -65,6 +67,9 @@ public class AccessoriesStoreManager : MonoBehaviour
         if (isFistEnable)
         {
             UpdateDataStore();
+
+            CreateModelReview();
+
             int selectAccessId = LocalData.instance.GetCurrentIdAccessories();
 
             if (selectAccessId != -1)
@@ -115,11 +120,14 @@ public class AccessoriesStoreManager : MonoBehaviour
         }
     }
 
+
     public void SelectItem(int id)
     {
-        if(currentItemSelect.id== id)
+        AccessoriesManager accessoriesManager = modelReview.GetComponentInChildren<AccessoriesManager>();
+
+        if (currentItemSelect.id== id)
         {
-            accessoriesManager.ActiveAccessoriesById(id);
+            accessoriesManager.ActiveAccessoriesById(id,false);
             return;
         }
 
@@ -131,7 +139,7 @@ public class AccessoriesStoreManager : MonoBehaviour
 
             nameItemText.text = item.name;
 
-            accessoriesManager.ActiveAccessoriesById(id);
+            accessoriesManager.ActiveAccessoriesById(id,false);
 
             if (!currentItemSelect.isUnlocked)
             {
@@ -183,5 +191,36 @@ public class AccessoriesStoreManager : MonoBehaviour
         ButtonSelect.SetActive(false);
 
         LocalData.instance.SetCurrentIdAccessories(currentItemSelect.id);
+    }
+
+
+    private void CreateModelReview()
+    {
+        int currentIdData = LocalData.instance.GetCurrentChar();
+
+        if (currentIdModel != currentIdData)
+        {
+            if (modelReview != null)
+            {
+                Destroy(modelReview);
+            }
+            modelReview = Instantiate(CharacterManager.instance.GetPrefabCharacterById(currentIdData), tranformModelReview);
+            currentIdModel = currentIdData;
+            modelReview.GetComponent<Animator>().runtimeAnimatorController = animatorController;
+
+            Animator animator = modelReview.GetComponent<Animator>();
+            animator.SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
+        }
+        else
+        {
+            if (modelReview == null)
+            {
+                modelReview = Instantiate(CharacterManager.instance.GetPrefabCharacterById(currentIdData), tranformModelReview);
+                modelReview.GetComponent<Animator>().runtimeAnimatorController = animatorController;
+            }
+
+            Animator animator = modelReview.GetComponent<Animator>();
+            animator.SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
+        }
     }
 }

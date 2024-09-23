@@ -30,6 +30,7 @@ public class CharStoreManager : MonoBehaviour
     [SerializeField] private GameObject IteamUIPerfab;
     [SerializeField] private Transform transformItems;
     [SerializeField] private Transform SelectUI;
+    [SerializeField] private TextMeshProUGUI nameTextUI;
 
     private List<CharacterData> characterDatas = new List<CharacterData>();
     private List<CharacterItem> characterItemsData=new List<CharacterItem>();
@@ -120,6 +121,7 @@ public class CharStoreManager : MonoBehaviour
                 }
 
                 currentItemSeleted = item;
+                nameTextUI.text= item.name;
                 currentItemSeleted.modelReview.SetActive(true);
                 currentItemSeleted.modelReview.GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
 
@@ -161,6 +163,7 @@ public class CharStoreManager : MonoBehaviour
         else
         {
             ButtonBuy.SetActive(false);
+            ButtonSelect.SetActive(true);
 
             int index= characterItemsData.FindIndex(item => item.id == currentItemSeleted.id);
 
