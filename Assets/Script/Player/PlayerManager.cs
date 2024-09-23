@@ -8,12 +8,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.AudioSettings;
 
-[System.Serializable]
-public class PrefabCharacter
-{
-    public int id;
-    public GameObject character;
-}
 
 public class PlayerManager: MonoBehaviour
 {
@@ -39,8 +33,6 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] private AnimatorController animatiorPlayer;
 
     [SerializeField] private CanvasManager canvasManager;
-
-    [SerializeField] private List<PrefabCharacter> prefabCharacters = new List<PrefabCharacter>();
 
     private Animator animator;
     public float currentSpeed = 0;
@@ -79,9 +71,9 @@ public class PlayerManager: MonoBehaviour
        isMobile=false;
 #endif
 
-        GameObject model=prefabCharacters.First(item=>item.id==LocalData.instance.GetCurrentChar()).character;
+        GameObject prefabCharacter = CharacterManager.instance.GetPrefabCharacterById(LocalData.instance.GetCurrentChar());
 
-        Instantiate(model,Character.transform);
+        Instantiate(prefabCharacter, Character.transform);
 
         coll= ColliderCharacter.GetComponentInChildren<BoxCollider>();
         animator=Character.GetComponentInChildren<Animator>();

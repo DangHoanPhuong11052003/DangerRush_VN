@@ -206,6 +206,7 @@ public class LocalData : MonoBehaviour
     public void SetCurrentIdAccessories(int id)
     {
         gameData.currentAccessories=id;
+        SaveData();
     }
 
 }

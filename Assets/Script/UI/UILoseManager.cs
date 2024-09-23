@@ -13,7 +13,7 @@ public class UILoseManager : MonoBehaviour
 
     private void OnEnable()
     {
-        score.text =Mathf.CeilToInt(playerManager.score) +"M";
+        score.text =Mathf.FloorToInt(playerManager.score) +"M";
         fishBoneValue.text= playerManager.coin.ToString();
         fishBoneBonusValue.text = "+"+fishBoneValue.text;
     }

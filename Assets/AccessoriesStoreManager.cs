@@ -2,6 +2,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -26,18 +27,22 @@ public class AccessoriesStoreManager : MonoBehaviour
     [SerializeField] private Transform parentItem;
     [SerializeField] private GameObject UiItem;
     [SerializeField] private TextMeshProUGUI nameItemText;
-    [SerializeField] private Transform parentModelReview;
+    [SerializeField] private GameObject modelReview;
     [SerializeField] private GameObject ButtonBuy;
     [SerializeField] private GameObject ButtonSelect;
+    [SerializeField] private Transform SelectedUI;
 
     private List<AccessoriesData> localDatas=new List<AccessoriesData>();
     private AccessoriesItem currentItemSelect=new AccessoriesItem();
     private Dictionary<int, GameObject> accessoriesItemDic=new Dictionary<int, GameObject>();
 
+    private bool isFistEnable=false;
+    private AccessoriesManager accessoriesManager;
 
     private void Start()
     {
         localDatas=LocalData.instance.GetAccessoriesData();
+        accessoriesManager= modelReview.GetComponentInChildren<AccessoriesManager>();
 
         UpdateDataStore();
         UpdateUIStore();
@@ -52,8 +57,26 @@ public class AccessoriesStoreManager : MonoBehaviour
         {
             SelectItem(0);
         }
+        isFistEnable = true;
     }
 
+    private void OnEnable()
+    {
+        if (isFistEnable)
+        {
+            UpdateDataStore();
+            int selectAccessId = LocalData.instance.GetCurrentIdAccessories();
+
+            if (selectAccessId != -1)
+            {
+                SelectItem(selectAccessId);
+            }
+            else
+            {
+                SelectItem(0);
+            }
+        }
+    }
 
     private void UpdateDataStore()
     {
@@ -94,7 +117,11 @@ public class AccessoriesStoreManager : MonoBehaviour
 
     public void SelectItem(int id)
     {
-        if(currentItemSelect.id== id) return;
+        if(currentItemSelect.id== id)
+        {
+            accessoriesManager.ActiveAccessoriesById(id);
+            return;
+        }
 
         AccessoriesItem item = itemsList.Find(i => i.id == id);
 
@@ -104,15 +131,18 @@ public class AccessoriesStoreManager : MonoBehaviour
 
             nameItemText.text = item.name;
 
+            accessoriesManager.ActiveAccessoriesById(id);
+
             if (!currentItemSelect.isUnlocked)
             {
+                ButtonSelect.SetActive(false);
                 ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = currentItemSelect.price.ToString();
                 ButtonBuy.SetActive(true);
             }
             else
             {
                 ButtonBuy.SetActive(false);
-                if (currentItemSelect.id == LocalData.instance.GetCurrentChar())
+                if (currentItemSelect.id == LocalData.instance.GetCurrentIdAccessories())
                 {
                     ButtonSelect.SetActive(false);
                 }
@@ -122,5 +152,36 @@ public class AccessoriesStoreManager : MonoBehaviour
                 }
             }
         }
+
+        SelectedUI.transform.parent = accessoriesItemDic[currentItemSelect.id].transform;
+        SelectedUI.transform.position = accessoriesItemDic[currentItemSelect.id].transform.position;
+    }
+
+    public void BuyAccessories()
+    {
+        int coin = LocalData.instance.GetCoin();
+
+        if (coin >= currentItemSelect.price)
+        {
+            currentItemSelect.isUnlocked= true;
+
+            localDatas.Find(i => i.id == currentItemSelect.id).isUnlocked=true;
+
+            LocalData.instance.SetAccessoriesData(localDatas);
+
+            coin -= currentItemSelect.price;
+
+            LocalData.instance.SetCoin(coin);
+
+            ButtonBuy.SetActive(false);
+            ButtonSelect.SetActive(true);
+        }
+    }
+
+    public void EquipAccessories()
+    {
+        ButtonSelect.SetActive(false);
+
+        LocalData.instance.SetCurrentIdAccessories(currentItemSelect.id);
     }
 }
