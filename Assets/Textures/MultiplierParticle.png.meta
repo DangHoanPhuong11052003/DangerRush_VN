@@ -66,3 +66,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87901
+  packageName: Endless Runner - Sample Game
+  packageVersion: 
+  assetPath: Assets/Textures/MultiplierParticle.png
+  uploadId: 0

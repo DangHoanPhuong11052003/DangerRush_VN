@@ -11,6 +11,7 @@ using static UnityEngine.AudioSettings;
 
 public class PlayerManager: MonoBehaviour
 {
+    [Header("===Data===")]
 
     [SerializeField] float minSpeed = 2;
     [SerializeField] float maxSpeed = 2;
@@ -25,14 +26,20 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] private Vector3 SizeNormal;
     [SerializeField] private Vector3 SizeDash;
 
+    [SerializeField] public int quantityLife = 3;
+
+
+    [Header("======")]
+
     [SerializeField] private GameObject Character;
     [SerializeField] private GameObject ColliderCharacter;
     [SerializeField] private GameObject BuffEffect;
     [SerializeField] GameObject LoseEffect; 
-    [SerializeField] public int quantityLife = 3;
     [SerializeField] private AnimatorController animatiorPlayer;
 
     [SerializeField] private CanvasManager canvasManager;
+
+    private CharacterAudioSoucre characterSounds;
 
     private Animator animator;
     public float currentSpeed = 0;
@@ -70,16 +77,20 @@ public class PlayerManager: MonoBehaviour
 #elif UNITY_STANDALONE_WIN
        isMobile=false;
 #endif
-
+        //get model character
         GameObject prefabCharacter = CharacterManager.instance.GetPrefabCharacterById(LocalData.instance.GetCurrentChar());
 
         Instantiate(prefabCharacter, Character.transform);
 
-        coll= ColliderCharacter.GetComponentInChildren<BoxCollider>();
+        //get sounds character
+        characterSounds=AudioManager.instance.GetCharacterSound(LocalData.instance.GetCurrentChar());
+
+        //get collider character
+        coll = ColliderCharacter.GetComponentInChildren<BoxCollider>();
         animator=Character.GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = animatiorPlayer;
 
-
+        //set speed
         currentSpeed = maxSpeed;
         animator.SetTrigger("Moving");
         StartCoroutine(ReadyStart());
@@ -141,8 +152,12 @@ public class PlayerManager: MonoBehaviour
         else if (collider.gameObject.CompareTag("Obstacle")&& !isInvincible)
         {
             --quantityLife;
+
             if (quantityLife <= 0)
             {
+                //Play dead sound
+                AudioManager.instance.PlaySoundEffect(characterSounds.deadSound);
+
                 canMove = false;
                 animator.SetBool("Dead", true);
                 animator.SetTrigger("Hit");
@@ -154,6 +169,10 @@ public class PlayerManager: MonoBehaviour
                 StartCoroutine(ActiveLoseEffect());
                 return;
             }
+
+            //Play hurt sound
+            AudioManager.instance.PlaySoundEffect(characterSounds.hurtSound);
+
             StartCoroutine(Stun());
             StartCoroutine(ActiveInvincible(1.5f));
             animator.SetTrigger("Hit");
@@ -291,6 +310,9 @@ public class PlayerManager: MonoBehaviour
         if(!isJump)
         {
             animator.SetBool("Jumping",true);
+            //play jump sound
+            AudioManager.instance.PlaySoundEffect(characterSounds.jumpSound);
+
             currentDisJump = maxY;
             isJump = true;
             if (isDash)

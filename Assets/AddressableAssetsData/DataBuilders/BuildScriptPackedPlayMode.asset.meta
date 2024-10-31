@@ -6,3 +6,10 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87901
+  packageName: Endless Runner - Sample Game
+  packageVersion: 
+  assetPath: Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedPlayMode.asset
+  uploadId: 0

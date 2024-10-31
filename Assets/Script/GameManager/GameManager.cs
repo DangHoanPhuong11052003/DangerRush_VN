@@ -38,12 +38,14 @@ public class GameManager : MonoBehaviour
     {
         ResumeGame();
         SceneManager.LoadScene("Main");
+        AudioManager.instance.SetMusicAudio(AudioManager.instance.MenuMusic);
     }
 
     public void LoadGame()
     {
         ResumeGame();
         SceneManager.LoadScene("GamePlay");
+        AudioManager.instance.SetMusicAudio(AudioManager.instance.lst_gameMusic[Random.Range(0, AudioManager.instance.lst_gameMusic.Count-1)]);
     }
 
     public void LoadMenu()
