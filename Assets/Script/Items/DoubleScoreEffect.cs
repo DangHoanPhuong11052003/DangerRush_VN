@@ -11,12 +11,12 @@ public class DoubleScoreEffect : PowerEffect
     {
         level=data.level;
 
-        switch(level)
+        switch (level)
         {
             case 2: timeBuff += 1; break;
-            case 3: timeBuff += 1; break;
-            case 4: timeBuff += 1; break;
-            case 5: timeBuff += 1; break;
+            case 3: timeBuff += 2; break;
+            case 4: timeBuff += 3; break;
+            case 5: timeBuff += 4; break;
             default: return;
         }
     }
@@ -26,6 +26,8 @@ public class DoubleScoreEffect : PowerEffect
         timerDeActiveBuff = timeBuff;
 
         playerManager.isDoubleScore = true;
+
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.powerUp);
     }
 
 

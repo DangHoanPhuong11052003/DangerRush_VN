@@ -13,6 +13,8 @@ public class HeartEffect : MonoBehaviour
             PlayerManager.quantityLife++;
         }
 
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.invincible);
+
         StartCoroutine(DeActive());
     }
 

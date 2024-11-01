@@ -6,6 +6,7 @@ using Unity.Burst.CompilerServices;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using static UnityEngine.AudioSettings;
 
 
@@ -66,6 +67,14 @@ public class PlayerManager: MonoBehaviour
     [HideInInspector] public bool isDoubleScore = false;
     [HideInInspector] public float meter = 0;
     [HideInInspector] public int coin = 0;
+
+    private void Awake()
+    {
+        if (GameManager.instance == null)
+        {
+            SceneManager.LoadScene("Main");
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -146,6 +155,9 @@ public class PlayerManager: MonoBehaviour
                 coll.center = VectorDash;
                 coll.size = SizeDash;
                 animator.SetBool("Sliding", true);
+
+                AudioManager.instance.PlaySoundEffect(AudioManager.instance.slide);
+
                 StartCoroutine(StopDash(timeDash));
             }
         }
@@ -181,6 +193,8 @@ public class PlayerManager: MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Coin"))
         {
+            AudioManager.instance.PlaySoundEffect(AudioManager.instance.fishBone);
+
             IncreaseCoin(isDoubleCoin ? 2 : 1);
         }
     }
@@ -301,6 +315,9 @@ public class PlayerManager: MonoBehaviour
             coll.center =VectorDash;
             coll.size = SizeDash;
             animator.SetBool("Sliding", true);
+
+            AudioManager.instance.PlaySoundEffect(AudioManager.instance.slide);
+
             StartCoroutine(StopDash(timeDash));
         }
     }

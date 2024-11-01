@@ -21,7 +21,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip LoseMusic;
 
     [Header("===Sound Effect===")]
-    public AudioClip trashCan;
+    public AudioClip countNumber;
+    public AudioClip fishBone;
+    public AudioClip invincible;
+    public AudioClip manget;
+    public AudioClip powerUp;
+    public AudioClip slide;
+    public AudioClip premiumCurrency;
     [SerializeField] private List<CharacterAudioSoucre> lst_characterSound=new List<CharacterAudioSoucre>();
 
 

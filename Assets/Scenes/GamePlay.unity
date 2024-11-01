@@ -18655,11 +18655,11 @@ MonoBehaviour:
   VectorDash: {x: 0, y: 0.2, z: 0}
   SizeNormal: {x: 0.38, y: 1.15, z: 0.83}
   SizeDash: {x: 0.38, y: 0.4, z: 0.83}
+  quantityLife: 3
   Character: {fileID: 1960029625}
   ColliderCharacter: {fileID: 1402568369}
   BuffEffect: {fileID: 866667236}
   LoseEffect: {fileID: 1309462823}
-  quantityLife: 3
   animatiorPlayer: {fileID: 9100000, guid: b468e53677ceeeb49bcda5deb95250aa, type: 2}
   canvasManager: {fileID: 1192195058}
   currentSpeed: 0
@@ -60857,7 +60857,7 @@ GameObject:
   - component: {fileID: 1635325934}
   - component: {fileID: 1635325933}
   m_Layer: 0
-  m_Name: MagnetParticle
+  m_Name: MangetParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67133,7 +67133,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705919039}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -67161,7 +67161,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 1, z: 4}
+  m_Size: {x: 6, y: 1, z: 4}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1705919042
 MonoBehaviour:

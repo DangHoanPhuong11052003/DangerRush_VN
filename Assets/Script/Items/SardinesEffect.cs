@@ -15,9 +15,9 @@ public class SardinesEffect : PowerEffect
         switch (level)
         {
             case 2: timeBuff += 1; break;
-            case 3: timeBuff += 1; break;
-            case 4: timeBuff += 1; break;
-            case 5: timeBuff += 1; break;
+            case 3: timeBuff += 2; break;
+            case 4: timeBuff += 3; break;
+            case 5: timeBuff += 4; break;
             default: return;
         }
     }
@@ -26,6 +26,8 @@ public class SardinesEffect : PowerEffect
     {
         playerManager.isDoubleCoin = true;
         timer = timeBuff;
+
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.premiumCurrency);
     }
 
     private void Update()

@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDeActive: 2
   Parent: {fileID: 7896847463267459868}
+  soundDead: {fileID: 8300000, guid: 0d9e50755a43a614a8233233466a4e80, type: 3}
 --- !u!4 &106311042536986319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 58219e8eced12ce4c9723796d507d515, type: 3}

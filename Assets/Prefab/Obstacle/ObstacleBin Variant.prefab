@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDeActive: 2
   Parent: {fileID: 0}
+  soundDead: {fileID: 8300000, guid: 6707d904747d31c4eb049fc7a139eeb6, type: 3}
 --- !u!64 &4248509131024549146
 MeshCollider:
   m_ObjectHideFlags: 0

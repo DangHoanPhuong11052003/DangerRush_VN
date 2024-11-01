@@ -12,6 +12,8 @@ public class MagnetEffect : PowerEffect
     {
         lst_Fishbone.Clear();
         timer = timeBuff;
+
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.manget);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,9 +55,9 @@ public class MagnetEffect : PowerEffect
         switch (level)
         {
             case 2: timeBuff += 1; break;
-            case 3: timeBuff += 1; break;
-            case 4: timeBuff += 1; break;
-            case 5: timeBuff += 1; break;
+            case 3: timeBuff += 2; break;
+            case 4: timeBuff += 3; break;
+            case 5: timeBuff += 4; break;
             default: return;
         }
     }

@@ -186,7 +186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &17200814
 GameObject:
@@ -3858,7 +3858,7 @@ RectTransform:
   - {fileID: 1338087577}
   - {fileID: 1468223110}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5359,7 +5359,16 @@ MonoBehaviour:
   lst_gameMusic:
   - {fileID: 8300000, guid: b341b9410b3c5274e8b15199f3b95fb5, type: 3}
   LoseMusic: {fileID: 8300000, guid: 15e26518785848f4caf8ba236b4d0690, type: 3}
+  countNumber: {fileID: 8300000, guid: 50ac1376fac99334ebe00cff6dc10cf8, type: 3}
+  fishBone: {fileID: 8300000, guid: 62c15b4aac9d60e4a963f4f55d31e706, type: 3}
+  invincible: {fileID: 8300000, guid: 9c332a7257addfd478e6fbf4e338f877, type: 3}
+  manget: {fileID: 8300000, guid: 7e09e73a89ba7674785d9e9acd3387b6, type: 3}
+  powerUp: {fileID: 8300000, guid: defdb98bfddc24748aead1ce73ba7972, type: 3}
+  slide: {fileID: 8300000, guid: febd5a5a8b245774fbfa9f0bef51e0b6, type: 3}
+  trafficCone: {fileID: 8300000, guid: 0d9e50755a43a614a8233233466a4e80, type: 3}
   trashCan: {fileID: 8300000, guid: 6707d904747d31c4eb049fc7a139eeb6, type: 3}
+  wheelieBin: {fileID: 8300000, guid: 115b0e1702f619f4eb691e43745e8ca4, type: 3}
+  woodenBarrier: {fileID: 8300000, guid: 9ed08397b3fef21418662ed63130d301, type: 3}
   lst_characterSound:
   - id: 0
     jumpSound: {fileID: 8300000, guid: 819da6b208e0c0342b38dbbba363b740, type: 3}
@@ -7916,7 +7925,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1641551486
 GameObject:
@@ -9307,7 +9316,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1974067723
 MonoBehaviour:

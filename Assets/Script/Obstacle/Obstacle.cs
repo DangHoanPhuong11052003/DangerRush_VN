@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float timeDeActive = 0;
     [SerializeField] private GameObject Parent;
+    [SerializeField] private AudioClip soundDead;
 
     private Animation animation;
 
@@ -27,6 +28,8 @@ public class Obstacle : MonoBehaviour
         {
             animation.Play();
             gameObject.GetComponent<MeshCollider>().enabled = false;
+
+            AudioManager.instance.PlaySoundEffect(soundDead);
 
             StartCoroutine(DeActive());
         }

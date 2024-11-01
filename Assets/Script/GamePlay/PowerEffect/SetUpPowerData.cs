@@ -9,7 +9,7 @@ public class SetUpPowerData : MonoBehaviour
 {
     [SerializeField] private List<PowerEffect> powerList=new List<PowerEffect>();
 
-    void Awake()
+    void Start()
     {
         List<PowerData> powersData = LocalData.instance.GetPowersData();
 
