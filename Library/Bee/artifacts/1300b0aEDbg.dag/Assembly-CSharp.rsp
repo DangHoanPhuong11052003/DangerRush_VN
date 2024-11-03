@@ -447,6 +447,7 @@
 "Assets/Script/Shop/Power/PowerStoreManager.cs"
 "Assets/Script/Shop/StoreManager.cs"
 "Assets/Script/Shop/TabController.cs"
+"Assets/Script/UI/SettingManager.cs"
 "Assets/Script/UI/UILoseManager.cs"
 "Assets/Script/UI/UIMainManager.cs"
 -langversion:9.0

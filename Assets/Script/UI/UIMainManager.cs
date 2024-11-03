@@ -6,6 +6,7 @@ public class UIMainManager : MonoBehaviour
 {
     [SerializeField] private GameObject StoreMenu;
     [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject SettingMenu;
     public void LoadGame()
     {
         GameManager.instance.LoadGame();
@@ -21,6 +22,11 @@ public class UIMainManager : MonoBehaviour
     {
         CloseAllMenu();
         MainMenu.SetActive(isOpen);
+    }
+
+    public void OpenOrCloseSettingMenu(bool isOpen)
+    {
+        SettingMenu.SetActive(isOpen);
     }
 
     private void CloseAllMenu()

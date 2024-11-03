@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ public class GameData
     public int coin;
     public int currentCharacter;
     public int currentAccessories;
+    public  Volume volume=new Volume();
     public List<CharacterData> lst_characterData=new List<CharacterData>();
     public List<PowerData> lst_powerData=new List<PowerData>();
     public List<AccessoriesData> lst_accessoriesData=new List<AccessoriesData>();
@@ -20,60 +22,7 @@ public class GameData
         currentAccessories = -1;
     }
 }
-[System.Serializable]
-public class CharacterData
-{
-    public int id;
-    public bool isUnlock;
 
-    public CharacterData()
-    {
-        id = -1;
-        isUnlock = false;
-    }
-    public CharacterData(int id, bool isUnlock)
-    {
-        this.id = id;
-        this.isUnlock = isUnlock;
-    }
-}
-
-[System.Serializable]
-public class PowerData
-{
-    public int id;
-    public int level;
-
-    public PowerData()
-    {
-        id = -1;
-        level = 1;
-    }
-    public PowerData(int id, int level)
-    {
-        this.id = id;
-        this.level = level;
-    }
-}
-
-[System.Serializable]
-public class AccessoriesData
-{
-    public int id;
-    public bool isUnlocked;
-
-    public AccessoriesData()
-    {
-        id = -1;
-        isUnlocked = false;
-    }
-
-    public AccessoriesData(int id, bool isActive)
-    {
-        this.id = id;
-        this.isUnlocked = isActive;
-    }
-}
 
 public class LocalData : MonoBehaviour
 {
@@ -209,4 +158,87 @@ public class LocalData : MonoBehaviour
         SaveData();
     }
 
+    public Volume GetVolume()
+    {
+        return gameData.volume;
+    }
+
+    public void SetVolume(Volume volume)
+    {
+        gameData.volume=volume; 
+        SaveData();
+    }
+
+}
+
+
+//class data
+[System.Serializable]
+public class CharacterData
+{
+    public int id;
+    public bool isUnlock;
+
+    public CharacterData()
+    {
+        id = -1;
+        isUnlock = false;
+    }
+    public CharacterData(int id, bool isUnlock)
+    {
+        this.id = id;
+        this.isUnlock = isUnlock;
+    }
+}
+
+[System.Serializable]
+public class PowerData
+{
+    public int id;
+    public int level;
+
+    public PowerData()
+    {
+        id = -1;
+        level = 1;
+    }
+    public PowerData(int id, int level)
+    {
+        this.id = id;
+        this.level = level;
+    }
+}
+
+[System.Serializable]
+public class AccessoriesData
+{
+    public int id;
+    public bool isUnlocked;
+
+    public AccessoriesData()
+    {
+        id = -1;
+        isUnlocked = false;
+    }
+
+    public AccessoriesData(int id, bool isActive)
+    {
+        this.id = id;
+        this.isUnlocked = isActive;
+    }
+}
+
+[Serializable]
+public class Volume
+{
+    public float master;
+    public float music;
+    public float sfx;
+
+    public Volume()
+    {
+        master = 1;
+        music = 1;
+        sfx = 1;
+    }
 }
