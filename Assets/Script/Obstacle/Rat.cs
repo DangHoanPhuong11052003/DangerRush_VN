@@ -12,6 +12,8 @@ public class Rat : MonoBehaviour
     [SerializeField] private AudioClip loop1;
     [SerializeField] private AudioClip loop2;
 
+    [SerializeField] private AudioSource audioSource;
+
     private float maxMoveX=1.6f;
     private float moveX;
 
@@ -63,13 +65,9 @@ public class Rat : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(moveX, transform.position.y, transform.position.z), speed * Time.deltaTime);
             if (transform.position.x >= maxMoveX || transform.position.x <= -maxMoveX)
             {
-                if (moveX > 0)
+                if (Random.value * 10 <= 2)
                 {
-                    AudioManager.instance.PlaySoundEffect(loop1);
-                }
-                else
-                {
-                    AudioManager.instance.PlaySoundEffect(loop2);
+                    audioSource.PlayOneShot(moveX>0?loop1:loop2);
                 }
 
                 moveX = -moveX;
@@ -83,7 +81,7 @@ public class Rat : MonoBehaviour
         {
             animator.SetBool("Dead", true);
 
-            AudioManager.instance.PlaySoundEffect(hit);
+            audioSource.PlayOneShot(hit);
 
             GetComponent<BoxCollider>().enabled = false;
             isReset = true;

@@ -8,8 +8,6 @@ public class SettingManager : MonoBehaviour
     [SerializeField] private Slider masterVolume;
     [SerializeField] private Slider musicVolume;
     [SerializeField] private Slider sfxVolume;
-    [SerializeField] private Button closeMenuButton;
-    [SerializeField] private Button quitGameButton;
 
 
     private void Start()

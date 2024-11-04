@@ -13,6 +13,7 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private GameObject PauseUI;
+    [SerializeField] private GameObject SettingUI;
 
     private int currentHeart=0;
 
@@ -53,6 +54,11 @@ public class CanvasManager : MonoBehaviour
         {
             GameManager.instance.ResumeGame();
         }
+    }
+
+    public void OpenSettingUI()
+    {
+        SettingUI.SetActive(true);
     }
 
     public void ResetGame()
