@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\UI\UIMainManager.cs" />
+    <Compile Include="Assets\Script\Achievement\Achiverment.cs" />
     <Compile Include="Assets\Script\Items\SardinesEffect.cs" />
     <Compile Include="Assets\Script\Obstacle\Obstacle.cs" />
     <Compile Include="Assets\Script\GamePlay\PowerEffect\SetUpPowerData.cs" />
@@ -66,7 +67,9 @@
     <Compile Include="Assets\Script\UI\UILoseManager.cs" />
     <Compile Include="Assets\Script\GameManager\MapManager.cs" />
     <Compile Include="Assets\Script\Shop\StoreManager.cs" />
+    <Compile Include="Assets\Script\Achievement\AchivementData.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreEffect.cs" />
+    <Compile Include="Assets\Script\Achievement\AchivementDataEditor.cs" />
     <Compile Include="Assets\Script\Shop\Power\PowerStoreManager.cs" />
     <Compile Include="Assets\Script\GameManager\CanvasManager.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Assets\Script\Items\SardinesScript.cs" />
     <Compile Include="Assets\Script\GamePlay\PowerEffect\SardinesPower.cs" />
     <Compile Include="Assets\Script\GameManager\LocalData.cs" />
+    <Compile Include="Assets\Saves\Achiverments.cs" />
     <Compile Include="Assets\Script\Shop\TabController.cs" />
     <Compile Include="Assets\Script\GamePlay\PowerEffect\MagnetPower.cs" />
     <Compile Include="Assets\Script\GameManager\GameManager.cs" />

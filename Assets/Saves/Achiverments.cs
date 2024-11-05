@@ -1,0 +1,1 @@
+public enum Achiverments {FirstTime,_3000Score,_5000Score,_10000Score,}
