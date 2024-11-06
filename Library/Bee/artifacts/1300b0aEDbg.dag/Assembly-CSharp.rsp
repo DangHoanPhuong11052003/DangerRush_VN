@@ -411,6 +411,8 @@
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Saves/Achiverments.cs"
+"Assets/Script/Achievement/AchievementsManager.cs"
+"Assets/Script/Achievement/AchievementsNotification.cs"
 "Assets/Script/Achievement/AchivementData.cs"
 "Assets/Script/Achievement/AchivementDataEditor.cs"
 "Assets/Script/Achievement/Achiverment.cs"

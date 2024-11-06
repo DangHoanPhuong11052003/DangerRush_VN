@@ -70,12 +70,14 @@
     <Compile Include="Assets\Script\Achievement\AchivementData.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreEffect.cs" />
     <Compile Include="Assets\Script\Achievement\AchivementDataEditor.cs" />
+    <Compile Include="Assets\Script\Achievement\AchievementsNotification.cs" />
     <Compile Include="Assets\Script\Shop\Power\PowerStoreManager.cs" />
     <Compile Include="Assets\Script\GameManager\CanvasManager.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
     <Compile Include="Assets\Script\GameManager\CharacterManager.cs" />
     <Compile Include="Assets\Script\Obstacle\Fishbone.cs" />
     <Compile Include="Assets\Script\Shop\Accessories\AccessoriesItemUI.cs" />
+    <Compile Include="Assets\Script\Achievement\AchievementsManager.cs" />
     <Compile Include="Assets\Script\Shop\Character\CharStoreManager.cs" />
     <Compile Include="Assets\Script\Items\HeartEffect.cs" />
     <Compile Include="Assets\Script\Obstacle\Rat.cs" />
