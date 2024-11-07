@@ -72,7 +72,6 @@
     <Compile Include="Assets\Script\Achievement\AchivementDataEditor.cs" />
     <Compile Include="Assets\Script\Achievement\AchievementsNotification.cs" />
     <Compile Include="Assets\Script\Shop\Power\PowerStoreManager.cs" />
-    <Compile Include="Assets\Script\GameManager\CanvasManager.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
     <Compile Include="Assets\Script\GameManager\CharacterManager.cs" />
     <Compile Include="Assets\Script\Obstacle\Fishbone.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Assets\Script\GamePlay\PowerEffect\PowerEffect.cs" />
     <Compile Include="Assets\Script\Items\MagnetScript.cs" />
     <Compile Include="Assets\Script\Items\MagnetEffect.cs" />
+    <Compile Include="Assets\Script\GameManager\UIGamePlayManager.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreScript.cs" />
     <Compile Include="Assets\Script\Player\ReviewCharacter.cs" />
     <Compile Include="Assets\Script\Items\BuffEffect.cs" />

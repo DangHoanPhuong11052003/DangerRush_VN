@@ -1,17 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+
 
 public class AchievementsManager : MonoBehaviour
 {
+    [Serializable]
+    private class ScoreAchievement
+    {
+        public Achiverments achiverments;
+        public int score;
+    }
+
     [SerializeField] private AchivementData achivementData;
     [SerializeField] private AchievementsNotification notification;
-    [SerializeField] private List<string> notificationLst = new List<string>();
     [SerializeField] private Animator notificationAnimator;
+
+    [SerializeField] private List<ScoreAchievement> scoreAchievementsLstData;
+    
 
     public static AchievementsManager instance;
     private float timer;
     private float timeDelayNotifi;
+    private List<string> notificationLst = new List<string>();
+    private List<string> achievementLocalDataLst = new List<string>();
 
     private void Awake()
     {
@@ -27,14 +41,7 @@ public class AchievementsManager : MonoBehaviour
 
         timeDelayNotifi = notificationAnimator.runtimeAnimatorController.animationClips[0].length+0.5f;
 
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            notificationLst.Add("agagaa " + i);
-        }
+        achievementLocalDataLst=LocalData.instance.GetAchievementLocalData();
     }
 
     private void Update()
@@ -43,18 +50,54 @@ public class AchievementsManager : MonoBehaviour
 
         if (notificationLst.Count > 0&& timer <= 0)
         {
-            ShowAchievementsNotification(notificationLst[0]);
-            notificationLst.RemoveAt(0);
+            ShowAchievementsNotification();
 
             timer = timeDelayNotifi;
         }
     }
 
-    private void ShowAchievementsNotification(string title)
+    private void ShowAchievementsNotification()
     {
         notification.gameObject.SetActive(true);
-        notification.ShowAchievementsNotification(title);
+        notification.ShowAchievementsNotification(notificationLst[0]);
+
+        notificationLst.RemoveAt(0);
     }
 
+    public void UnlockAchievement(string titleAchievements)
+    {
+        bool isUnlock=achievementLocalDataLst.Contains(titleAchievements);
+        if(!isUnlock)
+        {
+            //thông báo nhận thành tựu 
+            notificationLst.Add(titleAchievements);
 
+            achievementLocalDataLst.Add(titleAchievements);
+            LocalData.instance.SetAchiementLocalData(achievementLocalDataLst);
+        }
+    }
+
+    public void CheckScoreAchievement(int score)
+    {
+        Record recordData=LocalData.instance.GetRecordData();
+
+        if(score> recordData.score)
+        {
+            foreach (ScoreAchievement item in scoreAchievementsLstData)
+            {
+                if (score < item.score)
+                {
+                    return;
+                }
+                else if (!achievementLocalDataLst.Contains(item.achiverments.ToString()))
+                {
+                    UnlockAchievement(item.achiverments.ToString());
+                }
+            }
+
+            //save new score record 
+            recordData.score = score;
+            LocalData.instance.SetRecordData(recordData);
+        }
+    }
 }

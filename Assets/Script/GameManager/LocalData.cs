@@ -11,9 +11,11 @@ public class GameData
     public int currentCharacter;
     public int currentAccessories;
     public  Volume volume=new Volume();
+    public Record record=new Record();
     public List<CharacterData> lst_characterData=new List<CharacterData>();
     public List<PowerData> lst_powerData=new List<PowerData>();
     public List<AccessoriesData> lst_accessoriesData=new List<AccessoriesData>();
+    public List<string> achievementUnlockDataLst =new List<string>();
 
     public GameData()
     {
@@ -27,7 +29,7 @@ public class GameData
 public class LocalData : MonoBehaviour
 {
     public static LocalData instance;
-    GameData gameData=new GameData();
+    private GameData gameData=new GameData();
 
     private string localPath = Application.dataPath + "/Saves";
     private string fileName = "GameData.json";
@@ -108,6 +110,12 @@ public class LocalData : MonoBehaviour
 
     public void SetCoin(int coin)
     {
+        //change coin record
+        if (coin > gameData.coin)
+        {
+            gameData.record.coin += coin - gameData.coin;
+        }
+
         gameData.coin=coin;
         SaveData();
     }
@@ -136,6 +144,7 @@ public class LocalData : MonoBehaviour
         SaveData();
     }
 
+    /////
     public List<AccessoriesData> GetAccessoriesData()
     {
         return gameData.lst_accessoriesData;
@@ -146,7 +155,7 @@ public class LocalData : MonoBehaviour
         gameData.lst_accessoriesData = accessoriesDatas;
         SaveData();
     }
-
+    /////
     public int GetCurrentIdAccessories()
     {
         return gameData.currentAccessories;
@@ -157,7 +166,7 @@ public class LocalData : MonoBehaviour
         gameData.currentAccessories=id;
         SaveData();
     }
-
+    /////
     public Volume GetVolume()
     {
         return gameData.volume;
@@ -168,7 +177,28 @@ public class LocalData : MonoBehaviour
         gameData.volume=volume; 
         SaveData();
     }
+    /////
+    public List<string> GetAchievementLocalData()
+    {
+        return gameData.achievementUnlockDataLst;
+    }
 
+    public void SetAchiementLocalData(List<string> data)
+    {
+        gameData.achievementUnlockDataLst=data;
+        SaveData();
+    }
+    /////
+    public Record GetRecordData()
+    {
+        return gameData.record;
+    }
+
+    public void SetRecordData(Record newRecord)
+    {
+        gameData.record=newRecord;
+        SaveData();
+    }
 }
 
 
@@ -240,5 +270,20 @@ public class Volume
         master = 1;
         music = 1;
         sfx = 1;
+    }
+}
+
+[Serializable]
+public class Record
+{
+    public int score;
+    public int coin;
+    public int quantityChar;
+
+    public Record()
+    {
+        score = 0;
+        coin = 0;
+        quantityChar = 1;
     }
 }

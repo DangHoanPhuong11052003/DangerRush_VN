@@ -7,10 +7,13 @@ public class AchievementsNotification : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private Animator animator;
+    [SerializeField] private AchivementData achivementData;
 
-    public void ShowAchievementsNotification(string title)
+    public void ShowAchievementsNotification(string idAchievement)
     {
-        this.title.text = title;
+        Achievement achievement=achivementData.achievementsData.Find(x => x.id == idAchievement);
+
+        this.title.text = achievement.title;
 
         animator.SetTrigger("isActive");
         float timeAnimation = animator.runtimeAnimatorController.animationClips[0].length;

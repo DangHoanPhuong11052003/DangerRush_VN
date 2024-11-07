@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CanvasManager : MonoBehaviour
+public class UIGamePlayManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI fishbone;
@@ -24,9 +24,9 @@ public class CanvasManager : MonoBehaviour
 
     private void Update()
     {
-        score.text = "Score: "+Mathf.FloorToInt(playerManager.score);
-        fishbone.text= Mathf.FloorToInt(playerManager.coin).ToString();
-        meter.text= "Meter: "+Mathf.FloorToInt(playerManager.meter);
+        score.text = "Score: "+Mathf.CeilToInt(playerManager.score);
+        fishbone.text= playerManager.coin.ToString();
+        meter.text= "Meter: "+Mathf.CeilToInt(playerManager.meter);
 
         if (currentHeart > playerManager.quantityLife)
         {

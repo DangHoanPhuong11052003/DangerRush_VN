@@ -38,7 +38,7 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] GameObject LoseEffect; 
     [SerializeField] private AnimatorController animatiorPlayer;
 
-    [SerializeField] private CanvasManager canvasManager;
+    [SerializeField] private UIGamePlayManager canvasManager;
 
     private CharacterAudioSoucre characterSounds;
 
