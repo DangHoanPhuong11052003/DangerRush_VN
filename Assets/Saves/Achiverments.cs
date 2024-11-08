@@ -1,1 +1,1 @@
-public enum Achiverments {FirstTime,_3000Score,_5000Score,_10000Score,}
+public enum Achiverments {FirstTime,_500Score,_1000Score,_2000Score,}

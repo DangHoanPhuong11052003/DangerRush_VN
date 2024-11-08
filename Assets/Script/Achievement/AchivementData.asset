@@ -17,15 +17,15 @@ MonoBehaviour:
     type: normal
     title: First time?
     description: First dead
-  - id: _3000Score
+  - id: _500Score
     type: score
-    title: 3000 Score
-    description: Gain 3000 Score
-  - id: _5000Score
+    title: 500 Score
+    description: Gain 500 Score
+  - id: _1000Score
     type: score
-    title: 5000 Score
-    description: Gain 5000 Score
-  - id: _10000Score
+    title: 1000 Score
+    description: Gain 1000 Score
+  - id: _2000Score
     type: score
-    title: 10000 Score
-    description: Gain 10000 Score
+    title: 2000 Score
+    description: Gain 2000 Score

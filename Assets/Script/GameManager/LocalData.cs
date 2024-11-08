@@ -15,7 +15,7 @@ public class GameData
     public List<CharacterData> lst_characterData=new List<CharacterData>();
     public List<PowerData> lst_powerData=new List<PowerData>();
     public List<AccessoriesData> lst_accessoriesData=new List<AccessoriesData>();
-    public List<string> achievementUnlockDataLst =new List<string>();
+    public List<AchievementLocalData> achievementUnlockDataLst =new List<AchievementLocalData>();
 
     public GameData()
     {
@@ -178,12 +178,12 @@ public class LocalData : MonoBehaviour
         SaveData();
     }
     /////
-    public List<string> GetAchievementLocalData()
+    public List<AchievementLocalData> GetAchievementLocalData()
     {
         return gameData.achievementUnlockDataLst;
     }
 
-    public void SetAchiementLocalData(List<string> data)
+    public void SetAchiementLocalData(List<AchievementLocalData> data)
     {
         gameData.achievementUnlockDataLst=data;
         SaveData();
@@ -285,5 +285,24 @@ public class Record
         score = 0;
         coin = 0;
         quantityChar = 1;
+    }
+}
+
+[Serializable]
+public class AchievementLocalData
+{
+    public string id;
+    public bool isGotReward;
+
+    public AchievementLocalData()
+    {
+        id = "";
+        isGotReward = false;
+    }
+
+    public AchievementLocalData(string id, bool isGotReward)
+    {
+        this.id = id;
+        this.isGotReward = isGotReward;
     }
 }

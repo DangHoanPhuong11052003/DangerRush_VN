@@ -11,5 +11,7 @@ public class Achievement
     public string type;
     public string title;
     public string description;
+    public bool isUnlocked;
+    public bool isGotReward;
 }
 

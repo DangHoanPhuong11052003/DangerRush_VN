@@ -14,7 +14,6 @@ public class AchievementsManager : MonoBehaviour
         public int score;
     }
 
-    [SerializeField] private AchivementData achivementData;
     [SerializeField] private AchievementsNotification notification;
     [SerializeField] private Animator notificationAnimator;
 
@@ -25,7 +24,7 @@ public class AchievementsManager : MonoBehaviour
     private float timer;
     private float timeDelayNotifi;
     private List<string> notificationLst = new List<string>();
-    private List<string> achievementLocalDataLst = new List<string>();
+    private List<AchievementLocalData> achievementLocalDataLst = new List<AchievementLocalData>();
 
     private void Awake()
     {
@@ -66,13 +65,13 @@ public class AchievementsManager : MonoBehaviour
 
     public void UnlockAchievement(string titleAchievements)
     {
-        bool isUnlock=achievementLocalDataLst.Contains(titleAchievements);
+        bool isUnlock=achievementLocalDataLst.Exists(x=>x.id==titleAchievements);
         if(!isUnlock)
         {
             //thông báo nhận thành tựu 
             notificationLst.Add(titleAchievements);
 
-            achievementLocalDataLst.Add(titleAchievements);
+            achievementLocalDataLst.Add(new AchievementLocalData(titleAchievements,false));
             LocalData.instance.SetAchiementLocalData(achievementLocalDataLst);
         }
     }
@@ -89,7 +88,7 @@ public class AchievementsManager : MonoBehaviour
                 {
                     return;
                 }
-                else if (!achievementLocalDataLst.Contains(item.achiverments.ToString()))
+                else if (!achievementLocalDataLst.Exists(x=>x.id==item.achiverments.ToString()))
                 {
                     UnlockAchievement(item.achiverments.ToString());
                 }

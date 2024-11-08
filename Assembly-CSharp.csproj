@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\Achievement\AchivementData.cs" />
     <Compile Include="Assets\Script\Items\DoubleScoreEffect.cs" />
     <Compile Include="Assets\Script\Achievement\AchivementDataEditor.cs" />
+    <Compile Include="Assets\Script\Achievement\AchivemenUIManager.cs" />
     <Compile Include="Assets\Script\Achievement\AchievementsNotification.cs" />
     <Compile Include="Assets\Script\Shop\Power\PowerStoreManager.cs" />
     <Compile Include="Assets\Script\Items\HeartScript.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Script\Items\SardinesScript.cs" />
     <Compile Include="Assets\Script\GamePlay\PowerEffect\SardinesPower.cs" />
     <Compile Include="Assets\Script\GameManager\LocalData.cs" />
+    <Compile Include="Assets\Script\Achievement\AchievementItemUI.cs" />
     <Compile Include="Assets\Saves\Achiverments.cs" />
     <Compile Include="Assets\Script\Shop\TabController.cs" />
     <Compile Include="Assets\Script\GamePlay\PowerEffect\MagnetPower.cs" />
