@@ -410,6 +410,7 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/Materials/Shaders/Shaders/WorldCurver.cs"
 "Assets/Saves/Achiverments.cs"
 "Assets/Script/Achievement/AchievementItemUI.cs"
 "Assets/Script/Achievement/AchievementsManager.cs"
