@@ -14,12 +14,17 @@ public class AchievementItemUI : MonoBehaviour
     [SerializeField] private Image CupUI;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI des;
+    [SerializeField] private TextMeshProUGUI rewardValue;
+
+    [SerializeField] private GameObject RewardUI;
 
     private Achievement achievement;
+    private AchivemenUIManager AchivemenUIManager;
 
-    public void SetData(Achievement value)
+    public void SetData(Achievement value,AchivemenUIManager achivemenUIManager)
     {
         achievement = value;
+        this.AchivemenUIManager = achivemenUIManager;
 
         if (achievement.isUnlocked)
         {
@@ -27,6 +32,16 @@ public class AchievementItemUI : MonoBehaviour
             CupUI.color = UnlockCupColor;
             title.text = achievement.title;
             des.text = achievement.description;
+
+            if (achievement.isGotReward)
+            {
+                RewardUI.SetActive(false);
+            }
+            else
+            {
+                RewardUI.SetActive(true);
+                rewardValue.text = achievement.rewardValue.ToString();
+            }
         }
         else
         {
@@ -35,5 +50,10 @@ public class AchievementItemUI : MonoBehaviour
             title.text = achievement.title;
             des.text = achievement.description;
         }
+    }
+
+    public void GetReward()
+    {
+        AchivemenUIManager.GetReward(achievement);
     }
 }
