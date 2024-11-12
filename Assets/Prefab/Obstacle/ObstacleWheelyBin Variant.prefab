@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 89db83d228927234ab3737e12e64660e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 89db83d228927234ab3737e12e64660e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d5b532caaec483d48a82370190478c76, type: 2}
     - target: {fileID: 2300006, guid: 89db83d228927234ab3737e12e64660e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -98,6 +106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 89db83d228927234ab3737e12e64660e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8915213535830009410}
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: 89db83d228927234ab3737e12e64660e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8524234780705498739}
   m_SourcePrefab: {fileID: 100100000, guid: 89db83d228927234ab3737e12e64660e, type: 3}
 --- !u!1 &3359257006775910409 stripped
 GameObject:
@@ -141,3 +152,30 @@ MonoBehaviour:
   timeDeActive: 2
   Parent: {fileID: 0}
   soundDead: {fileID: 8300000, guid: 115b0e1702f619f4eb691e43745e8ca4, type: 3}
+--- !u!1 &3359257006775910411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 89db83d228927234ab3737e12e64660e, type: 3}
+  m_PrefabInstance: {fileID: 3359257006775944873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8524234780705498739
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359257006775910411}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 89db83d228927234ab3737e12e64660e, type: 3}
