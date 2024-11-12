@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -13,12 +14,11 @@ public class DailyQuestManager : MonoBehaviour
 
     [SerializeField] private QuestData questData;
 
-    private List<Quest> questDataLst= new List<Quest>();
     private List<QuestLocalData> questLocalDataLst= new List<QuestLocalData>();
 
     private void OnEnable()
     {
-        SetUpDateDailyQuest();
+        questLocalDataLst=LocalData.instance.GetQuestLocalDatas();
     }
 
     private void Start()
@@ -36,24 +36,63 @@ public class DailyQuestManager : MonoBehaviour
         StartCoroutine(GetTimeData());
     }
 
-    private void SetUpDateDailyQuest()
+    //dành để kiểm tra các thành tựu dạng lấy tiến độ cao nhất được truyền vào
+    public void UpdateHighStageQuest(int stage, DailyQuestsType dailyQuestsType)
     {
-        questLocalDataLst = LocalData.instance.GetQuestLocalDatas();
-
-        foreach (var item in questData.questDataLst)
+        //Lấy ra các phần tử có cùng kiểu cần kiểm tra trong ds tòan bộ nhiem vu
+        foreach (var item in questData.questDataLst.FindAll(x => x.type == dailyQuestsType.ToString()))
         {
-            QuestLocalData questLocal= questLocalDataLst.Find(x=>x.id==item.id);
+            //kiểm tra xem từng nhiệm vụ xem đã có tiến trình chưa
+            QuestLocalData questLocal = questLocalDataLst.Find(x => x.id.Equals(item.id));
 
             if (questLocal!=null)
             {
-                item.stage=questLocal.stage;
-                item.isSuccess = questLocal.isSuccess;
-                item.isGotReward=questLocal.isGotReward;
+                //lưu lại tiến trình mới vào local nếu tiến độ lớn hơn
+                if(stage>= questLocal.stage)
+                {
+                    questLocal.stage=stage;
+                    questLocal.isSuccess = item.stage <= stage;
+                    LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
+                }
+            }
+            else
+            {
+                //tạo mới tiến độ nếu chưa có
+                questLocal = new QuestLocalData(item.id, stage, item.stage <= stage, false);
+
+                questLocalDataLst.Add(questLocal);
+                LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
             }
         }
     }
 
-    //public void Check
+    //dành để kiểm tra các thành tựu dạng cộng dồn số tiến độ được truyền vào
+    public void AccumulateStageQuest(int stage, DailyQuestsType dailyQuestsType)
+    {
+        //Lấy ra các phần tử có cùng kiểu cần kiểm tra trong ds tòan bộ nhiem vu
+        foreach (var item in questData.questDataLst.FindAll(x => x.type == dailyQuestsType.ToString()))
+        {
+            //kiểm tra xem từng nhiệm vụ xem đã có tiến trình chưa
+            QuestLocalData questLocal = questLocalDataLst.Find(x => x.id.Equals(item.id));
+
+            if (questLocal != null)
+            {
+                //cộng dồn tiến độ nếu đã có
+                questLocal.stage += stage;
+                questLocal.isSuccess = item.stage <= stage;
+                
+            }
+            else
+            {
+                //tạo mới tiến độ nếu chưa có
+                questLocal = new QuestLocalData(item.id, stage, item.stage <= stage, false);
+
+                questLocalDataLst.Add(questLocal);
+            }
+                
+            LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
+        }
+    }
 
     private IEnumerator GetTimeData()
     {

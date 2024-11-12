@@ -26,7 +26,7 @@ public class QuestDataEdit : Editor
 
     private void GenerateEnum()
     {
-        string filePath = Path.Combine(Application.dataPath, "Saves/Achiverments.cs");
+        string filePath = Path.Combine(Application.dataPath, "Saves/DailyQuestTypes.cs");
         string code = "public enum DailyQuestsType {";
         foreach (var item in data.questDataLst)
         {
@@ -35,6 +35,6 @@ public class QuestDataEdit : Editor
         code += "}";
 
         File.WriteAllText(filePath, code);
-        AssetDatabase.ImportAsset("Asset/Saves/Achiverments.cs");
+        AssetDatabase.ImportAsset("Assets/Saves/DailyQuestTypes.cs");
     }
 }

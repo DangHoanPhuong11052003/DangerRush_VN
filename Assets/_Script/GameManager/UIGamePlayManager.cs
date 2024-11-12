@@ -28,12 +28,17 @@ public class UIGamePlayManager : MonoBehaviour
         fishbone.text= playerManager.coin.ToString();
         meter.text= "Meter: "+Mathf.CeilToInt(playerManager.meter);
 
-        if (currentHeart > playerManager.quantityLife)
+        if (currentHeart != playerManager.quantityLife)
         {
             currentHeart=playerManager.quantityLife;
-            for (int i = 0; i < 3 - currentHeart; i++)
+            int i = currentHeart;
+            foreach (var item in lst_Heart)
             {
-                lst_Heart[i].SetActive(false);
+                --i;
+                if(i>=0)
+                    item.SetActive(true);
+                else
+                    item.SetActive(false);
             }
         }
     }

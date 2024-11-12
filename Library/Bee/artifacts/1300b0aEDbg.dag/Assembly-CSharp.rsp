@@ -412,6 +412,7 @@
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Materials/Shaders/Shaders/WorldCurver.cs"
 "Assets/Saves/Achiverments.cs"
+"Assets/Saves/DailyQuestTypes.cs"
 "Assets/_Script/Achievement/AchievementItemUI.cs"
 "Assets/_Script/Achievement/AchievementsManager.cs"
 "Assets/_Script/Achievement/AchievementsNotification.cs"

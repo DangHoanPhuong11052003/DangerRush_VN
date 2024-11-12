@@ -87,6 +87,7 @@
     <Compile Include="Assets\_Script\UI\SettingManager.cs" />
     <Compile Include="Assets\_Script\Audio\AudioManager.cs" />
     <Compile Include="Assets\_Script\Items\SardinesEffect.cs" />
+    <Compile Include="Assets\Saves\DailyQuestTypes.cs" />
     <Compile Include="Assets\_Script\Achievement\AchievementsManager.cs" />
     <Compile Include="Assets\_Script\Items\DoubleScoreScript.cs" />
     <Compile Include="Assets\_Script\Achievement\AchievementsNotification.cs" />

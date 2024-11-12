@@ -23,5 +23,9 @@ public class UILoseManager : MonoBehaviour
         AchievementsManager.instance.UnlockAchievement(achiverments_FirstDead.ToString());
         AchievementsManager.instance.CheckScoreAchievement(Mathf.CeilToInt(playerManager.score));
 
+        //check daily quest when player lose
+        DailyQuestManager.instance.UpdateHighStageQuest(Mathf.CeilToInt(playerManager.score), DailyQuestsType.getScore);
+        DailyQuestManager.instance.UpdateHighStageQuest(playerManager.coin, DailyQuestsType.getFishbone);
+
     }
 }

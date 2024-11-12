@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 820.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -445,9 +445,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9c7d0000
-      m_LastClickedID: 32156
-      m_ExpandedIDs: ecfaffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 72b0ffff78d1ffffecfaffffee8e0000d0920000529500009c96000098b80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -973,9 +973,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.149787, y: 5.943059, z: 22.284348}
+    m_Target: {x: 0.092, y: 1.127, z: -0.511}
     speed: 2
-    m_Value: {x: -9.149787, y: 5.943059, z: 22.284348}
+    m_Value: {x: 0, y: 1.3000001, z: 0.006595373}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1021,13 +1021,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 1
   m_Rotation:
-    m_Target: {x: -0.033509966, y: -0.17816046, z: -0.013835019, w: 0.98440754}
+    m_Target: {x: 0.18710011, y: -0.08765167, z: 0.00906141, w: 0.97946054}
     speed: 2
-    m_Value: {x: -0.033474606, y: -0.17797247, z: -0.013820421, w: 0.9833688}
+    m_Value: {x: -0.1509177, y: 0.016627455, z: -0.0013832209, w: -0.9884055}
   m_Size:
-    m_Target: 18.334915
+    m_Target: 0.98827887
     speed: 2
-    m_Value: 18.334915
+    m_Value: 1.5508764
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -2056,7 +2056,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Script/DailyQuest
+    - Assets/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -2066,16 +2066,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 47
   m_LastFolders:
-  - Assets/_Script/DailyQuest
+  - Assets/Materials
   m_LastFoldersGridSize: 47
   m_LastProjectPath: D:\GameDev\MyProject\DangerRush_VN
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 63}
-    m_SelectedIDs: 9e870000
-    m_LastClickedID: 34718
-    m_ExpandedIDs: 00000000628700006487000066870000688700006a8700006c8700006e870000708700007287000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 300}
+    m_SelectedIDs: ae870000
+    m_LastClickedID: 34734
+    m_ExpandedIDs: 00000000628700006487000066870000688700006a8700006c8700006e8700007087000072870000ae87000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2674,7 +2674,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 32156
+  m_LastSelectedObjectID: 36796
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52

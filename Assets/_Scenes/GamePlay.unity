@@ -40355,9 +40355,9 @@ MonoBehaviour:
   fishbone: {fileID: 169926448}
   meter: {fileID: 684609197}
   lst_Heart:
-  - {fileID: 1438101940}
-  - {fileID: 832651339}
   - {fileID: 1629278609}
+  - {fileID: 832651339}
+  - {fileID: 1438101940}
   playerManager: {fileID: 722781491}
   LoseUI: {fileID: 975409640}
   PauseUI: {fileID: 1239717922}
@@ -43425,7 +43425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309462823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.092, y: 0.627, z: -0.511}
+  m_LocalPosition: {x: 0.092, y: 1.127, z: -0.511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

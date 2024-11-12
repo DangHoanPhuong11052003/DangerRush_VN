@@ -1,0 +1,1 @@
+public enum DailyQuestsType {getScore,takePower,getFishbone,successQuest,useFishbone,}
