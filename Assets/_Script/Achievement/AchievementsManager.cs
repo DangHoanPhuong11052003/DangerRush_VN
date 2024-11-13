@@ -35,7 +35,7 @@ public class AchievementsManager : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         timeDelayNotifi = notificationAnimator.runtimeAnimatorController.animationClips[0].length+0.5f;

@@ -10,8 +10,8 @@ public class GameData
     public int coin;
     public int currentCharacter;
     public int currentAccessories;
-    public DateTime localTime;
-    public  Volume volume=new Volume();
+    public string localTime=new DateTime().ToString();
+    public Volume volume=new Volume();
     public Record record=new Record();
     public List<CharacterData> lst_characterData=new List<CharacterData>();
     public List<PowerData> lst_powerData=new List<PowerData>();
@@ -205,12 +205,12 @@ public class LocalData : MonoBehaviour
     /////////
     public DateTime GetLocalTime()
     {
-        return gameData.localTime;
+        return DateTime.Parse(gameData.localTime);
     }
 
     public void SetLocalTime(DateTime time)
     {
-        gameData.localTime=time;
+        gameData.localTime=time.ToString();
         SaveData();
     }
 

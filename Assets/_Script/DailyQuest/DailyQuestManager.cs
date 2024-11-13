@@ -13,8 +13,11 @@ public class DailyQuestManager : MonoBehaviour
     public static DailyQuestManager instance;
 
     [SerializeField] private QuestData questData;
+    [SerializeField] private float timeToReCheckNewDay;
 
     private List<QuestLocalData> questLocalDataLst= new List<QuestLocalData>();
+
+    private float timer;
 
     private void OnEnable()
     {
@@ -32,8 +35,17 @@ public class DailyQuestManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
-        StartCoroutine(GetTimeData());
+    private void FixedUpdate()
+    {
+        timer-=Time.deltaTime;
+        if(timer <= 0)
+        {
+            StartCoroutine(CheckTimeData());
+
+            timer = timeToReCheckNewDay;
+        }
     }
 
     //dành để kiểm tra các thành tựu dạng lấy tiến độ cao nhất được truyền vào
@@ -94,7 +106,7 @@ public class DailyQuestManager : MonoBehaviour
         }
     }
 
-    private IEnumerator GetTimeData()
+    private IEnumerator CheckTimeData()
     {
         DateTime timeUtcNow;
         DateTime localTime=LocalData.instance.GetLocalTime();
@@ -113,13 +125,9 @@ public class DailyQuestManager : MonoBehaviour
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
-                {
                     timeUtcNow = DateTime.Parse(request.GetResponseHeader("date"));
-                }
                 else
-                {
                     timeUtcNow = DateTime.UtcNow;
-                }
             }
         }
 
