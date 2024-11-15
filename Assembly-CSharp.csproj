@@ -67,6 +67,7 @@
     <Compile Include="Assets\_Script\Obstacle\Fishbone.cs" />
     <Compile Include="Assets\_Script\Shop\Character\CharStoreManager.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestData.cs" />
+    <Compile Include="Assets\_Script\DailyQuest\QuestItem.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetPower.cs" />
     <Compile Include="Assets\_Script\Player\PlayerManager.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesManager.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\_Script\Items\HeartEffect.cs" />
     <Compile Include="Assets\_Script\Player\ReviewCharacter.cs" />
     <Compile Include="Assets\_Script\Items\BuffEffect.cs" />
+    <Compile Include="Assets\_Script\DailyQuest\QuestUIManager.cs" />
     <Compile Include="Assets\_Script\Obstacle\Obstacle.cs" />
     <Compile Include="Assets\_Script\Items\MagnetScript.cs" />
     <Compile Include="Assets\_Script\UI\UIMainManager.cs" />

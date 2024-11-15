@@ -11,6 +11,7 @@ public class Quest
     public string type;
     public int points;
     public int stage;
+    public int currentStage;
     public bool isSuccess;
     public bool isGotReward;
 }

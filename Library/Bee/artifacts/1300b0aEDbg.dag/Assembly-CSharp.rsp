@@ -425,6 +425,8 @@
 "Assets/_Script/DailyQuest/Quest.cs"
 "Assets/_Script/DailyQuest/QuestData.cs"
 "Assets/_Script/DailyQuest/QuestDataEdit.cs"
+"Assets/_Script/DailyQuest/QuestItem.cs"
+"Assets/_Script/DailyQuest/QuestUIManager.cs"
 "Assets/_Script/GameManager/CharacterManager.cs"
 "Assets/_Script/GameManager/GameManager.cs"
 "Assets/_Script/GameManager/LocalData.cs"
