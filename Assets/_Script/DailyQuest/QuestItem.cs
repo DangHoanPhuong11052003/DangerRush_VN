@@ -17,10 +17,13 @@ public class QuestItem : MonoBehaviour
     [SerializeField] private GameObject ButtonCollect;
 
     private Quest quest;
+    private QuestUIManager QuestUIManager;
 
-    public void SetData(Quest questValue)
+    public void SetData(Quest questValue, QuestUIManager questUIManager)
     {
         quest = questValue;
+        this.QuestUIManager = questUIManager;
+
         TitleQuestUI.text = quest.name;
         PointValueUI.text = questValue.points.ToString();
         StageValueUI.text = $"{questValue.currentStage}/{questValue.stage}";

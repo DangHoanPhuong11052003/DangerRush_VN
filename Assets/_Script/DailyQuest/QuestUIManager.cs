@@ -13,9 +13,10 @@ public class QuestUIManager : MonoBehaviour
     private List<QuestLocalData> questLocalDatasLst=new List<QuestLocalData>();
     private List <QuestItem> questItemList=new List<QuestItem>();
 
-    private void Start()
+    private void OnEnable()
     {
         UpdateDailyQuestData();
+        UpdateDailyQuestItem();
     }
 
     private void UpdateDailyQuestData()
@@ -37,22 +38,35 @@ public class QuestUIManager : MonoBehaviour
 
         dailyQuestDataLst.Sort((a, b) =>
         {
-            int isSucc= b.isSuccess.CompareTo(a.isSuccess);
-            if (isSucc!=0)
+            if (a.isGotReward && b.isGotReward && !a.isGotReward && !b.isGotReward)
             {
-                return isSucc;
+                return b.isSuccess.CompareTo(a.isSuccess);
             }
-            return a.isGotReward.CompareTo(b.isGotReward);
+            else
+            {
+                 return a.isGotReward.CompareTo(b.isGotReward);
+            }
         });
     }
 
     private void UpdateDailyQuestItem()
     {
-        if(questItemList.Count <= 0)
+        if(questItemList.Count > 0)
+        {
+            for(int i = 0; i < dailyQuestDataLst.Count; i++)
+            {
+                questItemList[i].SetData(dailyQuestDataLst[i],this);
+            }
+        }
+        else
         {
             foreach (var item in dailyQuestDataLst)
             {
-                
+                GameObject newItem = Instantiate(QuestItemPrefab, DailyQuestTranform);
+                QuestItem newQuestItem = newItem.GetComponent<QuestItem>();
+                newQuestItem.SetData(item,this);
+
+                questItemList.Add(newQuestItem);
             }
         }
     }
