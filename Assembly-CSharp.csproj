@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SardinesPower.cs" />
+    <Compile Include="Assets\ChestDailyReward.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivementData.cs" />
     <Compile Include="Assets\_Script\DailyQuest\DailyQuestManager.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesStoreManager.cs" />

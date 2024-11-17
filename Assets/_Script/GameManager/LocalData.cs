@@ -10,9 +10,11 @@ public class GameData
     public int coin;
     public int currentCharacter;
     public int currentAccessories;
+    public int TotalStageDailyQuest;
     public string localTime=new DateTime().ToString();
     public Volume volume=new Volume();
     public Record record=new Record();
+    public List<int> lst_idChestDailyRewardCollected=new List<int>();
     public List<CharacterData> lst_characterData=new List<CharacterData>();
     public List<PowerData> lst_powerData=new List<PowerData>();
     public List<AccessoriesData> lst_accessoriesData=new List<AccessoriesData>();
@@ -223,6 +225,30 @@ public class LocalData : MonoBehaviour
     public void SetQuestLocalDatas(List<QuestLocalData> questLocalDatas)
     {
         gameData.dailyQuestDataLst=questLocalDatas;
+        SaveData();
+    }
+
+    //Get, set stage daily quest
+    public int GetTotalStageDailyQuest()
+    {
+        return gameData.TotalStageDailyQuest;
+    }
+
+    public void SetTotalStageDailyQuest(int stage)
+    {
+        gameData.TotalStageDailyQuest = stage;
+        SaveData();
+    }
+
+    //Get, set id daily quest chest collected reward
+    public List<int> GetIdChestDailyQuestRewardCollected()
+    {
+        return gameData.lst_idChestDailyRewardCollected;
+    }
+
+    public  void SetIdChestDailyQuestRewardCollected(List<int> idChestLst )
+    {
+        gameData.lst_idChestDailyRewardCollected=idChestLst;    
         SaveData();
     }
 }

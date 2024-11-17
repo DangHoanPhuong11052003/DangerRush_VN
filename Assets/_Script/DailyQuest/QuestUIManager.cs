@@ -1,38 +1,78 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestUIManager : MonoBehaviour
 {
+
+    [Header("===Quest List===")]
     [SerializeField] private QuestData questData;
     [SerializeField] private Transform DailyQuestTranform;
     [SerializeField] private GameObject QuestItemPrefab;
+
+    [Header("===Stage Daily Quest And Reward===")]
+    [SerializeField] private List<ChestDailyReward> ChestDailyRewardList=new List<ChestDailyReward>();
+    [SerializeField] private Slider TotalStageBar;
+    [SerializeField] private TextMeshProUGUI TotalStageTxt;
 
     private List<Quest> dailyQuestDataLst=new List<Quest>();
     private List<QuestLocalData> questLocalDatasLst=new List<QuestLocalData>();
     private List <QuestItem> questItemList=new List<QuestItem>();
 
+    private int totalStageData;
+    List<int> idChestCollectedRewardLst = new List<int>();
+
     private void OnEnable()
     {
         UpdateDailyQuestData();
         UpdateDailyQuestItem();
+
+        UpdateTotalPointDailyQuestData();
+    }
+
+    private void UpdateTotalPointDailyQuestData()
+    {
+        totalStageData=LocalData.instance.GetTotalStageDailyQuest();
+        idChestCollectedRewardLst = LocalData.instance.GetIdChestDailyQuestRewardCollected();
+
+        TotalStageBar.value = totalStageData;
+        foreach (var item in ChestDailyRewardList)
+        {
+            if (idChestCollectedRewardLst.Contains(item.GetId()))
+            {
+                item.SetData(this, 2);
+            }
+            else
+            {
+                item.SetData(this, item.GetTotalPointCollect()<=totalStageData?1:0);
+            }
+        }
     }
 
     private void UpdateDailyQuestData()
     {
-        dailyQuestDataLst = questData.questDataLst;
+        dailyQuestDataLst.Clear();
         questLocalDatasLst=LocalData.instance.GetQuestLocalDatas();
 
-        foreach (var item in dailyQuestDataLst)
+        foreach (var item in questData.questDataLst)
         {
             QuestLocalData questLocalData=questLocalDatasLst.Find(x=>x.id == item.id);
 
             if (questLocalData != null)
             {
-                item.currentStage=questLocalData.stage;
-                item.isSuccess=questLocalData.isSuccess;
-                item.isGotReward=questLocalData.isGotReward;
+                Quest quest = new Quest(item);
+                quest.currentStage=questLocalData.stage;
+                quest.isSuccess=questLocalData.isSuccess;
+                quest.isGotReward=questLocalData.isGotReward;
+
+                dailyQuestDataLst.Add(quest);
+            }
+            else
+            {
+                dailyQuestDataLst.Add(new Quest(item));
             }
         }
 
