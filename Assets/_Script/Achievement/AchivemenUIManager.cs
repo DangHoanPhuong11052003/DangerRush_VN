@@ -34,15 +34,22 @@ public class AchivemenUIManager : MonoBehaviour
 
     private void UpdateDataAchivementLst()
     {
-        achievementsGeneralLst = achievementData.achievementsData;
-        foreach (var item in achievementsGeneralLst)
+        achievementsGeneralLst.Clear();
+
+        foreach (var item in achievementData.achievementsData)
         {
             AchievementLocalData data = achievementLocalDataLst.Find(x => x.id == item.id);
 
             if (data != null)
             {
-                item.isUnlocked = true;
-                item.isGotReward = data.isGotReward;
+                Achievement achievement = new Achievement(item);
+                achievement.isUnlocked = true;
+                achievement.isGotReward = data.isGotReward;
+                achievementsGeneralLst.Add(achievement);
+            }
+            else
+            {
+                achievementsGeneralLst.Add(new Achievement(item));
             }
         };
         //sort list by isUnlock=true and isGotReward=true first

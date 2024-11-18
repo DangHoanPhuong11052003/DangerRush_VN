@@ -8,6 +8,7 @@ public class UIMainManager : MonoBehaviour
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject SettingMenu;
     [SerializeField] private GameObject AchievementMenu;
+    [SerializeField] private GameObject QuestMenu;
     public void LoadGame()
     {
         GameManager.instance.LoadGame();
@@ -34,6 +35,12 @@ public class UIMainManager : MonoBehaviour
     {
         CloseAllMenu();
         AchievementMenu.SetActive(isOpen);
+    }
+
+    public void OpenOrCloseQuestMenu(bool isOpen)
+    {
+        CloseAllMenu();
+        QuestMenu.SetActive(isOpen);
     }
 
     private void CloseAllMenu()

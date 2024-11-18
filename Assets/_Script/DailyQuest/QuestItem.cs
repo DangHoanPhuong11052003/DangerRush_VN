@@ -52,4 +52,9 @@ public class QuestItem : MonoBehaviour
             }
         }
     }
+
+    public void CollectPoint()
+    {
+        QuestUIManager.CollectPointQuestItem(quest);
+    }
 }

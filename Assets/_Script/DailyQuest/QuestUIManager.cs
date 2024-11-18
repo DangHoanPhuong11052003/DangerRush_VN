@@ -33,11 +33,13 @@ public class QuestUIManager : MonoBehaviour
         UpdateTotalPointDailyQuestData();
     }
 
+    //Total stage and reward daily quest
     private void UpdateTotalPointDailyQuestData()
     {
         totalStageData=LocalData.instance.GetTotalStageDailyQuest();
         idChestCollectedRewardLst = LocalData.instance.GetIdChestDailyQuestRewardCollected();
 
+        TotalStageTxt.text=totalStageData.ToString();
         TotalStageBar.value = totalStageData;
         foreach (var item in ChestDailyRewardList)
         {
@@ -52,6 +54,21 @@ public class QuestUIManager : MonoBehaviour
         }
     }
 
+    public void GetRewardDailyQuest(int idChest,int quantityFishbone)
+    {
+        if (!idChestCollectedRewardLst.Contains(idChest))
+        {
+            idChestCollectedRewardLst.Add(idChest);
+            LocalData.instance.SetIdChestDailyQuestRewardCollected(idChestCollectedRewardLst);
+
+            int coin = LocalData.instance.GetCoin();
+            LocalData.instance.SetCoin(coin+quantityFishbone);
+
+            UpdateTotalPointDailyQuestData();
+        }
+    }
+
+    //Daily quest UI
     private void UpdateDailyQuestData()
     {
         dailyQuestDataLst.Clear();
@@ -78,13 +95,13 @@ public class QuestUIManager : MonoBehaviour
 
         dailyQuestDataLst.Sort((a, b) =>
         {
-            if (a.isGotReward && b.isGotReward && !a.isGotReward && !b.isGotReward)
+            if (!a.isGotReward && !b.isGotReward)
             {
                 return b.isSuccess.CompareTo(a.isSuccess);
             }
             else
             {
-                 return a.isGotReward.CompareTo(b.isGotReward);
+                return a.isGotReward.CompareTo(b.isGotReward);
             }
         });
     }
@@ -109,5 +126,23 @@ public class QuestUIManager : MonoBehaviour
                 questItemList.Add(newQuestItem);
             }
         }
+    }
+
+    public void CollectPointQuestItem(Quest quest)
+    {
+        QuestLocalData questLocalData= questLocalDatasLst.Find(x => x.id == quest.id);
+
+        if (questLocalData!=null&&!questLocalData.isGotReward)
+        {
+            int toltalStage = LocalData.instance.GetTotalStageDailyQuest();
+            LocalData.instance.SetTotalStageDailyQuest(toltalStage + quest.points);
+
+            questLocalData.isGotReward = true;
+            LocalData.instance.SetQuestLocalDatas(questLocalDatasLst);
+        }
+
+        UpdateDailyQuestData();
+        UpdateDailyQuestItem();
+        UpdateTotalPointDailyQuestData();   
     }
 }

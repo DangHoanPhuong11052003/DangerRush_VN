@@ -18,14 +18,14 @@ MonoBehaviour:
     title: First time?
     description: First dead
     rewardValue: 100
-    isUnlocked: 1
+    isUnlocked: 0
     isGotReward: 0
   - id: _500Score
     type: score
     title: 500 Score
     description: Gain 500 Score
     rewardValue: 200
-    isUnlocked: 1
+    isUnlocked: 0
     isGotReward: 0
   - id: _1000Score
     type: score

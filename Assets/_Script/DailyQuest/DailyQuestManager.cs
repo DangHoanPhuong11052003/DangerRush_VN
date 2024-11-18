@@ -22,6 +22,9 @@ public class DailyQuestManager : MonoBehaviour
     private void OnEnable()
     {
         questLocalDataLst=LocalData.instance.GetQuestLocalDatas();
+
+        //////////
+        //ResetDailyQuest();
     }
 
     private void Start()
@@ -144,6 +147,8 @@ public class DailyQuestManager : MonoBehaviour
     private void ResetDailyQuest()
     {
         LocalData.instance.SetQuestLocalDatas(null);
+        LocalData.instance.SetTotalStageDailyQuest(0);
+        LocalData.instance.SetIdChestDailyQuestRewardCollected(null);
     }
 
 

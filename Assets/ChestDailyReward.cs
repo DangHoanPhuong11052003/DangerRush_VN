@@ -60,6 +60,6 @@ public class ChestDailyReward : MonoBehaviour
 
     public void GetReward()
     {
-
+        QuestUIManager.GetRewardDailyQuest(idChest,quantityFishBoneReward);
     }
 }

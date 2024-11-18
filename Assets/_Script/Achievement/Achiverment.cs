@@ -14,5 +14,16 @@ public class Achievement
     public int rewardValue;
     public bool isUnlocked;
     public bool isGotReward;
+
+    public Achievement(Achievement achievement)
+    {
+        this.id = achievement.id;
+        this.type = achievement.type;
+        this.title = achievement.title;
+        this.description = achievement.description;
+        this.rewardValue = achievement.rewardValue;
+        this.isUnlocked = achievement.isUnlocked;
+        this.isGotReward = achievement.isGotReward;
+    }
 }
 
