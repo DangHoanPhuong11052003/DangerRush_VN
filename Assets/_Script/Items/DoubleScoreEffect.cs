@@ -23,11 +23,7 @@ public class DoubleScoreEffect : PowerEffect
 
     private void OnEnable()
     {
-        timerDeActiveBuff = timeBuff;
-
-        playerManager.isDoubleScore = true;
-
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.powerUp);
+        ActivePower();
     }
 
 
@@ -39,5 +35,15 @@ public class DoubleScoreEffect : PowerEffect
             playerManager.isDoubleScore = false;
             gameObject.SetActive(false);
         }
+    }
+
+    public override void ActivePower()
+    {
+        base.ActivePower();
+        timerDeActiveBuff = timeBuff;
+
+        playerManager.isDoubleScore = true;
+
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.powerUp);
     }
 }

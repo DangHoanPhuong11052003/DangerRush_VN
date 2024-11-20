@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SardinesEffect : PowerEffect
 {
-
     [SerializeField] private PlayerManager playerManager;
     private float timer = 0f;
 
@@ -24,10 +23,7 @@ public class SardinesEffect : PowerEffect
 
     private void OnEnable()
     {
-        playerManager.isDoubleCoin = true;
-        timer = timeBuff;
-
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.premiumCurrency);
+        ActivePower();
     }
 
     private void Update()
@@ -39,5 +35,14 @@ public class SardinesEffect : PowerEffect
             playerManager.isDoubleCoin = false;
             gameObject.SetActive(false);
         }
+    }
+
+    public override void ActivePower()
+    {
+        base.ActivePower();
+        playerManager.isDoubleCoin = true;
+        timer = timeBuff;
+
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.premiumCurrency);
     }
 }

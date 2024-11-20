@@ -55,9 +55,14 @@ public class AchivemenUIManager : MonoBehaviour
         //sort list by isUnlock=true and isGotReward=true first
         achievementsGeneralLst.Sort((a, b) =>
         {
-            int unlockComp = b.isUnlocked.CompareTo(a.isUnlocked);
-            if (unlockComp != 0) { return unlockComp; }
-            return b.isGotReward.CompareTo(a.isGotReward);
+            if (!a.isGotReward && !b.isGotReward)
+            {
+                return b.isUnlocked.CompareTo(a.isUnlocked);
+            }
+            else
+            {
+                return a.isGotReward.CompareTo(b.isGotReward);
+            }
         });
 
         achievementsRecordLst = achievementsGeneralLst.FindAll(x => x.type != "normal");

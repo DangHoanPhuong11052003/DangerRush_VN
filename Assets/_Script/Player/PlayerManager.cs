@@ -27,7 +27,7 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] private Vector3 SizeNormal;
     [SerializeField] private Vector3 SizeDash;
 
-    [SerializeField] public int quantityLife = 3;
+    [SerializeField] private int quantityLife = 3;
 
 
     [Header("======")]
@@ -67,6 +67,18 @@ public class PlayerManager: MonoBehaviour
     [HideInInspector] public bool isDoubleScore = false;
     [HideInInspector] public float meter = 0;
     [HideInInspector] public int coin = 0;
+
+    public int QuantityLife
+    {
+        get => quantityLife;
+        set {
+            if (quantityLife != value)
+            {
+                quantityLife = value;
+                EventManager.NotificationToActions(KeysEvent.HeathUpdate.ToString(), quantityLife);
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -163,9 +175,9 @@ public class PlayerManager: MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Obstacle")&& !isInvincible)
         {
-            --quantityLife;
+            --QuantityLife;
 
-            if (quantityLife <= 0)
+            if (QuantityLife <= 0)
             {
                 //Play dead sound
                 AudioManager.instance.PlaySoundEffect(characterSounds.deadSound);

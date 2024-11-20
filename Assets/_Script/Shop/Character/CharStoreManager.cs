@@ -5,159 +5,136 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-
-[Serializable]
-public class CharacterItem
-{
-    public int id;
-    public string name;
-    public int price;
-    public Sprite icon;
-    public bool isUnlocked;
-    public GameObject modelReview;
-
-    public CharacterItem()
-    {
-        id = -1;
-    }
-}
+using UnityEngine.TextCore.Text;
 
 public class CharStoreManager : MonoBehaviour
 {
-    [SerializeField] private List<CharacterItem> characterItems = new List<CharacterItem>();
+    [SerializeField] private CharacterData lst_charactersAssetData;
     [SerializeField] private GameObject ButtonBuy;
     [SerializeField] private GameObject ButtonSelect;
     [SerializeField] private GameObject IteamUIPerfab;
     [SerializeField] private Transform transformItems;
     [SerializeField] private Transform SelectUI;
     [SerializeField] private TextMeshProUGUI nameTextUI;
+    [SerializeField] private Transform modelReviewTranform;
 
-    private List<CharacterData> characterDatas = new List<CharacterData>();
-    private List<CharacterItem> characterItemsData=new List<CharacterItem>();
-    private CharacterItem currentItemSeleted=new CharacterItem();
+    private Dictionary<int,GameObject> dic_modelsReview = new Dictionary<int,GameObject>();
+    private List<Character> charactersDataLst = new List<Character>();
+    private List<int> lst_idCharactersOwned=new List<int>();
+    private int idCharacterSeleted;
 
-    private Dictionary<int, GameObject> arrayItems = new Dictionary<int, GameObject>();
-
-    private bool isFistStart = true;
+    private Dictionary<int, Transform> arrayItems = new Dictionary<int, Transform>();
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
-        characterItemsData = characterItems;
-        characterDatas=LocalData.instance.GetCharacterData();
-
         UpdateDataStore();
-
+        CreateModelsReview();
         UpdateUIStore();
 
         SelectedItem(LocalData.instance.GetCurrentChar());
-
-        isFistStart = false;
-
     }
+
     private void OnEnable()
     {
-        if(!isFistStart)
-        {
-            SelectedItem(LocalData.instance.GetCurrentChar());
-        }
+        SelectedItem(LocalData.instance.GetCurrentChar());
     }
 
     private void UpdateDataStore()
     {
-        if (characterDatas.Count==0)
-        {
-            foreach (var item in characterItems)
-            {
-                characterDatas.Add(new CharacterData(item.id, item.isUnlocked));
-            }
-            LocalData.instance.SetCharacterData(characterDatas);
+        charactersDataLst.Clear();
+        lst_idCharactersOwned =LocalData.instance.GetCharacterOwnedData();
 
-        }
-        else
+        foreach (var item in lst_charactersAssetData.characters)
         {
-            foreach (var item in characterItems)
+            if (lst_idCharactersOwned.Contains(item.id))
             {
-                int index = characterDatas.FindIndex(c => c.id == item.id);
-                if (index != -1)
-                {
-                    characterItemsData[characterItemsData.FindIndex(c => c.id == item.id)].isUnlocked = characterDatas[index].isUnlock;
-                }
-                else
-                {
-                    characterDatas.Add(new CharacterData(item.id, item.isUnlocked));
-                }
+                Character character = new Character(item);
+                character.isUnlocked = true;
+
+                charactersDataLst.Add(character);
             }
+            else
+            {
+                charactersDataLst.Add(new Character(item));
+            }
+        }
+    }
+
+    private void CreateModelsReview()
+    {
+        foreach (var item in charactersDataLst)
+        {
+            GameObject newModel = Instantiate(item.model, modelReviewTranform);
+            newModel.SetActive(false);
+            dic_modelsReview.Add(item.id, newModel);
         }
     }
 
     private void UpdateUIStore()
     {
-        foreach(var item in characterItemsData)
+        foreach(var item in charactersDataLst)
         {
             GameObject itemUI = Instantiate(IteamUIPerfab, transformItems);
             ItemsCharUI itemsCharUI= itemUI.GetComponent<ItemsCharUI>();
             itemsCharUI.SetData(item, this);
 
-            arrayItems.Add(item.id, itemUI);
+            arrayItems.Add(item.id, itemUI.transform);
         }
     }
 
-    public void SelectedItem(int id)
+    public void SelectedItem(int idChar)
     {
-        if (currentItemSeleted.id== id)
+        if (idCharacterSeleted == idChar)
         {
-            currentItemSeleted.modelReview.GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
+            dic_modelsReview[idChar].SetActive(true);
+            dic_modelsReview[idChar].GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
             return;
         }
 
-        foreach (var item in characterItemsData)
+        Character character= charactersDataLst.Find(x=>x.id==idChar);
+        if(character != null)
         {
-            if (item.id == id)
-            { 
-                if (currentItemSeleted.modelReview != null)
-                {
-                    currentItemSeleted.modelReview.SetActive(false);
-                }
+            //show model char
+            dic_modelsReview[idCharacterSeleted].SetActive(false);
+            dic_modelsReview[idChar].SetActive(true);
+            idCharacterSeleted= idChar;
+            dic_modelsReview[idChar].GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
 
-                currentItemSeleted = item;
-                nameTextUI.text= item.name;
-                currentItemSeleted.modelReview.SetActive(true);
-                currentItemSeleted.modelReview.GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
+            //set information
+            nameTextUI.text = character.name;
 
-                if (!currentItemSeleted.isUnlocked)
+            if (!character.isUnlocked)
+            {
+                ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = character.price.ToString();
+                ButtonBuy.SetActive(true);
+            }
+            else
+            {
+                ButtonBuy.SetActive(false);
+                if (character.id == LocalData.instance.GetCurrentChar())
                 {
-                    ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = currentItemSeleted.price.ToString();
-                    ButtonBuy.SetActive(true);
+                    ButtonSelect.SetActive(false);
                 }
                 else
                 {
-                    ButtonBuy.SetActive(false);
-                    if (currentItemSeleted.id == LocalData.instance.GetCurrentChar())
-                    {
-                        ButtonSelect.SetActive(false);
-                    }
-                    else
-                    {
-                        ButtonSelect.SetActive(true);
-                    }
+                    ButtonSelect.SetActive(true);
                 }
             }
-            
         }
 
-        Transform parent= arrayItems.First(item => item.Key == id).Value.transform;
-
-        SelectUI.transform.parent = parent;
-        SelectUI.transform.position = parent.position;
+        SelectUI.transform.parent = arrayItems[idChar];
+        SelectUI.transform.position = arrayItems[idChar].position;
     }
 
     public void BuyCharacter()
     {
         int coin = LocalData.instance.GetCoin();
+        Character character = charactersDataLst.Find(x => x.id == idCharacterSeleted);
 
-        if (coin < currentItemSeleted.price)
+        if (coin < character.price&&lst_idCharactersOwned.Contains(character.id))
         {
+            //notifi play don't have enough fishbone
             return;
         }
         else
@@ -165,16 +142,12 @@ public class CharStoreManager : MonoBehaviour
             ButtonBuy.SetActive(false);
             ButtonSelect.SetActive(true);
 
-            int index= characterItemsData.FindIndex(item => item.id == currentItemSeleted.id);
+            character.isUnlocked = true;
+            lst_idCharactersOwned.Add(character.id);
 
-            currentItemSeleted.isUnlocked = true;
-            characterItemsData[index] = currentItemSeleted;
+            LocalData.instance.SetCharacterOwnedData(lst_idCharactersOwned);
 
-            characterDatas.Find(item=>item.id == currentItemSeleted.id).isUnlock=true;
-
-            LocalData.instance.SetCharacterData(characterDatas);
-
-            coin -= currentItemSeleted.price;
+            coin -= character.price;
             LocalData.instance.SetCoin(coin);
         }
     }
@@ -182,6 +155,6 @@ public class CharStoreManager : MonoBehaviour
     public void SeleteCharacter()
     {
         ButtonSelect.SetActive(false);
-        LocalData.instance.SetCurrentChar(currentItemSeleted.id);
+        LocalData.instance.SetCurrentChar(idCharacterSeleted);
     }
 }

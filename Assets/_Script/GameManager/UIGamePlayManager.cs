@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using TMPro;
 using UnityEngine;
 
@@ -19,7 +20,15 @@ public class UIGamePlayManager : MonoBehaviour
 
     private void Start()
     {
-        currentHeart = playerManager.quantityLife;
+        currentHeart = playerManager.QuantityLife;
+        UpdayeHeathUI(null);
+
+        EventManager.Subscrice(KeysEvent.HeathUpdate.ToString(), UpdayeHeathUI);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.UnSubscrice(KeysEvent.HeathUpdate.ToString(), UpdayeHeathUI);
     }
 
     private void Update()
@@ -27,15 +36,18 @@ public class UIGamePlayManager : MonoBehaviour
         score.text = "Score: "+Mathf.CeilToInt(playerManager.score);
         fishbone.text= playerManager.coin.ToString();
         meter.text= "Meter: "+Mathf.CeilToInt(playerManager.meter);
+    }
 
-        if (currentHeart != playerManager.quantityLife)
+    private void UpdayeHeathUI(object parameter)
+    {
+        if (currentHeart != playerManager.QuantityLife)
         {
-            currentHeart=playerManager.quantityLife;
+            currentHeart = playerManager.QuantityLife;
             int i = currentHeart;
             foreach (var item in lst_Heart)
             {
                 --i;
-                if(i>=0)
+                if (i >= 0)
                     item.SetActive(true);
                 else
                     item.SetActive(false);

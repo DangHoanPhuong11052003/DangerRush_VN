@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class ItemsCharUI : MonoBehaviour
 {
     [SerializeField] Image iconChar;
-    private CharacterItem characterItem;
+    private Character characterItem;
 
     private CharStoreManager characterStoreManager;
 
-    public void SetData(CharacterItem characterItem, CharStoreManager characterStoreManager)
+    public void SetData(Character characterItem, CharStoreManager characterStoreManager)
     {
         this.characterItem = characterItem;
         iconChar.sprite = characterItem.icon;

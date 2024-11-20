@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 public class DailyQuestManager : MonoBehaviour
 {
     private string apiUrl = "https://timeapi.io/api/time/current/zone?timeZone=Etc%2FUTC";
@@ -23,8 +24,12 @@ public class DailyQuestManager : MonoBehaviour
     {
         questLocalDataLst=LocalData.instance.GetQuestLocalDatas();
 
-        //////////
-        //ResetDailyQuest();
+        EventManager.Subscrice(KeysEvent.PowerTaked.ToString(),LisenerEventPowerTaked);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.UnSubscrice(KeysEvent.PowerTaked.ToString(), LisenerEventPowerTaked);
     }
 
     private void Start()
@@ -51,9 +56,10 @@ public class DailyQuestManager : MonoBehaviour
         }
     }
 
-    //dành để kiểm tra các thành tựu dạng lấy tiến độ cao nhất được truyền vào
+    //dành để kiểm tra các nhiệm vụ dạng lấy tiến độ cao nhất được truyền vào
     public void UpdateHighStageQuest(int stage, DailyQuestsType dailyQuestsType)
     {
+
         //Lấy ra các phần tử có cùng kiểu cần kiểm tra trong ds tòan bộ nhiem vu
         foreach (var item in questData.questDataLst.FindAll(x => x.type == dailyQuestsType.ToString()))
         {
@@ -63,25 +69,39 @@ public class DailyQuestManager : MonoBehaviour
             if (questLocal!=null)
             {
                 //lưu lại tiến trình mới vào local nếu tiến độ lớn hơn
-                if(stage>= questLocal.stage)
+                if(stage >= questLocal.stage)
                 {
-                    questLocal.stage=stage;
-                    questLocal.isSuccess = item.stage <= stage;
+                    bool isSuccess = item.stage <= stage;
+
+                    questLocal.stage= stage;
+                    questLocal.isSuccess = isSuccess;
                     LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
+
+                    if (isSuccess)
+                    {
+                        AccumulateStageQuest(1, DailyQuestsType.successQuest);
+                    }
                 }
             }
             else
             {
+                bool isSuccess = item.stage <= stage;
+
                 //tạo mới tiến độ nếu chưa có
-                questLocal = new QuestLocalData(item.id, stage, item.stage <= stage, false);
+                questLocal = new QuestLocalData(item.id, stage, isSuccess, false);
 
                 questLocalDataLst.Add(questLocal);
                 LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
+
+                if (isSuccess)
+                {
+                    AccumulateStageQuest(1, DailyQuestsType.successQuest);
+                }
             }
         }
     }
 
-    //dành để kiểm tra các thành tựu dạng cộng dồn số tiến độ được truyền vào
+    //dành để kiểm tra các nhiệm vụ dạng cộng dồn số tiến độ được truyền vào
     public void AccumulateStageQuest(int stage, DailyQuestsType dailyQuestsType)
     {
         //Lấy ra các phần tử có cùng kiểu cần kiểm tra trong ds tòan bộ nhiem vu
@@ -92,22 +112,43 @@ public class DailyQuestManager : MonoBehaviour
 
             if (questLocal != null)
             {
+                bool isSuccess = item.stage <= stage;
+
                 //cộng dồn tiến độ nếu đã có
                 questLocal.stage += stage;
-                questLocal.isSuccess = item.stage <= stage;
+                questLocal.isSuccess = isSuccess;
+
+                if(isSuccess)
+                {
+                    AccumulateStageQuest(1, DailyQuestsType.successQuest);
+                }
                 
             }
             else
             {
+                bool isSuccess = item.stage <= stage;
+
                 //tạo mới tiến độ nếu chưa có
-                questLocal = new QuestLocalData(item.id, stage, item.stage <= stage, false);
+                questLocal = new QuestLocalData(item.id, stage, isSuccess, false);
 
                 questLocalDataLst.Add(questLocal);
+
+                if (isSuccess)
+                {
+                    AccumulateStageQuest(1, DailyQuestsType.successQuest);
+                }
             }
                 
             LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
         }
     }
+
+    //functions lisen Event 
+    private void LisenerEventPowerTaked(object parameter)
+    {
+        AccumulateStageQuest((int)parameter, DailyQuestsType.takePower);
+    }
+
 
     private IEnumerator CheckTimeData()
     {

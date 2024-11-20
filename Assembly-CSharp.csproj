@@ -59,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SardinesPower.cs" />
-    <Compile Include="Assets\ChestDailyReward.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivementData.cs" />
     <Compile Include="Assets\_Script\DailyQuest\DailyQuestManager.cs" />
+    <Compile Include="Assets\_Script\Shop\Character\CharacterData.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesStoreManager.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerStoreManager.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerItem.cs" />
@@ -71,11 +71,16 @@
     <Compile Include="Assets\_Script\DailyQuest\QuestItem.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetPower.cs" />
     <Compile Include="Assets\_Script\Player\PlayerManager.cs" />
+    <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesData.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesManager.cs" />
     <Compile Include="Assets\_Script\GameManager\LocalData.cs" />
+    <Compile Include="Assets\_Script\DailyQuest\ChestDailyReward.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\DoubleScorePower.cs" />
     <Compile Include="Assets\_Script\Achievement\Achiverment.cs" />
+    <Compile Include="Assets\Saves\KeysEvent.cs" />
     <Compile Include="Assets\Materials\Shaders\Shaders\WorldCurver.cs" />
+    <Compile Include="Assets\_Script\Obsever\EventManager.cs" />
+    <Compile Include="Assets\_Script\Obsever\CreateKeyEventEnum.cs" />
     <Compile Include="Assets\_Script\GameManager\MapManager.cs" />
     <Compile Include="Assets\_Script\Shop\Character\ItemsCharUI.cs" />
     <Compile Include="Assets\_Script\UI\UILoseManager.cs" />
@@ -94,14 +99,15 @@
     <Compile Include="Assets\_Script\Achievement\AchievementsManager.cs" />
     <Compile Include="Assets\_Script\Items\DoubleScoreScript.cs" />
     <Compile Include="Assets\_Script\Achievement\AchievementsNotification.cs" />
-    <Compile Include="Assets\_Script\Shop\StoreManager.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestDataEdit.cs" />
     <Compile Include="Assets\Saves\Achiverments.cs" />
     <Compile Include="Assets\_Script\Items\MagnetEffect.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesItemUI.cs" />
+    <Compile Include="Assets\_Script\Shop\Character\Character.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\PowerEffect.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivementDataEditor.cs" />
     <Compile Include="Assets\_Script\Achievement\AchievementItemUI.cs" />
+    <Compile Include="Assets\_Script\Shop\Accessories\Accessory.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SetUpPowerData.cs" />
     <Compile Include="Assets\_Script\GameManager\UIGamePlayManager.cs" />
     <Compile Include="Assets\_Script\Items\HeartScript.cs" />
@@ -115,6 +121,7 @@
     <Compile Include="Assets\_Script\Items\DoubleScoreEffect.cs" />
     <Compile Include="Assets\_Script\Items\SardinesScript.cs" />
     <Compile Include="Assets\_Script\GameManager\GameManager.cs" />
+    <Compile Include="Assets\_Script\UI\CoinUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

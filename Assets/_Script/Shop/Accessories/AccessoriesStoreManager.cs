@@ -6,25 +6,11 @@ using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
-[System.Serializable]
-public class AccessoriesItem
-{
-    public int id;
-    public string name;
-    public string description;
-    public bool isUnlocked;
-    public int price;
-    public Sprite icon;
 
-    public AccessoriesItem()
-    {
-        id = -1;
-    }
-}
 
 public class AccessoriesStoreManager : MonoBehaviour
 {
-    [SerializeField] private List<AccessoriesItem> itemsList=new List<AccessoriesItem>();
+    [SerializeField] private AccessoriesData accessoriesAssetData;
     [SerializeField] private Transform parentItem;
     [SerializeField] private GameObject UiItem;
     [SerializeField] private TextMeshProUGUI nameItemText;
@@ -32,10 +18,10 @@ public class AccessoriesStoreManager : MonoBehaviour
     [SerializeField] private GameObject ButtonBuy;
     [SerializeField] private GameObject ButtonSelect;
     [SerializeField] private Transform SelectedUI;
-    [SerializeField] private AnimatorController animatorController;
 
-    private List<AccessoriesData> localDatas=new List<AccessoriesData>();
-    private AccessoriesItem currentItemSelect=new AccessoriesItem();
+    private List<int> lst_idAccessoriesOwnedData=new List<int>();
+    private List<Accessory> lst_accessoriesData = new List<Accessory>();
+    private int idCurrentItemSelect;
     private Dictionary<int, GameObject> accessoriesItemDic=new Dictionary<int, GameObject>();
     private int currentIdModel = 0;
 
@@ -44,12 +30,11 @@ public class AccessoriesStoreManager : MonoBehaviour
 
     private void Start()
     {
-        localDatas=LocalData.instance.GetAccessoriesData();
 
         UpdateDataStore();
         UpdateUIStore();
         CreateModelReview();
-        int selectAccessId = LocalData.instance.GetCurrentIdAccessories();  
+        int selectAccessId = LocalData.instance.GetCurrentIdAccessories();
 
         if (selectAccessId != -1)
         {
@@ -85,34 +70,27 @@ public class AccessoriesStoreManager : MonoBehaviour
 
     private void UpdateDataStore()
     {
-        if(localDatas.Count == 0)
+        lst_accessoriesData.Clear();
+        lst_idAccessoriesOwnedData = LocalData.instance.GetIdAccessoriesOwnedData();
+        foreach (var item in accessoriesAssetData.Accessories)
         {
-            foreach (var item in itemsList)
+            if (lst_idAccessoriesOwnedData.Contains(item.id))
             {
-                localDatas.Add(new AccessoriesData(item.id, item.isUnlocked));
+                Accessory accessory = new Accessory(item);
+                accessory.isUnlocked = true;
+
+                lst_accessoriesData.Add(accessory);
             }
-            LocalData.instance.SetAccessoriesData(localDatas);
-        }
-        else
-        {
-            foreach (var item in itemsList)
+            else
             {
-                AccessoriesData accessoriesData = localDatas.Find(i => i.id == item.id);
-                if (accessoriesData == null)
-                {
-                    localDatas.Add(new AccessoriesData(item.id,item.isUnlocked));
-                }
-                else
-                {
-                    item.isUnlocked = accessoriesData.isUnlocked;
-                }
+                lst_accessoriesData.Add(new Accessory(item));
             }
         }
     }
 
     private void UpdateUIStore()
     {
-        foreach (var item in itemsList)
+        foreach (var item in lst_accessoriesData)
         {
             GameObject ui = Instantiate(UiItem, parentItem);
             ui.GetComponent<AccessoriesItemUI>().SetData(item, this);
@@ -120,37 +98,36 @@ public class AccessoriesStoreManager : MonoBehaviour
         }
     }
 
-
     public void SelectItem(int id)
     {
         AccessoriesManager accessoriesManager = modelReview.GetComponentInChildren<AccessoriesManager>();
 
-        if (currentItemSelect.id== id)
+        if (idCurrentItemSelect == id)
         {
-            accessoriesManager.ActiveAccessoriesById(id,false);
+            accessoriesManager.ActiveAccessoriesById(id, false);
             return;
         }
 
-        AccessoriesItem item = itemsList.Find(i => i.id == id);
+        Accessory accessory = lst_accessoriesData.Find(i => i.id == id);
 
-        if(item!=null)
+        if (accessory != null)
         {
-            currentItemSelect=item;
+            idCurrentItemSelect = accessory.id;
 
-            nameItemText.text = item.name;
+            nameItemText.text = accessory.name;
 
-            accessoriesManager.ActiveAccessoriesById(id,false);
+            accessoriesManager.ActiveAccessoriesById(id, false);
 
-            if (!currentItemSelect.isUnlocked)
+            if (!accessory.isUnlocked)
             {
                 ButtonSelect.SetActive(false);
-                ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = currentItemSelect.price.ToString();
+                ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = accessory.price.ToString();
                 ButtonBuy.SetActive(true);
             }
             else
             {
                 ButtonBuy.SetActive(false);
-                if (currentItemSelect.id == LocalData.instance.GetCurrentIdAccessories())
+                if (accessory.id == LocalData.instance.GetCurrentIdAccessories())
                 {
                     ButtonSelect.SetActive(false);
                 }
@@ -161,23 +138,24 @@ public class AccessoriesStoreManager : MonoBehaviour
             }
         }
 
-        SelectedUI.transform.parent = accessoriesItemDic[currentItemSelect.id].transform;
-        SelectedUI.transform.position = accessoriesItemDic[currentItemSelect.id].transform.position;
+        SelectedUI.transform.parent = accessoriesItemDic[accessory.id].transform;
+        SelectedUI.transform.position = accessoriesItemDic[accessory.id].transform.position;
     }
 
     public void BuyAccessories()
     {
         int coin = LocalData.instance.GetCoin();
 
-        if (coin >= currentItemSelect.price)
+        Accessory accessory = lst_accessoriesData.Find(i => i.id == idCurrentItemSelect);
+
+        if (coin >= accessory.price&& !lst_idAccessoriesOwnedData.Contains(accessory.id))
         {
-            currentItemSelect.isUnlocked= true;
+            accessory.isUnlocked = true;
+            lst_idAccessoriesOwnedData.Add(accessory.id);
 
-            localDatas.Find(i => i.id == currentItemSelect.id).isUnlocked=true;
+            LocalData.instance.SetIdAccessoriesOwnedData(lst_idAccessoriesOwnedData);
 
-            LocalData.instance.SetAccessoriesData(localDatas);
-
-            coin -= currentItemSelect.price;
+            coin -= accessory.price;
 
             LocalData.instance.SetCoin(coin);
 
@@ -190,7 +168,7 @@ public class AccessoriesStoreManager : MonoBehaviour
     {
         ButtonSelect.SetActive(false);
 
-        LocalData.instance.SetCurrentIdAccessories(currentItemSelect.id);
+        LocalData.instance.SetCurrentIdAccessories(idCurrentItemSelect);
     }
 
 
@@ -206,7 +184,6 @@ public class AccessoriesStoreManager : MonoBehaviour
             }
             modelReview = Instantiate(CharacterManager.instance.GetPrefabCharacterById(currentIdData), tranformModelReview);
             currentIdModel = currentIdData;
-            modelReview.GetComponent<Animator>().runtimeAnimatorController = animatorController;
 
             Animator animator = modelReview.GetComponent<Animator>();
             animator.SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
@@ -216,7 +193,6 @@ public class AccessoriesStoreManager : MonoBehaviour
             if (modelReview == null)
             {
                 modelReview = Instantiate(CharacterManager.instance.GetPrefabCharacterById(currentIdData), tranformModelReview);
-                modelReview.GetComponent<Animator>().runtimeAnimatorController = animatorController;
             }
 
             Animator animator = modelReview.GetComponent<Animator>();

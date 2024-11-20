@@ -10,10 +10,7 @@ public class MagnetEffect : PowerEffect
 
     private void OnEnable()
     {
-        lst_Fishbone.Clear();
-        timer = timeBuff;
-
-        AudioManager.instance.PlaySoundEffect(AudioManager.instance.manget);
+        ActivePower();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,5 +57,14 @@ public class MagnetEffect : PowerEffect
             case 5: timeBuff += 4; break;
             default: return;
         }
+    }
+
+    public override void ActivePower()
+    {
+        base.ActivePower();
+        lst_Fishbone.Clear();
+        timer = timeBuff;
+
+        AudioManager.instance.PlaySoundEffect(AudioManager.instance.manget);
     }
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23664a028e6d2a43bcafba17a56e8c4, type: 3}
+  m_Name: CharacterData
+  m_EditorClassIdentifier: 
+  characters:
+  - id: 0
+    name: Cat
+    price: 0
+    icon: {fileID: 21300054, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
+    isUnlocked: 1
+    model: {fileID: 5105037986922093943, guid: 48ffa1299def8ee4d9f87276b585b19e, type: 3}
+  - id: 1
+    name: Racoon
+    price: 20000
+    icon: {fileID: 21300056, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
+    isUnlocked: 0
+    model: {fileID: 5947166819628452597, guid: f4ba5381136e5c447a0293af8c77a3c1, type: 3}

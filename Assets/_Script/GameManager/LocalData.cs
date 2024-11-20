@@ -15,9 +15,9 @@ public class GameData
     public Volume volume=new Volume();
     public Record record=new Record();
     public List<int> lst_idChestDailyRewardCollected=new List<int>();
-    public List<CharacterData> lst_characterData=new List<CharacterData>();
+    public List<int> lst_idCharacterOwnedData = new List<int>();
+    public List<int> lst_idAccessoriesOwnedData = new List<int>();
     public List<PowerData> lst_powerData=new List<PowerData>();
-    public List<AccessoriesData> lst_accessoriesData=new List<AccessoriesData>();
     public List<AchievementLocalData> achievementUnlockDataLst =new List<AchievementLocalData>();
     public List<QuestLocalData> dailyQuestDataLst=new List<QuestLocalData>();
 
@@ -26,6 +26,7 @@ public class GameData
         coin = 0;  
         currentCharacter = 0;
         currentAccessories = -1;
+        lst_idCharacterOwnedData.Add(0);
     }
 }
 
@@ -95,14 +96,14 @@ public class LocalData : MonoBehaviour
 
 
     //Get Set CharacterData
-    public List<CharacterData> GetCharacterData()
+    public List<int> GetCharacterOwnedData()
     {
-        return gameData.lst_characterData;
+        return gameData.lst_idCharacterOwnedData;
     } 
 
-    public void SetCharacterData(List<CharacterData> datas )
+    public void SetCharacterOwnedData(List<int> datas )
     {
-        gameData.lst_characterData=datas;
+        gameData.lst_idCharacterOwnedData = datas;
         SaveData();
     }
 
@@ -118,10 +119,17 @@ public class LocalData : MonoBehaviour
         if (coin > gameData.coin)
         {
             gameData.record.coin += coin - gameData.coin;
+
+            DailyQuestManager.instance.AccumulateStageQuest(coin - gameData.coin, DailyQuestsType.getFishbone);
+        }
+        else {
+            DailyQuestManager.instance.AccumulateStageQuest(gameData.coin - coin,DailyQuestsType.useFishbone);
         }
 
         gameData.coin=coin;
         SaveData();
+
+        EventManager.NotificationToActions(KeysEvent.CoinUpdate.ToString(), coin);
     }
 
     //Get set curent selected character
@@ -149,14 +157,14 @@ public class LocalData : MonoBehaviour
     }
 
     /////
-    public List<AccessoriesData> GetAccessoriesData()
+    public List<int> GetIdAccessoriesOwnedData()
     {
-        return gameData.lst_accessoriesData;
+        return gameData.lst_idAccessoriesOwnedData;
     }
 
-    public void SetAccessoriesData(List<AccessoriesData> accessoriesDatas)
+    public void SetIdAccessoriesOwnedData(List<int> lst_idAccessoriesOwnedData)
     {
-        gameData.lst_accessoriesData = accessoriesDatas;
+        gameData.lst_idAccessoriesOwnedData = lst_idAccessoriesOwnedData;
         SaveData();
     }
     /////
@@ -253,26 +261,6 @@ public class LocalData : MonoBehaviour
     }
 }
 
-
-//class data
-[System.Serializable]
-public class CharacterData
-{
-    public int id;
-    public bool isUnlock;
-
-    public CharacterData()
-    {
-        id = -1;
-        isUnlock = false;
-    }
-    public CharacterData(int id, bool isUnlock)
-    {
-        this.id = id;
-        this.isUnlock = isUnlock;
-    }
-}
-
 [System.Serializable]
 public class PowerData
 {
@@ -288,25 +276,6 @@ public class PowerData
     {
         this.id = id;
         this.level = level;
-    }
-}
-
-[System.Serializable]
-public class AccessoriesData
-{
-    public int id;
-    public bool isUnlocked;
-
-    public AccessoriesData()
-    {
-        id = -1;
-        isUnlocked = false;
-    }
-
-    public AccessoriesData(int id, bool isActive)
-    {
-        this.id = id;
-        this.isUnlocked = isActive;
     }
 }
 

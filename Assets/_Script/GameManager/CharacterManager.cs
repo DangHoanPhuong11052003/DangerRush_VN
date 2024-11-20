@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    [Serializable]
-    private class PrefabCharacter
-    {
-        public int id;
-        public GameObject prefab;
-    }
 
     public static CharacterManager instance;
-    [SerializeField] private List<PrefabCharacter> lst_character = new List<PrefabCharacter>();
+    [SerializeField] private CharacterData lst_characters;
 
     private void Awake()
     {
@@ -30,7 +24,7 @@ public class CharacterManager : MonoBehaviour
 
     public GameObject GetPrefabCharacterById(int id)
     {
-        return lst_character.Find(item=>item.id==id).prefab;
+        return lst_characters.characters.Find(item=>item.id==id).model;
     }
 
 

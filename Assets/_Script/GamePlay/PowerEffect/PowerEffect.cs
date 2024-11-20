@@ -13,4 +13,9 @@ public abstract class PowerEffect : MonoBehaviour
 
 
     public abstract void SetData(PowerData data);
+
+    public virtual void ActivePower()
+    {
+        EventManager.NotificationToActions(KeysEvent.PowerTaked.ToString(),1);
+    }
 }

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class AccessoriesItemUI : MonoBehaviour
 {
     [SerializeField] private Image icon;
-    private AccessoriesItem accessoriesItem;
+    private Accessory accessoriesItem;
     private AccessoriesStoreManager AccessoriesStoreManager;
 
-    public void SetData(AccessoriesItem accessoriesItem, AccessoriesStoreManager AccessoriesStoreManager)
+    public void SetData(Accessory accessoriesItem, AccessoriesStoreManager AccessoriesStoreManager)
     {
         this.accessoriesItem = accessoriesItem;
         icon.sprite=accessoriesItem.icon;
