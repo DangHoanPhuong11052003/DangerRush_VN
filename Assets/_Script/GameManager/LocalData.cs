@@ -36,13 +36,15 @@ public class LocalData : MonoBehaviour
     public static LocalData instance;
     private GameData gameData=new GameData();
 
-    private string localPath = Application.dataPath + "/Saves";
-    private string fileName = "GameData.json";
     string fullPath;
 
     private void Awake()
-    {        
-        if(instance == null)
+    {
+        string nameFile = "DangerRushVnData";
+
+        fullPath =  Application.persistentDataPath+"/"+EncryptionData.EncryptSHA256(nameFile)+".dat";
+
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -52,28 +54,27 @@ public class LocalData : MonoBehaviour
             Destroy(gameObject);
         }
 
-        fullPath=Path.Combine(localPath,fileName);
-        if (!Directory.Exists(localPath))
-        {
-            Directory.CreateDirectory(localPath);
-        }
-
         LoadData();
     }
 
     public void SaveData()
     {
         string json=JsonUtility.ToJson(gameData);
-        File.WriteAllText(fullPath, json);
-        LoadData();
+
+        string dataEncrypt=EncryptionData.EncryptAES(json);
+
+        File.WriteAllText(fullPath, dataEncrypt);
     }
 
     public void LoadData()
     {
-        if(File.Exists(fullPath))
+        if (File.Exists(fullPath))
         {
-            string jsonData=File.ReadAllText(fullPath);
-            gameData=JsonUtility.FromJson<GameData>(jsonData);
+            string data=File.ReadAllText(fullPath);
+
+            string json = EncryptionData.DeEncryptAES(data);
+
+            gameData=JsonUtility.FromJson<GameData>(json);
         }
         else
         {
