@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -38,11 +38,13 @@ public class LocalData : MonoBehaviour
 
     string fullPath;
 
-    private void Awake()
+    private void OnEnable()
     {
+        //fullPath = Application.dataPath+"Saves/data.json";
+
         string nameFile = "DangerRushVnData";
 
-        fullPath =  Application.persistentDataPath+"/"+EncryptionData.EncryptSHA256(nameFile)+".dat";
+        fullPath = Application.persistentDataPath + "/" + EncryptionData.EncryptSHA256(nameFile) + ".dat";
 
         if (instance == null)
         {
@@ -53,7 +55,6 @@ public class LocalData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         LoadData();
     }
 
@@ -61,9 +62,12 @@ public class LocalData : MonoBehaviour
     {
         string json=JsonUtility.ToJson(gameData);
 
-        string dataEncrypt=EncryptionData.EncryptAES(json);
+        //File.WriteAllText(fullPath, json);
 
+        string dataEncrypt = EncryptionData.EncryptAES(json);
         File.WriteAllText(fullPath, dataEncrypt);
+
+        LoadData();
     }
 
     public void LoadData()
@@ -72,9 +76,11 @@ public class LocalData : MonoBehaviour
         {
             string data=File.ReadAllText(fullPath);
 
-            string json = EncryptionData.DeEncryptAES(data);
+            //gameData = JsonUtility.FromJson<GameData>(data);
 
-            gameData=JsonUtility.FromJson<GameData>(json);
+            string json = EncryptionData.DeEncryptAES(data);
+            gameData = JsonUtility.FromJson<GameData>(json);
+
         }
         else
         {

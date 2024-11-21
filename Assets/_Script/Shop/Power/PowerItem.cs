@@ -34,19 +34,11 @@ public abstract class PowerItem : MonoBehaviour
         isActive = false;
     }
 
-    public void SetData(List<PowerData> datas, PowerStoreManager powerStoreManager)
+    public void SetData(PowerData powerData, PowerStoreManager powerStoreManager)
     {
         this.powerStoreManager = powerStoreManager;
 
-        int index=datas.FindIndex(item => item.id == this.id);
-        if (index == -1)
-        {
-            datas.Add(new PowerData(id,level));
-        }
-        else
-        {
-            this.level = datas[index].level;
-        }
+        this.level=powerData.level;
 
     }
 

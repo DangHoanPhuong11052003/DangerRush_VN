@@ -33,15 +33,8 @@ public class AchievementItemUI : MonoBehaviour
             title.text = achievement.title;
             des.text = achievement.description;
 
-            if (achievement.isGotReward)
-            {
-                RewardUI.SetActive(false);
-            }
-            else
-            {
-                RewardUI.SetActive(true);
-                rewardValue.text = achievement.rewardValue.ToString();
-            }
+            RewardUI.SetActive(!achievement.isGotReward);
+            rewardValue.text = achievement.rewardValue.ToString();
         }
         else
         {
@@ -49,6 +42,8 @@ public class AchievementItemUI : MonoBehaviour
             CupUI.color = LockCupColor;
             title.text = achievement.title;
             des.text = achievement.description;
+
+            RewardUI.SetActive(false);
         }
     }
 

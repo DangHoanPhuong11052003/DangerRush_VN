@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 
 public class PowerStoreManager : MonoBehaviour
@@ -24,25 +25,24 @@ public class PowerStoreManager : MonoBehaviour
 
     private void Start()
     {
+        LocalData.instance.SetCoin(1000000);
+
         powersLocalData = LocalData.instance.GetPowersData();
-
-        if (powersLocalData.Count <= 0)
-        {
-            foreach (var item in lst_powerData)
-            {
-                PowerItem data = item.GetComponent<PowerItem>();
-
-                powersLocalData.Add(new PowerData(data.id, data.level));
-            }
-
-            LocalData.instance.SetPowerData(powersLocalData);
-            return;
-        }
 
         foreach (var item in lst_powerData)
         {
+            PowerItem powerItem=item.GetComponent<PowerItem>();
+            PowerData powerData= powersLocalData.Find(x=>x.id==powerItem.id);
+
             GameObject gameObject= Instantiate(item,itemsTranform);
-            gameObject.GetComponent<PowerItem>().SetData(powersLocalData,this);
+            if(powerData!=null)
+            {
+                gameObject.GetComponent<PowerItem>().SetData(powerData, this);
+            }
+            else
+            {
+                gameObject.GetComponent<PowerItem>().SetData(new PowerData(powerItem.id,powerItem.level), this);
+            }
             lst_powers.Add(gameObject);
         }
 
@@ -71,7 +71,7 @@ public class PowerStoreManager : MonoBehaviour
             buttonUpgrade.SetActive(true);
         }
 
-        ImgSeleted.transform.parent = currentItem.transform;
+        ImgSeleted.SetParent(currentItem.transform);
         ImgSeleted.transform.position = currentItem.transform.position;
     }
 
@@ -89,7 +89,16 @@ public class PowerStoreManager : MonoBehaviour
                 throw new Exception();
             }
 
-            powersLocalData.Find(item => item.id == currentItem.id).level = currentItem.level;
+            PowerData powerData= powersLocalData.Find(item => item.id == currentItem.id);
+            if (powerData != null)
+            {
+                powerData.level = currentItem.level;
+            }
+            else
+            {
+                powerData=new PowerData(currentItem.id,currentItem.level);
+                powersLocalData.Add(powerData);
+            }
             LocalData.instance.SetPowerData(powersLocalData);
 
             coin -= currentItem.GetPrice();

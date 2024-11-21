@@ -76,7 +76,7 @@ public class QuestUIManager : MonoBehaviour
 
         foreach (var item in questData.questDataLst)
         {
-            QuestLocalData questLocalData=questLocalDatasLst.Find(x=>x.id == item.id);
+            QuestLocalData questLocalData= questLocalDatasLst!=null?questLocalDatasLst.Find(x=>x.id == item.id):null;
 
             if (questLocalData != null)
             {

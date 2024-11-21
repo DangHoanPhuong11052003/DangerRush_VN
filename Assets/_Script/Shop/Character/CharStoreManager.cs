@@ -123,7 +123,7 @@ public class CharStoreManager : MonoBehaviour
             }
         }
 
-        SelectUI.transform.parent = arrayItems[idChar];
+        SelectUI.SetParent(arrayItems[idChar]);
         SelectUI.transform.position = arrayItems[idChar].position;
     }
 

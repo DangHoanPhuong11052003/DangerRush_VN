@@ -66,37 +66,36 @@ public class DailyQuestManager : MonoBehaviour
             //kiểm tra xem từng nhiệm vụ xem đã có tiến trình chưa
             QuestLocalData questLocal = questLocalDataLst.Find(x => x.id.Equals(item.id));
 
+            bool isSuccess = false;
+
             if (questLocal!=null)
             {
                 //lưu lại tiến trình mới vào local nếu tiến độ lớn hơn
                 if(stage >= questLocal.stage)
                 {
-                    bool isSuccess = item.stage <= stage;
-
                     questLocal.stage= stage;
-                    questLocal.isSuccess = isSuccess;
-                    LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
 
-                    if (isSuccess)
+                    if (!isSuccess)
                     {
-                        AccumulateStageQuest(1, DailyQuestsType.successQuest);
+                        isSuccess = item.stage <= stage;
+                        questLocal.isSuccess = isSuccess;
                     }
+                    LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
                 }
             }
             else
             {
-                bool isSuccess = item.stage <= stage;
-
+                isSuccess = item.stage <= stage;
                 //tạo mới tiến độ nếu chưa có
                 questLocal = new QuestLocalData(item.id, stage, isSuccess, false);
 
                 questLocalDataLst.Add(questLocal);
                 LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
+            }
 
-                if (isSuccess)
-                {
-                    AccumulateStageQuest(1, DailyQuestsType.successQuest);
-                }
+            if (isSuccess)
+            {
+                AccumulateStageQuest(1, DailyQuestsType.successQuest);
             }
         }
     }
@@ -110,36 +109,37 @@ public class DailyQuestManager : MonoBehaviour
             //kiểm tra xem từng nhiệm vụ xem đã có tiến trình chưa
             QuestLocalData questLocal = questLocalDataLst.Find(x => x.id.Equals(item.id));
 
+            bool isSuccess=false;
+
             if (questLocal != null)
             {
-                bool isSuccess = item.stage <= stage;
-
                 //cộng dồn tiến độ nếu đã có
                 questLocal.stage += stage;
-                questLocal.isSuccess = isSuccess;
 
-                if(isSuccess)
+                if (!questLocal.isSuccess)
                 {
-                    AccumulateStageQuest(1, DailyQuestsType.successQuest);
+                    isSuccess = item.stage <= stage + questLocal.stage;
+                    questLocal.isSuccess = isSuccess;
                 }
                 
             }
             else
             {
-                bool isSuccess = item.stage <= stage;
+                isSuccess = item.stage <= stage;
 
                 //tạo mới tiến độ nếu chưa có
                 questLocal = new QuestLocalData(item.id, stage, isSuccess, false);
 
                 questLocalDataLst.Add(questLocal);
-
-                if (isSuccess)
-                {
-                    AccumulateStageQuest(1, DailyQuestsType.successQuest);
-                }
             }
-                
+
             LocalData.instance.SetQuestLocalDatas(questLocalDataLst);
+
+            //udpdate stage quest of daily quest success
+            if (isSuccess)
+            {
+                AccumulateStageQuest(1, DailyQuestsType.successQuest);
+            }
         }
     }
 

@@ -26,7 +26,7 @@ public class QuestItem : MonoBehaviour
 
         TitleQuestUI.text = quest.name;
         PointValueUI.text = questValue.points.ToString();
-        StageValueUI.text = $"{questValue.currentStage}/{questValue.stage}";
+        StageValueUI.text = $"{questValue.currentStage} / {questValue.stage}";
         StageBarValue.maxValue = questValue.stage;
         StageBarValue.value = questValue.currentStage;
         if (questValue.isSuccess&&!questValue.isGotReward)

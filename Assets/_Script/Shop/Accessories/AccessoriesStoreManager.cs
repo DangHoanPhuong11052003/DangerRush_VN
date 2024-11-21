@@ -138,7 +138,7 @@ public class AccessoriesStoreManager : MonoBehaviour
             }
         }
 
-        SelectedUI.transform.parent = accessoriesItemDic[accessory.id].transform;
+        SelectedUI.SetParent( accessoriesItemDic[accessory.id].transform);
         SelectedUI.transform.position = accessoriesItemDic[accessory.id].transform.position;
     }
 
