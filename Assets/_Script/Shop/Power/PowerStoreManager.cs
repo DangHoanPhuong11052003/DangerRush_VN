@@ -9,104 +9,91 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class PowerStoreManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> lst_powerData= new List<GameObject>();
+    [SerializeField] private PowerAssetData PowerAssetData;
     [SerializeField] private Transform itemsTranform;
+    [SerializeField] protected GameObject PowerItemPerfab;
 
-    [SerializeField] private TextMeshProUGUI namePower;
-    [SerializeField] private TextMeshProUGUI des;
-    [SerializeField] private TextMeshProUGUI inforLevel;
-    [SerializeField] private TextMeshProUGUI inforNextLevel;
-    [SerializeField] private GameObject buttonUpgrade;
-    [SerializeField] private Transform ImgSeleted;
-
-    private List<GameObject> lst_powers= new List<GameObject>();
-    private List<PowerData> powersLocalData= new List<PowerData>();
-    private PowerItem currentItem;
+    private List<PowerUIItem> lst_powersUIItem= new List<PowerUIItem>();
+    private List<PowerData> lst_powersLocalData= new List<PowerData>();
+    private List<Power> lst_powerData= new List<Power>();
 
     private void Start()
     {
-        LocalData.instance.SetCoin(1000000);
+        UpdateData();
+        UpdateItemsUI();
+    }
 
-        powersLocalData = LocalData.instance.GetPowersData();
+    public void UpdateData()
+    {
+        lst_powerData.Clear();
+        lst_powersLocalData = LocalData.instance.GetPowersData();
 
-        foreach (var item in lst_powerData)
+        foreach (var item in PowerAssetData.lst_power)
         {
-            PowerItem powerItem=item.GetComponent<PowerItem>();
-            PowerData powerData= powersLocalData.Find(x=>x.id==powerItem.id);
+            PowerData powerData = lst_powersLocalData.Find(x => x.id == item.id);
+            Power power=new Power();
 
-            GameObject gameObject= Instantiate(item,itemsTranform);
-            if(powerData!=null)
+            if (powerData != null)
             {
-                gameObject.GetComponent<PowerItem>().SetData(powerData, this);
+                power = new Power(item);
+                power.level = powerData.level;
             }
             else
             {
-                gameObject.GetComponent<PowerItem>().SetData(new PowerData(powerItem.id,powerItem.level), this);
+                power = new Power(item);
             }
-            lst_powers.Add(gameObject);
+            lst_powerData.Add(power);
         }
-
-        currentItem = lst_powers[0].GetComponent<PowerItem>();
-        ShowInfor(currentItem);
     }
 
-
-    public void ShowInfor(PowerItem data)
+    public void UpdateItemsUI()
     {
-        currentItem = data;
-
-        des.text = data.description;
-        inforLevel.text = data.GetDesByCurrentLv(data.level);
-        namePower.text = data.name;
-
-        if (data.GetDesByNextLv(data.level) == null)
+        if(lst_powersUIItem.Count>0)
         {
-            inforNextLevel.text = "MAXIMUM LEVEL REACHED";
-            buttonUpgrade.SetActive(false);
+            int i = 0;
+            foreach (var item in lst_powersUIItem)
+            {
+                item.SetData(lst_powerData[i],this);
+                i++;
+            }
         }
         else
         {
-            inforNextLevel.text = data.GetDesByNextLv(data.level);
-            buttonUpgrade.GetComponentInChildren<TextMeshProUGUI>().text = data.GetPrice().ToString();
-            buttonUpgrade.SetActive(true);
+            foreach (var item in lst_powerData)
+            {
+                GameObject newItem = Instantiate(PowerItemPerfab, itemsTranform);
+                PowerUIItem powerUIItem = newItem.GetComponent<PowerUIItem>();
+                powerUIItem.SetData(item, this);
+                lst_powersUIItem.Add(powerUIItem);
+            }
         }
-
-        ImgSeleted.SetParent(currentItem.transform);
-        ImgSeleted.transform.position = currentItem.transform.position;
+        
     }
 
-    public void UpgradePower()
+    public void UpgradePower(Power powerItem)
     {
         int coin = LocalData.instance.GetCoin();
 
-        if (currentItem != null&& coin>=currentItem.GetPrice())
+        if (powerItem != null && coin >= powerItem.lst_priceByLevel[powerItem.level - 1] && powerItem.level != powerItem.maxLevel)
         {
-            bool isSuccec= currentItem.UpgradePower();
+            PowerData powerData = lst_powersLocalData.Find(x => x.id == powerItem.id);
 
-            if (!isSuccec)
-            {
-                return;
-                throw new Exception();
-            }
+            powerItem.level++;
+            coin -= powerItem.lst_priceByLevel[powerItem.level - 1];
 
-            PowerData powerData= powersLocalData.Find(item => item.id == currentItem.id);
             if (powerData != null)
             {
-                powerData.level = currentItem.level;
+                powerData.level = powerItem.level;
             }
             else
             {
-                powerData=new PowerData(currentItem.id,currentItem.level);
-                powersLocalData.Add(powerData);
+                powerData=new PowerData(powerItem.id,powerItem.level);
+                lst_powersLocalData.Add(powerData);
             }
-            LocalData.instance.SetPowerData(powersLocalData);
-
-            coin -= currentItem.GetPrice();
+            LocalData.instance.SetPowerData(lst_powersLocalData);
             LocalData.instance.SetCoin(coin);
 
-            ShowInfor(currentItem); 
+            UpdateItemsUI();
         }
     }
-
-
 }
