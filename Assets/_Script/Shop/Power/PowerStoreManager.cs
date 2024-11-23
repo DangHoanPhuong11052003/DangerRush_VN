@@ -19,6 +19,8 @@ public class PowerStoreManager : MonoBehaviour
 
     private void Start()
     {
+        LocalData.instance.SetCoin(100000);
+
         UpdateData();
         UpdateItemsUI();
     }

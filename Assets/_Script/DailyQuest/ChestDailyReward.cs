@@ -14,6 +14,7 @@ public class ChestDailyReward : MonoBehaviour
     [SerializeField] private GameObject ButtonReward;
     [SerializeField] private Sprite CloseChestImg;
     [SerializeField] private Sprite EmptyChestImg;
+    [SerializeField] private ParticleSystem GetRewardEffect;
 
     private QuestUIManager QuestUIManager;
 
@@ -61,5 +62,6 @@ public class ChestDailyReward : MonoBehaviour
     public void GetReward()
     {
         QuestUIManager.GetRewardDailyQuest(idChest,quantityFishBoneReward);
+        GetRewardEffect.Play();
     }
 }

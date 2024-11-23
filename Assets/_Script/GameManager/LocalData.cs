@@ -36,7 +36,9 @@ public class LocalData : MonoBehaviour
     public static LocalData instance;
     private GameData gameData=new GameData();
 
-    string fullPath;
+    private string fullPath;
+
+    private bool isLoadData=false;
 
     private void OnEnable()
     {
@@ -60,18 +62,27 @@ public class LocalData : MonoBehaviour
 
     public void SaveData()
     {
-        string json=JsonUtility.ToJson(gameData);
+        if (isLoadData)
+        {
+            string json = JsonUtility.ToJson(gameData);
 
-        //File.WriteAllText(fullPath, json);
+            //File.WriteAllText(fullPath, json);
 
-        string dataEncrypt = EncryptionData.EncryptAES(json);
-        File.WriteAllText(fullPath, dataEncrypt);
+            string dataEncrypt = EncryptionData.EncryptAES(json);
+            File.WriteAllText(fullPath, dataEncrypt);
 
-        LoadData();
+            LoadData();
+        }
+        else
+        {
+            LoadData();
+            SaveData();
+        }
     }
 
     public void LoadData()
     {
+        isLoadData = true;
         if (File.Exists(fullPath))
         {
             string data=File.ReadAllText(fullPath);

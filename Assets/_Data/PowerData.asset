@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lst_power:
   - id: 0
-    name: Mangnet
+    name: Magnet
     description: Attract all fish bones around the player
     icon: {fileID: 21300028, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
     lst_priceByLevel: e8030000d0070000a00f0000401f000010270000e02e0000

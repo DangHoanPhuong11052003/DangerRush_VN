@@ -25,3 +25,9 @@ MonoBehaviour:
     isUnlocked: 0
     price: 10000
     icon: {fileID: 21300026, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
+  - id: 2
+    name: Gentleman
+    description: Elegant as a noble animal
+    isUnlocked: 0
+    price: 12000
+    icon: {fileID: 21300012, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}

@@ -70,9 +70,8 @@
     <Compile Include="Assets\_Script\Shop\Character\CharStoreManager.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestData.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\HeartEffect.cs" />
-    <Compile Include="Assets\StackSlider.cs" />
-    <Compile Include="Assets\PowerUIItem.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestItem.cs" />
+    <Compile Include="Assets\_Script\Shop\Power\PowerUIItem.cs" />
     <Compile Include="Assets\_Script\Player\PlayerManager.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesData.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesManager.cs" />
@@ -111,6 +110,7 @@
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\PowerEffect.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivementDataEditor.cs" />
     <Compile Include="Assets\_Script\Achievement\AchievementItemUI.cs" />
+    <Compile Include="Assets\_Script\UI\StackSlider.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\Accessory.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SetUpPowerData.cs" />
     <Compile Include="Assets\_Script\GameManager\UIGamePlayManager.cs" />
