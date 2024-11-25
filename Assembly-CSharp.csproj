@@ -72,6 +72,7 @@
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\HeartEffect.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestItem.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerUIItem.cs" />
+    <Compile Include="Assets\_Script\Ads\AdsManager.cs" />
     <Compile Include="Assets\_Script\Player\PlayerManager.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesData.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesManager.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\_Script\GameManager\MapManager.cs" />
     <Compile Include="Assets\_Script\Shop\Character\ItemsCharUI.cs" />
     <Compile Include="Assets\_Script\UI\UILoseManager.cs" />
+    <Compile Include="Assets\_Script\Ads\InterstitialAdExample.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\DoubleScoreEffect.cs" />
     <Compile Include="Assets\_Script\GameManager\CharacterManager.cs" />
     <Compile Include="Assets\_Script\Player\ReviewCharacter.cs" />
@@ -117,12 +119,14 @@
     <Compile Include="Assets\_Script\Obstacle\Rat.cs" />
     <Compile Include="Assets\_Script\DailyQuest\Quest.cs" />
     <Compile Include="Assets\_Script\GameManager\ResetMap.cs" />
+    <Compile Include="Assets\_Script\Ads\RewardedAdsButton.cs" />
     <Compile Include="Assets\_Script\Shop\TabController.cs" />
     <Compile Include="Assets\_Script\Player\CollisionCharacter.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetEffect.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivemenUIManager.cs" />
     <Compile Include="Assets\_Script\GameManager\GameManager.cs" />
     <Compile Include="Assets\_Script\UI\CoinUI.cs" />
+    <Compile Include="Assets\_Script\Ads\AdsInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

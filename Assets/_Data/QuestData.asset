@@ -38,18 +38,18 @@ MonoBehaviour:
     isSuccess: 0
     isGotReward: 0
   - id: 4
-    name: Use 200 fishbones
+    name: Use 1000 fishbones
     type: useFishbone
     points: 70
-    stage: 200
+    stage: 1000
     currentStage: 0
     isSuccess: 0
     isGotReward: 0
   - id: 2
-    name: Get 100 fishbones
+    name: Get 500 fishbones
     type: getFishbone
     points: 30
-    stage: 100
+    stage: 500
     currentStage: 0
     isSuccess: 0
     isGotReward: 0
