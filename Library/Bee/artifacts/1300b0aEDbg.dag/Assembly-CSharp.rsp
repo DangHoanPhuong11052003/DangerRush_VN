@@ -411,6 +411,7 @@
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Materials/Shaders/Shaders/WorldCurver.cs"
+"Assets/NotEnoughFishboneUI.cs"
 "Assets/Saves/Achiverments.cs"
 "Assets/Saves/DailyQuestTypes.cs"
 "Assets/Saves/KeysEvent.cs"

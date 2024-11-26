@@ -18,6 +18,8 @@ public class AchievementsManager : MonoBehaviour
     [SerializeField] private Animator notificationAnimator;
 
     [SerializeField] private List<ScoreAchievement> scoreAchievementsLstData;
+
+    [SerializeField] Canvas Canvas;
     
 
     public static AchievementsManager instance;

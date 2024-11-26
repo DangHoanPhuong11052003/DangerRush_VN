@@ -51,6 +51,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             {
                 foreach (var button in dic_showAdButton)
                 {
+                    button.Key.onClick.RemoveAllListeners();
                     button.Key.onClick.AddListener(()=>ShowAd(button.Key));
                     // Enable the button for users to click:
                     button.Key.interactable = true;
@@ -86,9 +87,9 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             Debug.Log("Unity Ads Rewarded Ad Completed");
 
             _CurrentFuncGetReward?.Invoke();
+            _CurrentFuncGetReward= null;
 
             AdsManager.instance.CloseNotEnoughFishboneUI();
-            LoadAd();
         }
     }
 
@@ -97,12 +98,15 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     {
         Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // Use the error details to determine whether to try to load another ad.
+        LoadAd();
     }
 
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // Use the error details to determine whether to try to load another ad.
+        LoadAd();
+        Advertisement.Show(adUnitId, this);
     }
 
     public void OnUnityAdsShowStart(string adUnitId) { }
@@ -122,10 +126,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     public void AddButtonAds(Button button,Action GetRewardFunction)
     {
-        if (button != null)
+        if (button != null&&!dic_showAdButton.ContainsKey(button))
         {
             dic_showAdButton.Add(button, GetRewardFunction);
         }
+        LoadAd();   
     }
 
     public void RemoveButtonAds(Button button)

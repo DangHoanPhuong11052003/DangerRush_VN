@@ -17,7 +17,7 @@ MonoBehaviour:
     name: Magnet
     description: Attract all fish bones around the player
     icon: {fileID: 21300028, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
-    lst_priceByLevel: e8030000d0070000a00f0000401f000010270000e02e0000
+    lst_priceByLevel: 00000000e8030000d0070000a00f0000401f000010270000
     level: 1
     maxLevel: 6
     lst_timeActiveByLevel:
@@ -32,7 +32,7 @@ MonoBehaviour:
     name: Sardines
     description: Double the amount of fish bones collected
     icon: {fileID: 21300060, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
-    lst_priceByLevel: e8030000d0070000a00f0000401f000010270000e02e0000
+    lst_priceByLevel: 00000000e8030000d0070000a00f0000401f000010270000
     level: 1
     maxLevel: 6
     lst_timeActiveByLevel:
@@ -47,7 +47,7 @@ MonoBehaviour:
     name: Double Score
     description: Double the score for a limited time
     icon: {fileID: 21300030, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
-    lst_priceByLevel: e8030000d0070000a00f0000401f000010270000e02e0000
+    lst_priceByLevel: 00000000e8030000d0070000a00f0000401f000010270000
     level: 1
     maxLevel: 6
     lst_timeActiveByLevel:

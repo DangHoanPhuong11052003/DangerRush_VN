@@ -19,7 +19,7 @@ public class PowerStoreManager : MonoBehaviour
 
     private void Start()
     {
-        LocalData.instance.SetCoin(0);
+        //LocalData.instance.SetCoin(5000);
 
         UpdateData();
         UpdateItemsUI();
@@ -77,9 +77,9 @@ public class PowerStoreManager : MonoBehaviour
         int coin = LocalData.instance.GetCoin();
 
         //not enough fishbone
-        if(coin < powerItem.lst_priceByLevel[powerItem.level - 1])
+        if(coin < powerItem.lst_priceByLevel[powerItem.level])
         {
-            EventManager.NotificationToActions(KeysEvent.NotEnoughFishbone.ToString(), powerItem.lst_priceByLevel[powerItem.level - 1] - coin);
+            EventManager.NotificationToActions(KeysEvent.NotEnoughFishbone.ToString(), powerItem.lst_priceByLevel[powerItem.level] - coin);
             return;
         }
 
@@ -87,8 +87,8 @@ public class PowerStoreManager : MonoBehaviour
         {
             PowerData powerData = lst_powersLocalData.Find(x => x.id == powerItem.id);
 
+            coin -= powerItem.lst_priceByLevel[powerItem.level];
             powerItem.level++;
-            coin -= powerItem.lst_priceByLevel[powerItem.level - 1];
 
             if (powerData != null)
             {

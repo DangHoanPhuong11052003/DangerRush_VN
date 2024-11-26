@@ -148,7 +148,13 @@ public class AccessoriesStoreManager : MonoBehaviour
 
         Accessory accessory = lst_accessoriesData.Find(i => i.id == idCurrentItemSelect);
 
-        if (coin >= accessory.price&& !lst_idAccessoriesOwnedData.Contains(accessory.id))
+        if (coin < accessory.price)
+        {
+            EventManager.NotificationToActions(KeysEvent.NotEnoughFishbone.ToString(), accessory.price - coin);
+            return;
+        }
+
+        if (!lst_idAccessoriesOwnedData.Contains(accessory.id))
         {
             accessory.isUnlocked = true;
             lst_idAccessoriesOwnedData.Add(accessory.id);

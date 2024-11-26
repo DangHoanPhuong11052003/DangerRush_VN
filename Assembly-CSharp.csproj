@@ -63,6 +63,7 @@
     <Compile Include="Assets\_Script\DailyQuest\DailyQuestManager.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerAssetData.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SardinesScript.cs" />
+    <Compile Include="Assets\NotEnoughFishboneUI.cs" />
     <Compile Include="Assets\_Script\Shop\Character\CharacterData.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesStoreManager.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerStoreManager.cs" />

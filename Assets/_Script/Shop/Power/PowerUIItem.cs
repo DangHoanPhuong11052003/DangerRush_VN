@@ -28,7 +28,7 @@ public class PowerUIItem : MonoBehaviour
             iconPower.sprite = powerItem.icon;
             namePowerTxt.text = powerItem.name;
             desPowerTxt.text = powerItem.description;
-            priceValueTxt.text = powerItem.lst_priceByLevel[powerItem.level-1].ToString();
+            priceValueTxt.text = powerItem.lst_priceByLevel[powerItem.level].ToString();
             if(powerItem.level==powerItem.maxLevel)
             {
                 ButtonBuy.SetActive(false);

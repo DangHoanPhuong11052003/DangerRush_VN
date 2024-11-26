@@ -132,12 +132,13 @@ public class CharStoreManager : MonoBehaviour
         int coin = LocalData.instance.GetCoin();
         Character character = charactersDataLst.Find(x => x.id == idCharacterSeleted);
 
-        if (coin < character.price&&lst_idCharactersOwned.Contains(character.id))
+        if (coin < character.price)
         {
-            //notifi play don't have enough fishbone
+            EventManager.NotificationToActions(KeysEvent.NotEnoughFishbone.ToString(), character.price - coin);
             return;
         }
-        else
+
+        if(lst_idCharactersOwned.Contains(character.id))
         {
             ButtonBuy.SetActive(false);
             ButtonSelect.SetActive(true);
