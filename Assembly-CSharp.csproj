@@ -125,6 +125,7 @@
     <Compile Include="Assets\_Script\Player\CollisionCharacter.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetEffect.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivemenUIManager.cs" />
+    <Compile Include="Assets\ReviveUI.cs" />
     <Compile Include="Assets\_Script\GameManager\GameManager.cs" />
     <Compile Include="Assets\_Script\UI\CoinUI.cs" />
     <Compile Include="Assets\_Script\Ads\AdsInitializer.cs" />

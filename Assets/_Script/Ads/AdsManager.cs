@@ -35,7 +35,7 @@ public class AdsManager : MonoBehaviour
         RemoveButtonAdsReward(ButtonAds);
     }
 
-    public void AddButtonAdsReward(Button button,Action func)
+    public void AddButtonAdsReward(Button button,Action<bool> func)
     {
         RewardedAdsButton.AddButtonAds(button, func);
         RewardedAdsButton.LoadAd();
@@ -68,9 +68,16 @@ public class AdsManager : MonoBehaviour
         NotEnoughFishboneUI.SetActive(false);
     }
 
-    private void GetFishboneAfterAds()
+    private void GetFishboneAfterAds(bool isComplete)
     {
-        int coin=LocalData.instance.GetCoin();
-        LocalData.instance.SetCoin(coin+quantityFishbonesReward);
+        if (isComplete)
+        {
+            int coin = LocalData.instance.GetCoin();
+            LocalData.instance.SetCoin(coin + quantityFishbonesReward);
+        }
+        else
+        {
+            //show check your internet UI
+        }
     }
 }

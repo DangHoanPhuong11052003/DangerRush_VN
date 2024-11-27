@@ -47,7 +47,7 @@ public class DailyQuestManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        timer-=Time.deltaTime;
+        timer-=Time.unscaledDeltaTime;
         if(timer <= 0)
         {
             StartCoroutine(CheckTimeData());

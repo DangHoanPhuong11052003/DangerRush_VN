@@ -179,29 +179,11 @@ public class PlayerManager: MonoBehaviour
 
             if (QuantityLife <= 0)
             {
-                //Play dead sound
-                AudioManager.instance.PlaySoundEffect(characterSounds.deadSound);
-
-                canMove = false;
-                animator.SetBool("Dead", true);
-                animator.SetTrigger("Hit");
-                animator.SetBool("Sliding", false);
-                animator.SetBool("Jumping", false);
-
-                BuffEffect.SetActive(false);
-                StartCoroutine(LoseGame());
-                StartCoroutine(ActiveLoseEffect());
+                canvasManager.OpenOrCloseReviveUI(true);
                 return;
             }
 
-            //Play hurt sound
-            AudioManager.instance.PlaySoundEffect(characterSounds.hurtSound);
-
             StartCoroutine(Stun());
-            StartCoroutine(ActiveInvincible(1.5f));
-            animator.SetTrigger("Hit");
-            animator.SetBool("Sliding", false);
-            animator.SetBool("Jumping", false);
         }
         else if (collider.gameObject.CompareTag("Coin"))
         {
@@ -222,8 +204,19 @@ public class PlayerManager: MonoBehaviour
         coin += quanity;
     }
 
-    public IEnumerator LoseGame()
+    private IEnumerator LoseGame()
     {
+        //Play dead sound
+        AudioManager.instance.PlaySoundEffect(characterSounds.deadSound);
+
+        canMove = false;
+        animator.SetBool("Dead", true);
+        animator.SetTrigger("Hit");
+        animator.SetBool("Sliding", false);
+        animator.SetBool("Jumping", false);
+
+        BuffEffect.SetActive(false);
+        StartCoroutine(ActiveLoseEffect());
 
         if (coin > 0)
         {
@@ -233,6 +226,10 @@ public class PlayerManager: MonoBehaviour
         }
         yield return new WaitForSeconds(2f);
         canvasManager.OpenLoseUI();
+    }
+    public void LoseGamePublic()
+    {
+        StartCoroutine(LoseGame());
     }
 
     private IEnumerator ReadyStart()
@@ -245,7 +242,7 @@ public class PlayerManager: MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         LoseEffect.SetActive(true);
     }
-    private IEnumerator ActiveInvincible(float time)
+    public IEnumerator ActiveInvincible(float time)
     {
         isInvincible = true;
         yield return new WaitForSeconds(time);
@@ -382,9 +379,23 @@ public class PlayerManager: MonoBehaviour
 
     private IEnumerator Stun()
     {
+        //Play hurt sound
+        AudioManager.instance.PlaySoundEffect(characterSounds.hurtSound);
+
+        StartCoroutine(ActiveInvincible(1.5f));
+
+        animator.SetTrigger("Hit");
+        animator.SetBool("Sliding", false);
+        animator.SetBool("Jumping", false);
+
         currentSpeed = minSpeed;
         canMove = false;
         yield return new WaitForSeconds(0.6f);
         canMove = true;
+    }
+
+    public void StunPublic()
+    {
+        StartCoroutine(Stun());
     }
 }

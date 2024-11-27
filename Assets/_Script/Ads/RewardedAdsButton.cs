@@ -6,11 +6,11 @@ using System;
 
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    [SerializeField] Dictionary<Button,Action> dic_showAdButton=new Dictionary<Button, Action>();
+    [SerializeField] Dictionary<Button,Action<bool>> dic_showAdButton=new Dictionary<Button, Action<bool>>();
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
-    Action _CurrentFuncGetReward;
+    Action<bool> _CurrentFuncGetReward;
 
     void Awake()
     {
@@ -86,7 +86,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
 
-            _CurrentFuncGetReward?.Invoke();
+            _CurrentFuncGetReward?.Invoke(true);
             _CurrentFuncGetReward= null;
 
             AdsManager.instance.CloseNotEnoughFishboneUI();
@@ -105,8 +105,10 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // Use the error details to determine whether to try to load another ad.
+
+        _CurrentFuncGetReward?.Invoke(false);
+        _CurrentFuncGetReward = null;
         LoadAd();
-        Advertisement.Show(adUnitId, this);
     }
 
     public void OnUnityAdsShowStart(string adUnitId) { }
@@ -124,7 +126,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         }
     }
 
-    public void AddButtonAds(Button button,Action GetRewardFunction)
+    public void AddButtonAds(Button button,Action<bool> GetRewardFunction)
     {
         if (button != null&&!dic_showAdButton.ContainsKey(button))
         {

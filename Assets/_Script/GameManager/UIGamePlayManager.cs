@@ -15,6 +15,7 @@ public class UIGamePlayManager : MonoBehaviour
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private GameObject PauseUI;
     [SerializeField] private GameObject SettingUI;
+    [SerializeField] private GameObject ReviveUI;
 
     private int currentHeart=0;
 
@@ -76,6 +77,19 @@ public class UIGamePlayManager : MonoBehaviour
     public void OpenSettingUI()
     {
         SettingUI.SetActive(true);
+    }
+
+    public void OpenOrCloseReviveUI(bool isOpen)
+    {
+        if (isOpen)
+        {
+            GameManager.instance.PauseGame();
+        }
+        else
+        {
+            GameManager.instance.ResumeGame();
+        }
+        ReviveUI.SetActive(isOpen);
     }
 
     public void ResetGame()
