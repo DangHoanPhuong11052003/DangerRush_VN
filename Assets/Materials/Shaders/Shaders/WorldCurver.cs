@@ -4,17 +4,18 @@
 public class WorldCurver : MonoBehaviour
 {
 	[Range(-0.1f, 0.1f)]
-	public float curveStrength = 0.01f;
+	private float curveStrength = 0f;
 
     int m_CurveStrengthID;
 
     private void OnEnable()
     {
         m_CurveStrengthID = Shader.PropertyToID("_CurveStrength");
+        Shader.SetGlobalFloat(m_CurveStrengthID, 0);
     }
 
-	void Update()
-	{
-		Shader.SetGlobalFloat(m_CurveStrengthID, curveStrength);
-	}
+	public void SetCurver(float curver)
+    {
+        Shader.SetGlobalFloat(m_CurveStrengthID, curver);
+    }
 }

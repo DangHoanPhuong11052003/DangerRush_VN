@@ -3,18 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.AudioSettings;
 
 public class AdsManager : MonoBehaviour
 {
-    [SerializeField] protected RewardedAdsButton RewardedAdsButton;
-    [SerializeField] protected GameObject NotEnoughFishboneUI;
-    [SerializeField] protected Button ButtonAds;
-    [SerializeField] protected int quantityFishbonesReward;
+    [SerializeField] private RewardedAdsButton RewardedAdsButton;
+    [SerializeField] private GameObject NotEnoughFishboneUI;
+    [SerializeField] private Button ButtonAds;
+    [SerializeField] private int quantityFishbonesReward;
+    [SerializeField] private GameObject NoInternetUI;
 
     public static AdsManager instance;
 
     private void Awake()
     {
+#if UNITY_STANDALONE_WIN
+        Destroy(gameObject);
+        return;
+#endif
+
+
         if (instance == null)
         {
             instance = this;
@@ -48,7 +56,7 @@ public class AdsManager : MonoBehaviour
 
     private void ShowNotEnoughFishboneUI(object parameter)
     {
-        if(NotEnoughFishboneUI==null&&ButtonAds==null) 
+        if(NotEnoughFishboneUI==null||ButtonAds==null||NoInternetUI==null) 
         {
             Destroy(this);
             return; 
@@ -58,9 +66,24 @@ public class AdsManager : MonoBehaviour
         NotEnoughFishboneUI.SetActive(true);
     }
 
+    public void OpenOrCloseNoInternetUI(bool isOpen)
+    {
+        if (NotEnoughFishboneUI == null || ButtonAds == null || NoInternetUI == null)
+        {
+            Destroy(this);
+            return;
+        }
+
+        NoInternetUI.SetActive(isOpen);
+        if (isOpen)
+        {
+            NotEnoughFishboneUI.SetActive(false);
+        }
+    }
+
     public void CloseNotEnoughFishboneUI()
     {
-        if (NotEnoughFishboneUI == null && ButtonAds == null)
+        if (NotEnoughFishboneUI == null || ButtonAds == null || NoInternetUI == null)
         {
             Destroy(this);
             return;

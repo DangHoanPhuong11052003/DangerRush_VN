@@ -19,6 +19,11 @@ public class ReviveUI : MonoBehaviour
 
     private void OnEnable()
     {
+#if UNITY_STANDALONE_WIN
+        Destroy(gameObject);
+        return;
+#endif
+
         if (isWatchedAd)
         {
             CloseUI();

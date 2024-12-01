@@ -17,11 +17,12 @@ public class AccessoriesStoreManager : MonoBehaviour
     [SerializeField] private Transform tranformModelReview;
     [SerializeField] private GameObject ButtonBuy;
     [SerializeField] private GameObject ButtonSelect;
+    [SerializeField] private GameObject ButtonUnselected;
     [SerializeField] private Transform SelectedUI;
 
     private List<int> lst_idAccessoriesOwnedData=new List<int>();
     private List<Accessory> lst_accessoriesData = new List<Accessory>();
-    private int idCurrentItemSelect;
+    private int idCurrentItemSelect=-1;
     private Dictionary<int, GameObject> accessoriesItemDic=new Dictionary<int, GameObject>();
     private int currentIdModel = 0;
 
@@ -30,7 +31,6 @@ public class AccessoriesStoreManager : MonoBehaviour
 
     private void Start()
     {
-
         UpdateDataStore();
         UpdateUIStore();
         CreateModelReview();
@@ -123,6 +123,7 @@ public class AccessoriesStoreManager : MonoBehaviour
                 ButtonSelect.SetActive(false);
                 ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = accessory.price.ToString();
                 ButtonBuy.SetActive(true);
+                ButtonUnselected.SetActive(false);
             }
             else
             {
@@ -130,10 +131,12 @@ public class AccessoriesStoreManager : MonoBehaviour
                 if (accessory.id == LocalData.instance.GetCurrentIdAccessories())
                 {
                     ButtonSelect.SetActive(false);
+                    ButtonUnselected.SetActive(true);
                 }
                 else
                 {
                     ButtonSelect.SetActive(true);
+                    ButtonUnselected.SetActive(false);
                 }
             }
         }
@@ -173,8 +176,16 @@ public class AccessoriesStoreManager : MonoBehaviour
     public void EquipAccessories()
     {
         ButtonSelect.SetActive(false);
+        ButtonUnselected.SetActive(true);
 
         LocalData.instance.SetCurrentIdAccessories(idCurrentItemSelect);
+    }
+
+    public void UnEquipAccessories()
+    {
+        ButtonSelect.SetActive(true);
+        ButtonUnselected.SetActive(false);
+        LocalData.instance.SetCurrentIdAccessories(-1);
     }
 
 

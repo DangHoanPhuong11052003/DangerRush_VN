@@ -74,9 +74,9 @@ public class UIGamePlayManager : MonoBehaviour
         }
     }
 
-    public void OpenSettingUI()
+    public void OpenOrCloseSettingUI(bool isOpen)
     {
-        SettingUI.SetActive(true);
+        SettingUI.SetActive(isOpen);
     }
 
     public void OpenOrCloseReviveUI(bool isOpen)

@@ -145,9 +145,10 @@ public class PlayerManager: MonoBehaviour
                 }
             }
 
-
-            //MoveToLaneMobile();
-            MoveToPlaneWindow();
+            if (isMobile)
+                MoveToLaneMobile();
+            else 
+                MoveToPlaneWindow();
 
             if (currentSpeed < maxSpeed)
             {
@@ -179,7 +180,14 @@ public class PlayerManager: MonoBehaviour
 
             if (QuantityLife <= 0)
             {
-                canvasManager.OpenOrCloseReviveUI(true);
+                if (isMobile)
+                {
+                    canvasManager.OpenOrCloseReviveUI(true);
+                }
+                else
+                {
+                    LoseGamePublic();
+                }
                 return;
             }
 

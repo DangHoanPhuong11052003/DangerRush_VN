@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,13 +18,20 @@ public class UILoseManager : MonoBehaviour
 
     private int coinReward = 0;
 
+    private bool isPCPlatform=false;
+
     private void OnEnable()
     {
+#if UNITY_STANDALONE_WIN
+        isPCPlatform = true;
+#endif
         coinReward = Mathf.CeilToInt(playerManager.coin * 0.5f);
 
         score.text =Mathf.CeilToInt(playerManager.score) +"M";
         fishBoneValue.text= playerManager.coin.ToString();
         fishBoneBonusValue.text = "+"+ coinReward;
+
+        Canvas.ForceUpdateCanvases();
 
         //check achiement when player lose
         AchievementsManager.instance.UnlockAchievement(achiverments_FirstDead.ToString());
@@ -34,11 +42,21 @@ public class UILoseManager : MonoBehaviour
     }
     private void Start()
     {
-        AdsManager.instance.AddButtonAdsReward(ButtonAd, RewardAds);   
+        if (!isPCPlatform)
+        {
+            AdsManager.instance.AddButtonAdsReward(ButtonAd, RewardAds);
+        }
+        else
+        {
+            ButtonAd.gameObject.SetActive(false);
+        }
     }
     private void OnDestroy()
     {
-        AdsManager.instance.RemoveButtonAdsReward(ButtonAd);
+        if(!isPCPlatform)
+        {
+            AdsManager.instance.RemoveButtonAdsReward(ButtonAd);
+        }
     }
 
     private void RewardAds(bool isComplete)

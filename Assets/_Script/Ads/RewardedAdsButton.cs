@@ -35,6 +35,20 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void LoadAd()
     {
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            if (dic_showAdButton.Count > 0)
+            {
+                foreach (var button in dic_showAdButton)
+                {
+                    button.Key.onClick.RemoveAllListeners();
+                    button.Key.onClick.AddListener(() => AdsManager.instance.OpenOrCloseNoInternetUI(true));
+                    // Enable the button for users to click:
+                    button.Key.interactable = true;
+                }
+            }
+        }
+
         Debug.Log("Loading Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
     }
@@ -97,8 +111,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        // Use the error details to determine whether to try to load another ad.
-        LoadAd();
     }
 
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
@@ -108,6 +120,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
         _CurrentFuncGetReward?.Invoke(false);
         _CurrentFuncGetReward = null;
+        Debug.Log("Show ads failure");
+        AdsManager.instance.OpenOrCloseNoInternetUI(true);
         LoadAd();
     }
 
