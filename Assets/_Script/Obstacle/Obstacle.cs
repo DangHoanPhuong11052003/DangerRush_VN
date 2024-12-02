@@ -7,6 +7,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float timeDeActive = 0;
     [SerializeField] private GameObject Parent;
     [SerializeField] private AudioClip soundDead;
+    [SerializeField] private List<string> CollisionImpact=new List<string>();
 
     private Animation animation;
 
@@ -24,7 +25,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (CollisionImpact.Contains(collision.gameObject.tag))
         {
             animation.Play();
             gameObject.GetComponent<MeshCollider>().enabled = false;

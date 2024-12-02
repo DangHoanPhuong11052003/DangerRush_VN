@@ -130,6 +130,9 @@ MonoBehaviour:
   loop1: {fileID: 8300000, guid: 692deea899152264f8419135ceefafcb, type: 3}
   loop2: {fileID: 8300000, guid: a683c76e59dd6b04a9420526560624a0, type: 3}
   audioSource: {fileID: 4380933316863936570}
+  tagImpact:
+  - Player
+  - Obstacle
 --- !u!82 &4380933316863936570
 AudioSource:
   m_ObjectHideFlags: 0

@@ -123,6 +123,7 @@
 -define:ENABLE_TIMELINE
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"D:/Program Files (x86)/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -360,6 +361,8 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.Mobile.AndroidLogcat.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.PlasticSCM.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.Postprocessing.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.RenderPipeline.Universal.ShaderLibrary.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.RenderPipelines.Core.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Unity.RenderPipelines.Core.Runtime.ref.dll"
@@ -410,9 +413,9 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Program Files (x86)/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/ActiveObstacleDog.cs"
+"Assets/DogObstacle.cs"
 "Assets/Materials/Shaders/Shaders/WorldCurver.cs"
-"Assets/NotEnoughFishboneUI.cs"
-"Assets/ReviveUI.cs"
 "Assets/Saves/Achiverments.cs"
 "Assets/Saves/DailyQuestTypes.cs"
 "Assets/Saves/KeysEvent.cs"
@@ -454,6 +457,7 @@
 "Assets/_Script/GamePlay/PowerEffect/SardinesEffect.cs"
 "Assets/_Script/GamePlay/PowerEffect/SardinesScript.cs"
 "Assets/_Script/GamePlay/PowerEffect/SetUpPowerData.cs"
+"Assets/_Script/NotEnoughFishboneUI.cs"
 "Assets/_Script/Obsever/CreateKeyEventEnum.cs"
 "Assets/_Script/Obsever/EventManager.cs"
 "Assets/_Script/Obstacle/Fishbone.cs"
@@ -477,6 +481,7 @@
 "Assets/_Script/Shop/Power/PowerUIItem.cs"
 "Assets/_Script/Shop/TabController.cs"
 "Assets/_Script/UI/CoinUI.cs"
+"Assets/_Script/UI/ReviveUI.cs"
 "Assets/_Script/UI/SettingManager.cs"
 "Assets/_Script/UI/StackSlider.cs"
 "Assets/_Script/UI/UILoseManager.cs"

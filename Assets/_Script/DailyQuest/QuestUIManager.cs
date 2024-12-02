@@ -95,13 +95,17 @@ public class QuestUIManager : MonoBehaviour
 
         dailyQuestDataLst.Sort((a, b) =>
         {
-            if (!a.isGotReward && !b.isGotReward)
+            if (a.isGotReward || b.isGotReward)
             {
-                return b.isSuccess.CompareTo(a.isSuccess);
+                return (!b.isGotReward).CompareTo(!a.isGotReward);
+            }
+            else if (!b.isSuccess && !a.isSuccess)
+            {
+                return (a.stage/(a.currentStage==0?1: a.currentStage)).CompareTo((int)(b.stage/(b.currentStage==0?1: b.currentStage)));
             }
             else
             {
-                return a.isGotReward.CompareTo(b.isGotReward);
+                return b.isSuccess.CompareTo(a.isSuccess);
             }
         });
     }

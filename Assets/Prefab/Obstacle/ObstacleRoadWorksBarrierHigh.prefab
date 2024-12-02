@@ -158,3 +158,6 @@ MonoBehaviour:
   timeDeActive: 2
   Parent: {fileID: 1218082860967001175}
   soundDead: {fileID: 8300000, guid: 9ed08397b3fef21418662ed63130d301, type: 3}
+  CollisionImpact:
+  - Player
+  - Obstacle

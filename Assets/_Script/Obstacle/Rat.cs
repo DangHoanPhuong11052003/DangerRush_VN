@@ -13,6 +13,7 @@ public class Rat : MonoBehaviour
     [SerializeField] private AudioClip loop2;
 
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<string> tagImpact=new List<string>();
 
     private float maxMoveX=1.6f;
     private float moveX;
@@ -77,7 +78,7 @@ public class Rat : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (tagImpact.Contains(collision.gameObject.tag))
         {
             animator.SetBool("Dead", true);
 

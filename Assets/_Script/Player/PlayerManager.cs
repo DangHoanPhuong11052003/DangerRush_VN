@@ -61,6 +61,8 @@ public class PlayerManager: MonoBehaviour
 
     private BoxCollider coll;
 
+    private Renderer[] renderers;
+
 
     [HideInInspector] public bool isDoubleCoin=false;
     [HideInInspector] public float score = 0;
@@ -98,6 +100,9 @@ public class PlayerManager: MonoBehaviour
 #elif UNITY_STANDALONE_WIN
        isMobile=false;
 #endif
+        isMobile = false;
+
+
         //get model character
         GameObject prefabCharacter = CharacterManager.instance.GetPrefabCharacterById(LocalData.instance.GetCurrentChar());
 
@@ -110,6 +115,8 @@ public class PlayerManager: MonoBehaviour
         coll = ColliderCharacter.GetComponentInChildren<BoxCollider>();
         animator=Character.GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = animatiorPlayer;
+
+        renderers=Character.GetComponentsInChildren<Renderer>();
 
         //set speed
         currentSpeed = maxSpeed;
@@ -252,8 +259,23 @@ public class PlayerManager: MonoBehaviour
     }
     public IEnumerator ActiveInvincible(float time)
     {
+        float timer = 0f;
         isInvincible = true;
+        while (timer < time - 0.1f)
+        {
+            foreach (var renderer in renderers)
+            {
+                renderer.enabled = !renderer.enabled;
+            }
+            yield return new WaitForSeconds(0.1f);
+            timer += 0.1f;
+        }
+        foreach (var renderer in renderers)
+        {
+            renderer.enabled = true;
+        }
         yield return new WaitForSeconds(time);
+
         isInvincible = false;
     }
 
