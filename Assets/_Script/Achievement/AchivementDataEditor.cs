@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using System.IO;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CustomEditor(typeof(AchivementData))]
 public class AchivementDataEditor : Editor
@@ -37,3 +37,4 @@ public class AchivementDataEditor : Editor
         AssetDatabase.ImportAsset("Assets/Saves/Achiverments.cs");
     }
 }
+#endif

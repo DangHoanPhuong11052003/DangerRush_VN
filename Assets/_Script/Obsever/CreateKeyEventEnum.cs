@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CreateAssetMenu]
 public class CreateKeyEventEnum : ScriptableObject
@@ -27,3 +27,4 @@ public class CreateKeyEventEnum : ScriptableObject
         AssetDatabase.ImportAsset("Assets/Saves/KeysEvent.cs");
     }
 }
+#endif

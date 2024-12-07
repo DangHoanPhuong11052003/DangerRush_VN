@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638686505561093298
-    m_Hash: 204696373
+      ticks: 638691909469590101
+    m_Hash: 2056975856
   m_LockFileStatus:
     m_FilePath: D:/GameDev/MyProject/DangerRush_VN/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638686505561161599
-    m_Hash: 3938468997
+      ticks: 638691909469590101
+    m_Hash: 1748407431
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

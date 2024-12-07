@@ -1,13 +1,7 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.Burst.CompilerServices;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using static UnityEngine.AudioSettings;
 
 
 public class PlayerManager: MonoBehaviour
@@ -35,8 +29,7 @@ public class PlayerManager: MonoBehaviour
     [SerializeField] private GameObject Character;
     [SerializeField] private GameObject ColliderCharacter;
     [SerializeField] private GameObject BuffEffect;
-    [SerializeField] GameObject LoseEffect; 
-    [SerializeField] private AnimatorController animatiorPlayer;
+    [SerializeField] GameObject LoseEffect;
 
     [SerializeField] private UIGamePlayManager canvasManager;
 
@@ -114,7 +107,6 @@ public class PlayerManager: MonoBehaviour
         //get collider character
         coll = ColliderCharacter.GetComponentInChildren<BoxCollider>();
         animator=Character.GetComponentInChildren<Animator>();
-        animator.runtimeAnimatorController = animatiorPlayer;
 
         renderers=Character.GetComponentsInChildren<Renderer>();
 

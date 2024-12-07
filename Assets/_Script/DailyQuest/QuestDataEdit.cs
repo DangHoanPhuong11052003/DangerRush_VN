@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.UI;
-using System;
 using System.IO;
+
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CustomEditor(typeof(QuestData))]
 public class QuestDataEdit : Editor
@@ -38,3 +38,4 @@ public class QuestDataEdit : Editor
         AssetDatabase.ImportAsset("Assets/Saves/DailyQuestTypes.cs");
     }
 }
+#endif

@@ -1,18 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Animations;
+
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class ReviewCharacter : MonoBehaviour
 {
     private int currentIdModel = 0;
     private GameObject modelReview;
-    [SerializeField] private AnimatorController animatorController;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -26,7 +18,6 @@ public class ReviewCharacter : MonoBehaviour
             }
             modelReview=Instantiate(CharacterManager.instance.GetPrefabCharacterById(currentIdData),transform);
             currentIdModel=currentIdData;
-            modelReview.GetComponent<Animator>().runtimeAnimatorController = animatorController;
 
             Animator animator = modelReview.GetComponent<Animator>();
             animator.SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
@@ -36,7 +27,6 @@ public class ReviewCharacter : MonoBehaviour
             if (modelReview == null)
             {
                 modelReview = Instantiate(CharacterManager.instance.GetPrefabCharacterById(currentIdData), transform);
-                modelReview.GetComponent<Animator>().runtimeAnimatorController = animatorController;
             }
 
             Animator animator= modelReview.GetComponent<Animator>();
