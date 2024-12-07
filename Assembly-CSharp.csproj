@@ -65,9 +65,9 @@
     <Compile Include="Assets\_Script\Shop\Power\PowerAssetData.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SardinesScript.cs" />
     <Compile Include="Assets\_Script\Shop\Character\CharacterData.cs" />
+    <Compile Include="Assets\_Script\Obsever\DogObstacle.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesStoreManager.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerStoreManager.cs" />
-    <Compile Include="Assets\ActiveObstacleDog.cs" />
     <Compile Include="Assets\_Script\Obstacle\Fishbone.cs" />
     <Compile Include="Assets\_Script\Shop\Character\CharStoreManager.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestData.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesManager.cs" />
     <Compile Include="Assets\_Script\GameManager\LocalData.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\BuffEffect.cs" />
+    <Compile Include="Assets\_Script\Obsever\ActiveObstacleDog.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\ReSpawItems.cs" />
     <Compile Include="Assets\_Script\DailyQuest\ChestDailyReward.cs" />
     <Compile Include="Assets\_Script\Achievement\Achiverment.cs" />
@@ -127,7 +128,6 @@
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetEffect.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivemenUIManager.cs" />
     <Compile Include="Assets\_Script\NotEnoughFishboneUI.cs" />
-    <Compile Include="Assets\DogObstacle.cs" />
     <Compile Include="Assets\_Script\GameManager\GameManager.cs" />
     <Compile Include="Assets\_Script\UI\CoinUI.cs" />
     <Compile Include="Assets\_Script\Ads\AdsInitializer.cs" />

@@ -93,7 +93,6 @@ public class PlayerManager: MonoBehaviour
 #elif UNITY_STANDALONE_WIN
        isMobile=false;
 #endif
-        isMobile = false;
 
 
         //get model character
