@@ -89,42 +89,45 @@ public class CharStoreManager : MonoBehaviour
         {
             dic_modelsReview[idChar].SetActive(true);
             dic_modelsReview[idChar].GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
-            return;
+            SelectUI.SetParent(arrayItems[idChar]);
+            SelectUI.transform.position = arrayItems[idChar].position;
         }
-
-        Character character= charactersDataLst.Find(x=>x.id==idChar);
-        if(character != null)
+        else
         {
-            //show model char
-            dic_modelsReview[idCharacterSeleted].SetActive(false);
-            dic_modelsReview[idChar].SetActive(true);
-            idCharacterSeleted= idChar;
-            dic_modelsReview[idChar].GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
 
-            //set information
-            nameTextUI.text = character.name;
+            Character character = charactersDataLst.Find(x => x.id == idChar);
+            if (character != null)
+            {
+                //show model char
+                dic_modelsReview[idCharacterSeleted].SetActive(false);
+                dic_modelsReview[idChar].SetActive(true);
+                idCharacterSeleted = idChar;
+                dic_modelsReview[idChar].GetComponent<Animator>().SetInteger("RandomIdle", UnityEngine.Random.Range(0, 5));
 
-            if (!character.isUnlocked)
-            {
-                ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = character.price.ToString();
-                ButtonBuy.SetActive(true);
-            }
-            else
-            {
-                ButtonBuy.SetActive(false);
-                if (character.id == LocalData.instance.GetCurrentChar())
+                //set information
+                nameTextUI.text = character.name;
+
+                if (!character.isUnlocked)
                 {
-                    ButtonSelect.SetActive(false);
+                    ButtonBuy.GetComponentInChildren<TextMeshProUGUI>().text = character.price.ToString();
+                    ButtonBuy.SetActive(true);
                 }
                 else
                 {
-                    ButtonSelect.SetActive(true);
+                    ButtonBuy.SetActive(false);
+                    if (character.id == LocalData.instance.GetCurrentChar())
+                    {
+                        ButtonSelect.SetActive(false);
+                    }
+                    else
+                    {
+                        ButtonSelect.SetActive(true);
+                    }
                 }
+                SelectUI.SetParent(arrayItems[idChar]);
+                SelectUI.transform.position = arrayItems[idChar].position;
             }
         }
-
-        SelectUI.SetParent(arrayItems[idChar]);
-        SelectUI.transform.position = arrayItems[idChar].position;
     }
 
     public void BuyCharacter()

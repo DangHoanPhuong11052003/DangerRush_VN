@@ -65,9 +65,9 @@
     <Compile Include="Assets\_Script\Shop\Power\PowerAssetData.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SardinesScript.cs" />
     <Compile Include="Assets\_Script\Shop\Character\CharacterData.cs" />
-    <Compile Include="Assets\_Script\Obsever\DogObstacle.cs" />
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesStoreManager.cs" />
     <Compile Include="Assets\_Script\Shop\Power\PowerStoreManager.cs" />
+    <Compile Include="Assets\_Script\Obstacle\ActiveObstacleDog.cs" />
     <Compile Include="Assets\_Script\Obstacle\Fishbone.cs" />
     <Compile Include="Assets\_Script\Shop\Character\CharStoreManager.cs" />
     <Compile Include="Assets\_Script\DailyQuest\QuestData.cs" />
@@ -80,7 +80,6 @@
     <Compile Include="Assets\_Script\Shop\Accessories\AccessoriesManager.cs" />
     <Compile Include="Assets\_Script\GameManager\LocalData.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\BuffEffect.cs" />
-    <Compile Include="Assets\_Script\Obsever\ActiveObstacleDog.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\ReSpawItems.cs" />
     <Compile Include="Assets\_Script\DailyQuest\ChestDailyReward.cs" />
     <Compile Include="Assets\_Script\Achievement\Achiverment.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetScript.cs" />
     <Compile Include="Assets\Materials\Shaders\Shaders\WorldCurver.cs" />
     <Compile Include="Assets\_Script\Obsever\EventManager.cs" />
+    <Compile Include="Assets\_Script\Obstacle\DogObstacle.cs" />
     <Compile Include="Assets\_Script\Obsever\CreateKeyEventEnum.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\SardinesEffect.cs" />
     <Compile Include="Assets\_Script\GameManager\MapManager.cs" />
@@ -127,9 +127,10 @@
     <Compile Include="Assets\_Script\Player\CollisionCharacter.cs" />
     <Compile Include="Assets\_Script\GamePlay\PowerEffect\MagnetEffect.cs" />
     <Compile Include="Assets\_Script\Achievement\AchivemenUIManager.cs" />
-    <Compile Include="Assets\_Script\NotEnoughFishboneUI.cs" />
     <Compile Include="Assets\_Script\GameManager\GameManager.cs" />
     <Compile Include="Assets\_Script\UI\CoinUI.cs" />
+    <Compile Include="Assets\_Script\GamePlay\EventMap.cs" />
+    <Compile Include="Assets\_Script\UI\NotEnoughFishboneUI.cs" />
     <Compile Include="Assets\_Script\Ads\AdsInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +140,6 @@
     <None Include="Assets\EndlessRunner_Third-PartyNotice.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Shaders\CurvedUnlit.shader" />
-    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Materials\Shaders\Shaders\CurvedUnlit.shader" />

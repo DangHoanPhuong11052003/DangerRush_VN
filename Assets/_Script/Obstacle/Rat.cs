@@ -80,6 +80,7 @@ public class Rat : MonoBehaviour
     {
         if (tagImpact.Contains(collision.gameObject.tag))
         {
+            isDead = true;
             animator.SetBool("Dead", true);
 
             audioSource.PlayOneShot(hit);

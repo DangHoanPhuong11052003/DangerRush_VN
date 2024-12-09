@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MagnetEffect : PowerEffect
 {
-    [SerializeField] private Transform player;
     private List<Transform> lst_Fishbone=new List<Transform>();
     private float timer=0;
 
@@ -31,8 +30,9 @@ public class MagnetEffect : PowerEffect
         timer-=Time.deltaTime;
         for (int i = lst_Fishbone.Count - 1; i >= 0; i--)
         {
-            lst_Fishbone[i].position = Vector3.MoveTowards(lst_Fishbone[i].position, player.position, 15 * Time.deltaTime);
-            if (lst_Fishbone[i].position == player.position)
+            if(lst_Fishbone[i].gameObject.activeInHierarchy)
+                lst_Fishbone[i].position = Vector3.MoveTowards(lst_Fishbone[i].position, transform.position, 15 * Time.deltaTime);
+            else
             {
                 lst_Fishbone[i].gameObject.SetActive(false);
                 lst_Fishbone.Remove(lst_Fishbone[i]);

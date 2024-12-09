@@ -37,6 +37,7 @@ public class UIGamePlayManager : MonoBehaviour
         score.text = "Score: "+Mathf.CeilToInt(playerManager.score);
         fishbone.text= playerManager.coin.ToString();
         meter.text= "Meter: "+Mathf.CeilToInt(playerManager.meter);
+        Canvas.ForceUpdateCanvases();
     }
 
     private void UpdayeHeathUI(object parameter)

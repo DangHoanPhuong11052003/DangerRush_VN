@@ -94,6 +94,8 @@ public class PlayerManager: MonoBehaviour
        isMobile=false;
 #endif
 
+        isMobile = false;
+
 
         //get model character
         GameObject prefabCharacter = CharacterManager.instance.GetPrefabCharacterById(LocalData.instance.GetCurrentChar());
@@ -176,7 +178,7 @@ public class PlayerManager: MonoBehaviour
         {
             --QuantityLife;
 
-            if (QuantityLife <= 0)
+            if (QuantityLife == 0)
             {
                 if (isMobile)
                 {
@@ -187,6 +189,10 @@ public class PlayerManager: MonoBehaviour
                     LoseGamePublic();
                 }
                 return;
+            }else if (QuantityLife < 0)
+            {
+                StartCoroutine(Stun());
+                canMove = false;
             }
 
             StartCoroutine(Stun());

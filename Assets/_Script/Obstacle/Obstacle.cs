@@ -19,7 +19,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(ResetAnimation());
+        ResetAnimation();
         gameObject.GetComponent<MeshCollider>().enabled = true;
     }
 
@@ -50,11 +50,11 @@ public class Obstacle : MonoBehaviour
         }
     }
 
-    private IEnumerator ResetAnimation()
+    private void ResetAnimation()
     {
-        animation[animation.clip.name].time = 0f;
-        animation[animation.clip.name].speed = 1f;
-        yield return new WaitForEndOfFrame();
+        AnimationState animState = animation[animation.clip.name];
+        animState.time = 0f;
+        animation.Sample();
         animation.Stop();
     }
 }

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 39fde02d9875d4c4e9fa27b4d47c7c58, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 39fde02d9875d4c4e9fa27b4d47c7c58, type: 3}
       propertyPath: m_LocalPosition.x
@@ -99,8 +99,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3487179, y: 0.28436106, z: 0.31271458}
-  m_Center: {x: 0.029166296, y: 0.044800974, z: 0.028990284}
+  m_Size: {x: 0.6, y: 0.6, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5695029710632867399
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
 # ninja log v5
-0	81	7553005734064532	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	5d55dadc43bd06d5
-82	228	7553005735139507	D:/GameDev/MyProject/DangerRush_VN/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6q5fm6z5/obj/arm64-v8a/libswappywrapper.so	7ccba9f21f6763af
+4	122	7554391979592150	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	5d55dadc43bd06d5
+122	275	7554391980577058	D:/GameDev/MyProject/DangerRush_VN/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6q5fm6z5/obj/arm64-v8a/libswappywrapper.so	7ccba9f21f6763af
+1	977	7554397871983606	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	5d55dadc43bd06d5
+977	1341	7554397875340883	D:/GameDev/MyProject/DangerRush_VN/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6q5fm6z5/obj/arm64-v8a/libswappywrapper.so	7ccba9f21f6763af
