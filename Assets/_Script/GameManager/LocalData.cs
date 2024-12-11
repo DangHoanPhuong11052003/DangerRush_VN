@@ -139,9 +139,11 @@ public class LocalData : MonoBehaviour
             gameData.record.coin += coin - gameData.coin;
 
             DailyQuestManager.instance.AccumulateStageQuest(coin - gameData.coin, DailyQuestsType.getFishbone);
+            EventManager.NotificationToActions(KeysEvent.GainCoin.ToString(), coin - gameData.coin);
         }
         else {
             DailyQuestManager.instance.AccumulateStageQuest(gameData.coin - coin,DailyQuestsType.useFishbone);
+            EventManager.NotificationToActions(KeysEvent.UseCoin.ToString(), gameData.coin - coin);
         }
 
         gameData.coin=coin;

@@ -1,1 +1,1 @@
-public enum KeysEvent {CoinUpdate,HeathUpdate,PowerTaked,NotEnoughFishbone,}
+public enum KeysEvent {CoinUpdate,HeathUpdate,PowerTaked,NotEnoughFishbone,GainCoin,UseCoin,}

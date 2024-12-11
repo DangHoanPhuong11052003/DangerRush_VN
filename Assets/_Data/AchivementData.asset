@@ -41,3 +41,73 @@ MonoBehaviour:
     rewardValue: 400
     isUnlocked: 0
     isGotReward: 0
+  - id: _3000Score
+    type: score
+    title: 3000 Score
+    description: Gain 3000 Score
+    rewardValue: 500
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _4000Score
+    type: score
+    title: 4000 Score
+    description: Gain 4000 Score
+    rewardValue: 600
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _5000Score
+    type: score
+    title: 5000 Score
+    description: Gain 5000 Score
+    rewardValue: 700
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _6000Score
+    type: score
+    title: 6000 Score
+    description: Gain 6000 Score
+    rewardValue: 800
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _1000Coin
+    type: getCoin
+    title: 1000 Coin
+    description: Gain 1000 coin
+    rewardValue: 100
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _3000Coin
+    type: getCoin
+    title: 3000 Coin
+    description: Gain 3000 coin
+    rewardValue: 200
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _6000Coin
+    type: getCoin
+    title: 6000 Coin
+    description: Gain 6000 coin
+    rewardValue: 300
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _12000Coin
+    type: getCoin
+    title: 12000 Coin
+    description: Gain 12000 coin
+    rewardValue: 400
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _1800Coin
+    type: getCoin
+    title: 18000 Coin
+    description: Gain 18000 coin
+    rewardValue: 500
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _24000Coin
+    type: getCoin
+    title: 24000 Coin
+    description: Gain 24000 coin
+    rewardValue: 600
+    isUnlocked: 0
+    isGotReward: 0

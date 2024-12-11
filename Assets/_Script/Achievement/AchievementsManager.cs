@@ -18,6 +18,7 @@ public class AchievementsManager : MonoBehaviour
     [SerializeField] private Animator notificationAnimator;
 
     [SerializeField] private List<ScoreAchievement> scoreAchievementsLstData;
+    [SerializeField] private List<ScoreAchievement> getCoinAchievementsLstData;
 
     [SerializeField] Canvas Canvas;
     
@@ -43,6 +44,12 @@ public class AchievementsManager : MonoBehaviour
         timeDelayNotifi = notificationAnimator.runtimeAnimatorController.animationClips[0].length+0.5f;
 
         achievementLocalDataLst=LocalData.instance.GetAchievementLocalData();
+
+        EventManager.Subscrice(KeysEvent.GainCoin.ToString(), CheckCoinGainAchievement);
+    }
+    private void OnDisable()
+    {
+        EventManager.UnSubscrice(KeysEvent.GainCoin.ToString(), CheckCoinGainAchievement);
     }
 
     private void Update()
@@ -99,6 +106,22 @@ public class AchievementsManager : MonoBehaviour
             //save new score record 
             recordData.score = score;
             LocalData.instance.SetRecordData(recordData);
+        }
+    }
+    public void CheckCoinGainAchievement(object parameter)
+    {
+        Record recordData = LocalData.instance.GetRecordData();
+
+        foreach (ScoreAchievement item in getCoinAchievementsLstData)
+        {
+            if (recordData.coin < item.score)
+            {
+                return;
+            }
+            else if (!achievementLocalDataLst.Exists(x => x.id == item.achiverments.ToString()))
+            {
+                UnlockAchievement(item.achiverments.ToString());
+            }
         }
     }
 }

@@ -45,7 +45,7 @@ public class ActiveObstacleDog : MonoBehaviour
     private IEnumerator ActiveDog(float time)
     {
         yield return new WaitForSeconds(time);
-        DogObstacle.transform.position = new Vector3(transform.position.x, player.position.y, player.position.z-2);
+        DogObstacle.transform.position = new Vector3(transform.position.x, 0, player.position.z-2);
         LineObject.SetActive(false);
         DogObstacle.SetActive(true);
     }

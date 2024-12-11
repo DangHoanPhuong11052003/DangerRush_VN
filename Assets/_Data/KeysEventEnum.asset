@@ -17,3 +17,5 @@ MonoBehaviour:
   - HeathUpdate
   - PowerTaked
   - NotEnoughFishbone
+  - GainCoin
+  - UseCoin
