@@ -2823,6 +2823,7 @@ MonoBehaviour:
   speedSwap: 15
   speedJump: 2.1
   timeDash: 1
+  timeToIncrSpeed: 10
   VectorNormal: {x: 0, y: 0.55, z: 0}
   VectorDash: {x: 0, y: 0.2, z: 0}
   SizeNormal: {x: 0.38, y: 1.15, z: 0.83}
@@ -14029,7 +14030,7 @@ MonoBehaviour:
   - {fileID: 213332723}
   playerTranform: {fileID: 722781493}
   distanceBetweenMap: 126
-  timeToCurverMap: 5
+  timeToCurverMap: 2.5
   timer: 0
   WorldCurver: {fileID: 1181737768}
   maxCurver: 0.005

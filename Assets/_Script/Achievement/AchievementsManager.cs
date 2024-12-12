@@ -8,17 +8,18 @@ using UnityEngine.Analytics;
 public class AchievementsManager : MonoBehaviour
 {
     [Serializable]
-    private class ScoreAchievement
+    private class StageOfAchievement
     {
         public Achiverments achiverments;
-        public int score;
+        public float stage;
     }
 
     [SerializeField] private AchievementsNotification notification;
     [SerializeField] private Animator notificationAnimator;
 
-    [SerializeField] private List<ScoreAchievement> scoreAchievementsLstData;
-    [SerializeField] private List<ScoreAchievement> getCoinAchievementsLstData;
+    [SerializeField] private List<StageOfAchievement> scoreAchievementsLstData;
+    [SerializeField] private List<StageOfAchievement> getCoinAchievementsLstData;
+    [SerializeField] private List<StageOfAchievement> takePowerAchievementLstData;
 
     [SerializeField] Canvas Canvas;
     
@@ -46,10 +47,12 @@ public class AchievementsManager : MonoBehaviour
         achievementLocalDataLst=LocalData.instance.GetAchievementLocalData();
 
         EventManager.Subscrice(KeysEvent.GainCoin.ToString(), CheckCoinGainAchievement);
+        EventManager.Subscrice(KeysEvent.PowerTaked.ToString(), CheckTakePowerAchievement);
     }
     private void OnDisable()
     {
         EventManager.UnSubscrice(KeysEvent.GainCoin.ToString(), CheckCoinGainAchievement);
+        EventManager.UnSubscrice(KeysEvent.PowerTaked.ToString(), CheckTakePowerAchievement);
     }
 
     private void Update()
@@ -91,9 +94,9 @@ public class AchievementsManager : MonoBehaviour
 
         if(score> recordData.score)
         {
-            foreach (ScoreAchievement item in scoreAchievementsLstData)
+            foreach (var item in scoreAchievementsLstData)
             {
-                if (score < item.score)
+                if (score < item.stage)
                 {
                     return;
                 }
@@ -112,9 +115,27 @@ public class AchievementsManager : MonoBehaviour
     {
         Record recordData = LocalData.instance.GetRecordData();
 
-        foreach (ScoreAchievement item in getCoinAchievementsLstData)
+        foreach (var item in getCoinAchievementsLstData)
         {
-            if (recordData.coin < item.score)
+            if (recordData.coin < item.stage)
+            {
+                return;
+            }
+            else if (!achievementLocalDataLst.Exists(x => x.id == item.achiverments.ToString()))
+            {
+                UnlockAchievement(item.achiverments.ToString());
+            }
+        }
+    }
+    public void CheckTakePowerAchievement(object parameter)
+    {
+        Record recordData = LocalData.instance.GetRecordData();
+        recordData.takedPower++;
+        LocalData.instance.SetRecordData(recordData);
+
+        foreach (var item in takePowerAchievementLstData)
+        {
+            if (recordData.takedPower < item.stage)
             {
                 return;
             }

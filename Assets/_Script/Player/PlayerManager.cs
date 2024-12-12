@@ -8,13 +8,14 @@ public class PlayerManager: MonoBehaviour
 {
     [Header("===Data===")]
 
-    [SerializeField] float minSpeed = 2;
-    [SerializeField] float maxSpeed = 2;
-    [SerializeField]  float maxX = 6;
+    [SerializeField] private float minSpeed = 2;
+    [SerializeField] private float maxSpeed = 2;
+    [SerializeField] private float maxX = 6;
     [SerializeField] private float maxY = 0.77f;
-    [SerializeField] int speedSwap = 2;
-    [SerializeField] float speedJump = 2;
+    [SerializeField] private int speedSwap = 2;
+    [SerializeField] private float speedJump = 2;
     [SerializeField] private float timeDash = 1f;
+    [SerializeField] private float timeToIncrSpeed=10f;
 
     [SerializeField] private Vector3 VectorNormal;
     [SerializeField] private Vector3 VectorDash;
@@ -38,6 +39,7 @@ public class PlayerManager: MonoBehaviour
     private Animator animator;
     public float currentSpeed = 0;
     private float currentDisJump = 0;
+    private float timerIncrSpeed = 0f;
 
     private bool isMobile = false;
 
@@ -113,6 +115,7 @@ public class PlayerManager: MonoBehaviour
         currentSpeed = maxSpeed;
         animator.SetTrigger("Moving");
         StartCoroutine(ReadyStart());
+        timerIncrSpeed = timeToIncrSpeed;
     }
 
     private void Update()
@@ -151,6 +154,13 @@ public class PlayerManager: MonoBehaviour
             if (currentSpeed < maxSpeed)
             {
                 currentSpeed += 0.01f;
+            }
+
+            timerIncrSpeed -= Time.deltaTime;
+            if(timerIncrSpeed < 0)
+            {
+                maxSpeed += 0.05f;
+                timerIncrSpeed = timeToIncrSpeed;
             }
         }
     }

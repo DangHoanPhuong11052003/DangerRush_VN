@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 5737234
   _iOSGameId: 5737235
-  _testMode: 1
+  _testMode: 0
 --- !u!114 &202864746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2789,7 +2789,7 @@ MonoBehaviour:
   m_Content: {fileID: 300015326}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -3526,6 +3526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 300015326}
   - component: {fileID: 300015328}
+  - component: {fileID: 300015329}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -3577,6 +3578,20 @@ MonoBehaviour:
   m_Spacing: {x: 15, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 1
+--- !u!114 &300015329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300015325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &302808407
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,7 +5560,7 @@ MonoBehaviour:
   m_Content: {fileID: 1126934359}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -9795,6 +9810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126934359}
   - component: {fileID: 1126934361}
+  - component: {fileID: 1126934362}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -9846,6 +9862,20 @@ MonoBehaviour:
   m_Spacing: {x: 15, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 1
+--- !u!114 &1126934362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126934358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &1127409098
 GameObject:
   m_ObjectHideFlags: 0
@@ -11515,7 +11545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.005859375, y: 0.009887695}
+  m_AnchoredPosition: {x: -0.005859375, y: 0.010009766}
   m_SizeDelta: {x: 0.9000244, y: 0.30004883}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1226776184
@@ -15230,7 +15260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 183.33333, y: -49}
+  m_AnchoredPosition: {x: 183.33331, y: -49}
   m_SizeDelta: {x: 346.66666, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1694871006
@@ -19529,32 +19559,45 @@ MonoBehaviour:
   notificationAnimator: {fileID: 259038602}
   scoreAchievementsLstData:
   - achiverments: 1
-    score: 500
+    stage: 500
   - achiverments: 2
-    score: 1000
+    stage: 1000
   - achiverments: 3
-    score: 2000
+    stage: 2000
   - achiverments: 4
-    score: 3000
+    stage: 3000
   - achiverments: 5
-    score: 4000
+    stage: 4000
   - achiverments: 6
-    score: 5000
+    stage: 5000
   - achiverments: 7
-    score: 6000
+    stage: 6000
   getCoinAchievementsLstData:
   - achiverments: 8
-    score: 100
+    stage: 1000
   - achiverments: 9
-    score: 3000
+    stage: 3000
   - achiverments: 10
-    score: 6000
+    stage: 6000
   - achiverments: 11
-    score: 12000
+    stage: 12000
   - achiverments: 12
-    score: 18000
+    stage: 18000
   - achiverments: 13
-    score: 24000
+    stage: 24000
+  takePowerAchievementLstData:
+  - achiverments: 14
+    stage: 100
+  - achiverments: 15
+    stage: 300
+  - achiverments: 16
+    stage: 600
+  - achiverments: 17
+    stage: 1200
+  - achiverments: 18
+    stage: 2000
+  - achiverments: 19
+    stage: 3000
   Canvas: {fileID: 2113324069}
 --- !u!1 &2119917731
 GameObject:

@@ -33,9 +33,9 @@ public class MapManager : MonoBehaviour
         {
             timer = timeToCurverMap;
 
-            currentCurver = isCurverUp ? currentCurver + maxCurver/50 : currentCurver - maxCurver / 50;
+            currentCurver = isCurverUp ? currentCurver + maxCurver/100 : currentCurver - maxCurver / 100;
 
-            posCharModel.position = new Vector3(posCharModel.position.x, isCurverUp ? posCharModel.position.y - 0.5f / 100f : posCharModel.position.y + 0.5f / 100f, posCharModel.position.z);
+            posCharModel.position = new Vector3(posCharModel.position.x, isCurverUp ? posCharModel.position.y - 0.5f / 200f : posCharModel.position.y + 0.5f / 200f, posCharModel.position.z);
 
             WorldCurver.SetCurver(currentCurver);
 

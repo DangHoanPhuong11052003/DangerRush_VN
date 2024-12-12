@@ -24,90 +24,132 @@ MonoBehaviour:
     type: score
     title: 500 Score
     description: Gain 500 Score
-    rewardValue: 200
+    rewardValue: 300
     isUnlocked: 0
     isGotReward: 0
   - id: _1000Score
     type: score
     title: 1000 Score
     description: Gain 1000 Score
-    rewardValue: 300
+    rewardValue: 600
     isUnlocked: 0
     isGotReward: 0
   - id: _2000Score
     type: score
     title: 2000 Score
     description: Gain 2000 Score
-    rewardValue: 400
+    rewardValue: 1000
     isUnlocked: 0
     isGotReward: 0
   - id: _3000Score
     type: score
     title: 3000 Score
     description: Gain 3000 Score
-    rewardValue: 500
+    rewardValue: 1500
     isUnlocked: 0
     isGotReward: 0
   - id: _4000Score
     type: score
     title: 4000 Score
     description: Gain 4000 Score
-    rewardValue: 600
+    rewardValue: 2000
     isUnlocked: 0
     isGotReward: 0
   - id: _5000Score
     type: score
     title: 5000 Score
     description: Gain 5000 Score
-    rewardValue: 700
+    rewardValue: 2500
     isUnlocked: 0
     isGotReward: 0
   - id: _6000Score
     type: score
     title: 6000 Score
     description: Gain 6000 Score
-    rewardValue: 800
+    rewardValue: 3000
     isUnlocked: 0
     isGotReward: 0
   - id: _1000Coin
     type: getCoin
     title: 1000 Coin
     description: Gain 1000 coin
-    rewardValue: 100
+    rewardValue: 300
     isUnlocked: 0
     isGotReward: 0
   - id: _3000Coin
     type: getCoin
     title: 3000 Coin
     description: Gain 3000 coin
-    rewardValue: 200
+    rewardValue: 600
     isUnlocked: 0
     isGotReward: 0
   - id: _6000Coin
     type: getCoin
     title: 6000 Coin
     description: Gain 6000 coin
-    rewardValue: 300
+    rewardValue: 1000
     isUnlocked: 0
     isGotReward: 0
   - id: _12000Coin
     type: getCoin
     title: 12000 Coin
     description: Gain 12000 coin
-    rewardValue: 400
+    rewardValue: 1500
     isUnlocked: 0
     isGotReward: 0
   - id: _1800Coin
     type: getCoin
     title: 18000 Coin
     description: Gain 18000 coin
-    rewardValue: 500
+    rewardValue: 2000
     isUnlocked: 0
     isGotReward: 0
   - id: _24000Coin
     type: getCoin
     title: 24000 Coin
     description: Gain 24000 coin
+    rewardValue: 2500
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _100Power
+    type: takePower
+    title: Take 100 Power
+    description: Take 100 Power
+    rewardValue: 300
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _300Power
+    type: takePower
+    title: Take 300 Power
+    description: Take 300 Power
     rewardValue: 600
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _600Power
+    type: takePower
+    title: Take 600 Power
+    description: Take 600 Power
+    rewardValue: 1000
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _1200Power
+    type: takePower
+    title: Take 1200 Power
+    description: Take 1200 Power
+    rewardValue: 1500
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _2000Power
+    type: takePower
+    title: Take 2000 Power
+    description: Take 2000 Power
+    rewardValue: 2000
+    isUnlocked: 0
+    isGotReward: 0
+  - id: _3000Power
+    type: takePower
+    title: Take 3000 Power
+    description: Take 3000 Power
+    rewardValue: 3000
     isUnlocked: 0
     isGotReward: 0

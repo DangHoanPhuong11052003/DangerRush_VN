@@ -320,11 +320,13 @@ public class Record
     public int score;
     public int coin;
     public int quantityChar;
+    public int takedPower;
 
     public Record()
     {
         score = 0;
         coin = 0;
+        takedPower = 0;
         quantityChar = 1;
     }
 }
